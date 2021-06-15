@@ -1,0 +1,107 @@
+.intro {
+    padding-top: toRem(108);
+    padding-bottom: toRem(124);
+    position: relative;
+    overflow: hidden;
+
+    &__container {
+        position: relative;
+    }
+
+    &__image {
+        position: absolute;
+        top: toRem(-108);
+        left: 0;
+        bottom: toRem(-124);
+        right: 0;
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+        color: $white;
+    }
+
+    &__title {
+        width: toRem(275);
+        font-size: toRem(42);
+        line-height: toRem(52);
+        color: inherit;
+        margin-bottom: toRem(14);
+    }
+
+    &__description {
+        width: toRem(275);
+        font-size: toRem(17);
+        line-height: toRem(24);
+        color: inherit;
+        margin-bottom: toRem(40);
+    }
+
+    @include media_min_tablet {
+        padding-bottom: toRem(79);
+
+        &__description {
+            font-size: toRem(16);
+            line-height: toRem(21);
+        }
+
+        &__image {
+            top: toRem(-162);
+            bottom: toRem(-79);
+        }
+    }
+
+    @media (min-width: 1000px) {
+        &__image {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    @include media_min_desktop {
+        padding-top: toRem(162);
+        padding-bottom: toRem(192);
+
+        &__title {
+            @include fontSize(h1);
+
+            font-weight: 300;
+            width: toRem(510);
+        }
+
+        &__description {
+            width: toRem(340);
+            font-size: toRem(20);
+            line-height: toRem(28);
+        }
+
+        &__image {
+            bottom: toRem(-192);
+
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+    }
+}

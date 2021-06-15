@@ -1,0 +1,287 @@
+@function toRem($size) {
+    $remSize: $size / 12 + rem;
+
+    @return #{$remSize};
+}
+
+@function freezeRem($size) {
+    $newSize: $size * 1.2 + px;
+
+    @return #{$newSize};
+}
+
+@mixin marginLevel($direction,$color, $sign: plus) {
+    @each $spaceLevel, $pixels in $spaces {
+        @if $spaceLevel == $color {
+            @if (length(map-get($spaces, $spaceLevel)) == 1) {
+                @if ($sign == plus) {
+                    margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                }
+
+                @else if($sign == minus) {
+                    margin-#{$direction}: - nth(map-get($spaces, $spaceLevel), 1);
+                }
+            }
+
+            @else {
+                @if (nth(map-get($spaces, $spaceLevel), 1) == nth(map-get($spaces, $spaceLevel), 2)) {
+                    @media (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: - nth(map-get($spaces, $spaceLevel), 1);
+                        }
+                    }
+
+                    @media (min-width: $desktop) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: - nth(map-get($spaces, $spaceLevel), 3);
+                        }
+                    }
+                }
+
+                @else if(nth(map-get($spaces, $spaceLevel), 2) == nth(map-get($spaces, $spaceLevel), 3)) {
+                    @media (max-width: $maxMobile) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: - nth(map-get($spaces, $spaceLevel), 1);
+                        }
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: - nth(map-get($spaces, $spaceLevel), 2);
+                        }
+                    }
+                }
+
+                @else {
+                    @media (max-width: $maxMobile) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: - nth(map-get($spaces, $spaceLevel), 1);
+                        }
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: - nth(map-get($spaces, $spaceLevel), 2);
+                        }
+                    }
+
+                    @media (min-width: $desktop) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: - nth(map-get($spaces, $spaceLevel), 3);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin paddingLevel($direction,$color) {
+    @each $spaceLevel, $pixels in $spaces {
+        @if $spaceLevel == $color {
+            @if (length(map-get($spaces, $spaceLevel)) == 1) {
+                padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+            }
+
+            @else {
+                @if (nth(map-get($spaces, $spaceLevel), 1) == nth(map-get($spaces, $spaceLevel), 2)) {
+                    @media (max-width: $maxTablet) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                    }
+
+                    @media (min-width: $desktop) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                    }
+                }
+
+                @else if(nth(map-get($spaces, $spaceLevel), 2) == nth(map-get($spaces, $spaceLevel), 3)) {
+                    @media (max-width: $maxMobile) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                    }
+                }
+
+                @else {
+                    @media (max-width: $maxMobile) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                    }
+
+                    @media (min-width: $desktop) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin positionLevel($direction,$color,$sign: plus) {
+    @each $spaceLevel, $pixels in $spaces {
+        @if $spaceLevel == $color {
+            @if (length(map-get($spaces, $spaceLevel)) == 1) {
+                @if ($sign == plus) {
+                    #{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                }
+
+                @else if($sign == minus) {
+                    #{$direction}: - nth(map-get($spaces, $spaceLevel), 1);
+                }
+            }
+
+            @else {
+                @if (nth(map-get($spaces, $spaceLevel), 1) == nth(map-get($spaces, $spaceLevel), 2)) {
+                    @media (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: - nth(map-get($spaces, $spaceLevel), 1);
+                        }
+                    }
+
+                    @media (min-width: $desktop) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: - nth(map-get($spaces, $spaceLevel), 3);
+                        }
+                    }
+                }
+
+                @else if(nth(map-get($spaces, $spaceLevel), 2) == nth(map-get($spaces, $spaceLevel), 3)) {
+                    @media (max-width: $maxMobile) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: - nth(map-get($spaces, $spaceLevel), 1);
+                        }
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: - nth(map-get($spaces, $spaceLevel), 2);
+                        }
+                    }
+                }
+
+                @else {
+                    @media (max-width: $maxMobile) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: - nth(map-get($spaces, $spaceLevel), 1);
+                        }
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: - nth(map-get($spaces, $spaceLevel), 2);
+                        }
+                    }
+
+                    @media (min-width: $desktop) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: - nth(map-get($spaces, $spaceLevel), 3);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin fontSize($name) {
+    @each $tagName, $tagValue in $tags {
+        @if $tagName == $name {
+            @media (max-width: $maxMobile) {
+                font-size: nth(map-get($tags, $tagName), 1);
+
+                @if length(nth(map-get($tags, $tagName), 4)) > 1 {
+                    line-height: nth(nth(map-get($tags, $tagName), 4), 1);
+                }
+
+                @else {
+                    line-height: nth(map-get($tags, $tagName), 4);
+                }
+            }
+
+            @media (min-width: $tablet) and (max-width: $maxTablet) {
+                font-size: nth(map-get($tags, $tagName), 2);
+
+                @if length(nth(map-get($tags, $tagName), 4)) > 1 {
+                    line-height: nth(nth(map-get($tags, $tagName), 4), 2);
+                }
+
+                @else {
+                    line-height: nth(map-get($tags, $tagName), 4);
+                }
+            }
+
+            @media (min-width: $desktop) {
+                font-size: nth(map-get($tags, $tagName), 3);
+
+                @if length(nth(map-get($tags, $tagName), 4)) > 1 {
+                    line-height: nth(nth(map-get($tags, $tagName), 4), 3);
+                }
+
+                @else {
+                    line-height: nth(map-get($tags, $tagName), 4);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+$white: #fff;
+$dark: rgba(39, 40, 46, 1);
+
+$blue: #434aff;
+
+$textPrimary: #2a1c36;
+$textSecondary: rgba(42, 28, 54, 0.651);
+$textSecondaryHover: rgba(42, 28, 54, 0.851);
+
+$primaryColor: #434aff;
+
+$iconPrimary: #00062e;
+
+$backgroundLevel0: $white;
+$backgroundLevel1: rgba(248, 248, 248, 1);
+$backgroundLevel2: rgba($primaryColor, 0.05);
+
+$backgroundSecondary: #f9f8fa;
+$backgroundSecondaryHover: #f5f4f5;
+$backgroundTertiary: rgba($white, 0.75);
+$backgroundTertiaryHover: $white;
+
+$borderPrimary: #dadfe8;
+$borderSecondary: rgba(220, 220, 220, 0.5);
+
+$blue: #3c6ea3;
+
+$tabActive: linear-gradient(
+                270.13deg,
+                rgba(252, 153, 86, 0.1) 0.11%,
+                rgba(208, 126, 211, 0.1) 53.35%,
+                rgba(130, 138, 232, 0.1) 99.9%
+            ), #fff;
+$active: linear-gradient(
+            0deg, rgba(255, 251, 164, 0.05), rgba(255, 251, 164, 0.05)
+         ),
+         linear-gradient(
+            90deg, #7985eb 0%, rgba(180, 85, 255, 0.85) 35.7%, #ff964a 100%
+         );

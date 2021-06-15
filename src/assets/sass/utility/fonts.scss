@@ -1,0 +1,11 @@
+@mixin newFont($family,$pathName,$weight) {
+    @font-face {
+        font-family: '#{$family}';
+        src: url('/public/fonts/#{$pathName}.woff2') format('woff2'), url('/public/fonts/#{$pathName}.woff') format('woff');
+        font-weight: #{$weight};
+        font-style: normal;
+        font-display: swap;
+    }
+}
+
+//@include newFont('icon','/icons/iconfont', 400);

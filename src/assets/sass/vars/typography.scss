@@ -1,0 +1,59 @@
+$mainFontFamily: 'Railway';
+$icon: 'icon', sans-serif;
+
+$tags: (
+    //              (font-size small, medium, large, (line-height, small, medium, large))
+    h1            : (toRem(42), toRem(42), toRem(62), (toRem(52), toRem(52), toRem(68))),
+    h2            : (toRem(24), toRem(22), toRem(32), (toRem(28.18), toRem(25.83), toRem(37.57))),
+    h3            : (toRem(18), toRem(18), toRem(21), (toRem(23), toRem(23), toRem(24.65))),
+    p1            : (toRem(16), toRem(20), toRem(24), (toRem(24), toRem(26), toRem(28))),
+    p2            : (toRem(16), toRem(20), toRem(20), (toRem(24), toRem(26), toRem(26))),
+    p3            : (toRem(14), toRem(16), toRem(16), (toRem(18), toRem(24), toRem(24))),
+    p4            : (toRem(14), toRem(10), toRem(10), (toRem(20), toRem(11.74), toRem(11.74))),
+    p5            : (toRem(13), toRem(13), toRem(13), (toRem(20))),
+    buttom-s      : (toRem(14), toRem(14), toRem(14), (toRem(40))),
+    buttom-m      : (toRem(16), toRem(16), toRem(16), (toRem(44))),
+    input         : (toRem(16), toRem(16), toRem(16), (inherit)),
+);
+
+@mixin fontSize($name) {
+    @each $tagName, $tagValue in $tags {
+        @if $tagName == $name {
+            @media (max-width: $maxMobile) {
+                font-size: nth(map-get($tags, $tagName), 1);
+
+                @if length(nth(map-get($tags, $tagName), 4)) > 1 {
+                    line-height: nth(nth(map-get($tags, $tagName), 4), 1);
+                }
+
+                @else {
+                    line-height: nth(map-get($tags, $tagName), 4);
+                }
+            }
+
+            @media (min-width: $tablet) and (max-width: $maxTablet) {
+                font-size: nth(map-get($tags, $tagName), 2);
+
+                @if length(nth(map-get($tags, $tagName), 4)) > 1 {
+                    line-height: nth(nth(map-get($tags, $tagName), 4), 2);
+                }
+
+                @else {
+                    line-height: nth(map-get($tags, $tagName), 4);
+                }
+            }
+
+            @media (min-width: $desktop) {
+                font-size: nth(map-get($tags, $tagName), 3);
+
+                @if length(nth(map-get($tags, $tagName), 4)) > 1 {
+                    line-height: nth(nth(map-get($tags, $tagName), 4), 3);
+                }
+
+                @else {
+                    line-height: nth(map-get($tags, $tagName), 4);
+                }
+            }
+        }
+    }
+}

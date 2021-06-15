@@ -1,0 +1,199 @@
+html {
+    font-size: 12px;
+
+    @media (min-width: 400px) {
+        font-size: 13.2px;
+    }
+
+    @media (min-width: $tablet) {
+        font-size: 12px;
+    }
+
+    @media (min-width: $desktop) {
+        font-size: 1vw;
+    }
+
+    @media (min-width: $maxRems) {
+        font-size: 18px;
+    }
+}
+
+body {
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    color: $textPrimary;
+    font-family: $mainFontFamily, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    background: $backgroundLevel0; //-webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 320px;
+}
+
+img {
+    height: 100%;
+}
+
+.container {
+    box-sizing: border-box;
+    max-width: $maxRems;
+    min-width: toRem(280);
+    margin: 0 auto;
+    padding: 0 toRem(20);
+
+    @include media_min_tablet {
+        padding: 0 toRem(40);
+    }
+
+    @include media_min_desktop {
+        padding: 0 toRem(48);
+    }
+
+    @media (min-width: $freezeRem) {
+        padding: 0 toRem(98);
+    }
+}
+
+.os-windows {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(207, 235, 244, 0.15) 0%,
+            rgba(233, 226, 255, 0.15) 100%
+        ), #fff;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(#aeaeae, 0.1)  rgba(#000, 0.25);
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: rgba(#aeaeae, 0.1);
+
+        &:hover {
+            background-color: rgba(#aeaeae, 0.3);
+        }
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(#000, 0.25);
+        border-radius: 10px;
+
+        &:hover {
+            background-color: rgba(#000, 0.5);
+        }
+    }
+}
+
+main {
+    display: block;
+}
+
+button,
+.button {
+    box-sizing: border-box;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-family: $mainFontFamily, -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica', 'Arial', 'sans-serif';
+    background: none;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    text-align: center;
+}
+
+*:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+label {
+    display: block;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: $mainFontFamily, -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica', 'Arial', 'sans-serif';
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+
+    &::-webkit-input-placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+    }
+
+    &::-moz-placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+    }
+
+    &:-moz-placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+    }
+
+    &:-ms-input-placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+    }
+}
+
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: $mainFontFamily, -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica', 'Arial', 'sans-serif';
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    border: none;
+
+    &::-webkit-input-placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+    }
+
+    &::-moz-placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+    }
+
+    &:-moz-placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+    }
+
+    &:-ms-input-placeholder {
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+    }
+}
+
+.card-decoration {
+    background-color: #fff;
+    border-radius: toRem(12);
+    box-shadow: 0 0 8px rgba(122, 100, 255, 0.08);
+
+    &--shadow-primary {
+        box-shadow: 0 0 12px rgba(172, 178, 250, 0.15);
+    }
+}

@@ -1,0 +1,245 @@
+$spaces: (
+    cobalt:    (toRem(4)),
+    pink:      (toRem(8)),
+    brown:     (toRem(12)),
+    green:     (toRem(16)),
+    blue:      (toRem(20)),
+    red:       (toRem(20),toRem(20), toRem(24)),
+    orange:    (toRem(24),toRem(24), toRem(32)),
+    gray:      (toRem(40),toRem(48), toRem(48)),
+    purple:     (toRem(48),toRem(56), toRem(64)),
+);
+
+@mixin marginLevel($direction,$color, $sign: plus) {
+    @each $spaceLevel, $pixels in $spaces {
+        @if $spaceLevel == $color {
+            @if (length(map-get($spaces, $spaceLevel)) == 1) {
+                @if ($sign == plus) {
+                    margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                }
+
+                @else if($sign == minus) {
+                    margin-#{$direction}: -#{nth(map-get($spaces, $spaceLevel), 1)};
+                }
+            }
+
+            @else {
+                @if (nth(map-get($spaces, $spaceLevel), 1) == nth(map-get($spaces, $spaceLevel), 2)) {
+                    @media (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: -#{nth(map-get($spaces, $spaceLevel), 1)};
+                        }
+                    }
+
+                    @media (min-width: $desktop) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: -#{nth(map-get($spaces, $spaceLevel), 3)};
+                        }
+                    }
+                }
+
+                @else if(nth(map-get($spaces, $spaceLevel), 2) == nth(map-get($spaces, $spaceLevel), 3)) {
+                    @media (max-width: $maxMobile) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: -#{nth(map-get($spaces, $spaceLevel), 1)};
+                        }
+                    }
+
+                    @media (min-width: $tablet) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: -#{nth(map-get($spaces, $spaceLevel), 2)};
+                        }
+                    }
+                }
+
+                @else {
+                    @media (max-width: $maxMobile) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: -#{nth(map-get($spaces, $spaceLevel), 1)};
+                        }
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: -#{nth(map-get($spaces, $spaceLevel), 2)};
+                        }
+                    }
+
+                    @media (min-width: $desktop) {
+                        @if ($sign == plus) {
+                            margin-#{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                        }
+
+                        @else if($sign == minus) {
+                            margin-#{$direction}: -#{nth(map-get($spaces, $spaceLevel), 3)};
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin paddingLevel($direction,$color) {
+    @each $spaceLevel, $pixels in $spaces {
+        @if $spaceLevel == $color {
+            @if (length(map-get($spaces, $spaceLevel)) == 1) {
+                padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+            }
+
+            @else {
+                @if (nth(map-get($spaces, $spaceLevel), 1) == nth(map-get($spaces, $spaceLevel), 2)) {
+                    @media (max-width: $maxTablet) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                    }
+
+                    @media (min-width: $desktop) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                    }
+                }
+
+                @else if(nth(map-get($spaces, $spaceLevel), 2) == nth(map-get($spaces, $spaceLevel), 3)) {
+                    @media (max-width: $maxMobile) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                    }
+
+                    @media (min-width: $tablet) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                    }
+                }
+
+                @else {
+                    @media (max-width: $maxMobile) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                    }
+
+                    @media (min-width: $desktop) {
+                        padding-#{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin positionLevel($direction,$color,$sign: plus) {
+    @each $spaceLevel, $pixels in $spaces {
+        @if $spaceLevel == $color {
+            @if (length(map-get($spaces, $spaceLevel)) == 1) {
+                @if ($sign == plus) {
+                    #{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                }
+
+                @else if($sign == minus) {
+                    #{$direction}: -#{nth(map-get($spaces, $spaceLevel), 1)};
+                }
+            }
+
+            @else {
+                @if (nth(map-get($spaces, $spaceLevel), 1) == nth(map-get($spaces, $spaceLevel), 2)) {
+                    @media (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: -#{nth(map-get($spaces, $spaceLevel), 1)};
+                        }
+                    }
+
+                    @media (min-width: $desktop) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: -#{nth(map-get($spaces, $spaceLevel), 3)};
+                        }
+                    }
+                }
+
+                @else if(nth(map-get($spaces, $spaceLevel), 2) == nth(map-get($spaces, $spaceLevel), 3)) {
+                    @media (max-width: $maxMobile) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: -#{nth(map-get($spaces, $spaceLevel), 1)};
+                        }
+                    }
+
+                    @media (min-width: $tablet) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: -#{nth(map-get($spaces, $spaceLevel), 2)};
+                        }
+                    }
+                }
+
+                @else {
+                    @media (max-width: $maxMobile) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 1);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: -#{nth(map-get($spaces, $spaceLevel), 1)};
+                        }
+                    }
+
+                    @media (min-width: $tablet) and (max-width: $maxTablet) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 2);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: -#{nth(map-get($spaces, $spaceLevel), 2)};
+                        }
+                    }
+
+                    @media (min-width: $desktop) {
+                        @if ($sign == plus) {
+                            #{$direction}: nth(map-get($spaces, $spaceLevel), 3);
+                        }
+
+                        @else if($sign == minus) {
+                            #{$direction}: -#{nth(map-get($spaces, $spaceLevel), 3)};
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
