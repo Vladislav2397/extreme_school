@@ -8,6 +8,13 @@
         position: relative;
     }
 
+    &__inner {
+        position: relative;
+        z-index: 2;
+        color: $white;
+        width: toRem(275);
+    }
+
     &__image {
         position: absolute;
         top: toRem(-108);
@@ -33,22 +40,12 @@
         }
     }
 
-    &__inner {
-        position: relative;
-        z-index: 2;
-        color: $white;
-    }
-
     &__title {
-        width: toRem(275);
-        font-size: toRem(42);
-        line-height: toRem(52);
         color: inherit;
         margin-bottom: toRem(14);
     }
 
     &__description {
-        width: toRem(275);
         font-size: toRem(17);
         line-height: toRem(24);
         color: inherit;
@@ -82,15 +79,15 @@
         padding-top: toRem(162);
         padding-bottom: toRem(192);
 
-        &__title {
-            @include fontSize(h1);
+        &__inner {
+            width: toRem(373);
+        }
 
+        &__title {
             font-weight: 300;
-            width: toRem(510);
         }
 
         &__description {
-            width: toRem(340);
             font-size: toRem(20);
             line-height: toRem(28);
         }
@@ -99,7 +96,6 @@
             bottom: toRem(-192);
 
             img {
-                width: auto;
                 height: 100%;
             }
         }

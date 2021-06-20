@@ -1,3 +1,97 @@
 .destination {
+    padding-top: toRem(60);
+    padding-bottom: toRem(100);
+    overflow: hidden;
 
+    &__inner {
+        position: relative;
+    }
+
+    &__title {
+        margin-bottom: toRem(40);
+    }
+
+    &__swiper {
+        width: 100%;
+        margin: 0 auto;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    &__slide {
+        display: inline-block;
+    }
+
+    &__image {
+        border-radius: toRem(8);
+        margin-bottom: toRem(14);
+        overflow: hidden;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &__caption {
+        font-size: toRem(16);
+        line-height: toRem(18.78);
+    }
+
+    &__button {
+        display: none;
+    }
+
+    @include media_min_tablet {
+        padding-top: toRem(80);
+        padding-bottom: toRem(120);
+
+        &__inner {
+            width: span(12 of 12);
+        }
+
+        &__title {
+            margin-bottom: toRem(50);
+        }
+
+        &__image {
+            border-radius: toRem(16);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        padding-top: toRem(90);
+        padding-bottom: toRem(110);
+
+        &__title {
+            margin-bottom: toRem(60);
+        }
+
+        &__swiper {
+            width: span(10 of 12);
+            overflow: hidden;
+        }
+
+        &__button {
+            display: block;
+            position: absolute;
+            top: toRem(61 + 90);
+            width: toRem(40);
+            height: toRem(40);
+            z-index: 3;
+
+            &--prev {
+                left: toRem(24);
+            }
+
+            &--next {
+                right: toRem(24);
+            }
+        }
+    }
+
+    @include media_min_desktop {
+        padding-top: toRem(120);
+        padding-bottom: toRem(140);
+    }
 }

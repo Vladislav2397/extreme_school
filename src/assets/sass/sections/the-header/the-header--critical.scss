@@ -5,6 +5,22 @@
     right: 0;
     z-index: 3;
 
+    &--fixed {
+        position: fixed;
+        background-color: $dark;
+
+        .header {
+            &__inner {
+                height: toRem(46 + 12 + 12);
+            }
+
+            &__button {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    }
+
     &__inner {
         position: relative;
         height: toRem(46 + 30 + 30);
@@ -54,6 +70,14 @@
     }
 
     &__button {
+        position: absolute;
+        top: toRem(12);
+        right: toRem(59);
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    &__burger {
         width: toRem(34);
         height: 16px;
         position: absolute;

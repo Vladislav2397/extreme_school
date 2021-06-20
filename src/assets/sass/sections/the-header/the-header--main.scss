@@ -1,0 +1,13 @@
+.header {
+    transition: background-color 0.3s ease;
+
+    &--fixed {
+        .header__button {
+            transition: opacity 0.3s ease;
+        }
+    }
+
+    &__button {
+        transition: opacity 0.4s ease;
+    }
+}

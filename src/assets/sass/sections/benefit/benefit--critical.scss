@@ -1,0 +1,131 @@
+.benefit {
+    padding-top: toRem(40);
+    padding-bottom: toRem(50);
+    background-color: $backgroundLevel2;
+
+    &__inner {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    &__title {
+        margin-bottom: toRem(44);
+
+        span {
+            color: $primaryColor;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 2px;
+                border-radius: 12px;
+                background-color: $primaryColor;
+            }
+        }
+    }
+
+    &__image,
+    &__table {
+        display: inline-block;
+    }
+
+    &__table {
+        &-title {
+            margin-bottom: toRem(10);
+        }
+
+        &-content {
+            font-size: toRem(13);
+            line-height: toRem(20);
+        }
+    }
+
+    &__image {
+        width: 100%;
+
+        @media (max-width: $tabletLate){
+            margin-bottom: toRem(30);
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    &__row {
+        width: 100%;
+
+        & + & {
+            margin-top: toRem(40);
+        }
+    }
+
+    &__column {
+        width: 46%;
+        display: inline-block;
+        vertical-align: top;
+        text-align: left;
+
+        & + & {
+            margin-left: 8%;
+        }
+    }
+
+    @include media_min_tablet {
+        padding-bottom: toRem(60);
+
+        &__container {
+            text-align: center;
+        }
+
+        &__image {
+            width: toRem(600);
+        }
+    }
+
+    @media (min-width: $tabletLate) {
+        &__container {
+            position: relative;
+        }
+
+        &__title {
+            margin-bottom: toRem(45);
+        }
+
+        &__image,
+        &__table {
+            vertical-align: middle;
+        }
+
+        &__image {
+            width: 42.88%;
+        }
+
+        &__table {
+            width: 51.93%;
+            margin-left: 5.19%;
+        }
+    }
+
+    @include media_min_desktop {
+        padding-top: toRem(70);
+        padding-bottom: toRem(102);
+
+        &__title {
+            margin-bottom: toRem(32);
+        }
+    }
+
+    @media (min-width: 1440px) {
+        &__inner {
+            width: toRem(1032);
+            margin: 0 auto;
+        }
+    }
+}

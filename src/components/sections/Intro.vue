@@ -9,21 +9,25 @@ include ../../tools/mixins
                 alt="intro"
             )
         +e.inner
-            +e.H1.title(
+            +e.TITLE-COMPONENT.title(
                 v-html="content.title.text"
             )
             +e.description(
                 v-html="content.description.text"
             )
-            +e.BUTTON.button Записаться
+            +e.BUTTON-COMPONENT(
+                tag="button"
+                theme="primary"
+            ) Записаться
 
 </template>
 
 <script lang="ts">
-import { mixins } from 'vue-class-component'
+import { Options, mixins } from 'vue-class-component'
 
 import device from '../../mixins/utility/device'
 
+@Options({})
 export default class Intro extends mixins(device) {
     content = {
         title: {

@@ -1,7 +1,9 @@
 <template lang="pug">
 include ../../tools/mixins
 
-+b.HEADER.header
++b.HEADER.header(
+    :class="{ 'header--fixed': isScroll }"
+)
     +e.container.container
         +e.inner
             +e.logo True #[br] School
@@ -14,7 +16,10 @@ include ../../tools/mixins
                 +e.A.phone(
                     :href="content.phone.href"
                 ) {{ content.phone.name }}
-            +e.button(
+            +e.BUTTON-COMPONENT.button(
+                tag="button"
+            ) Записаться
+            +e.burger(
                 v-if="!device.size.desktop"
             )
                 i
@@ -26,6 +31,10 @@ import { mixins } from 'vue-class-component'
 import device from '../../mixins/utility/device'
 
 export default class TheHeader extends mixins(device) {
+    $refs!: {
+        header: HTMLElement
+    }
+
     content = {
         links: [
             {
@@ -53,6 +62,17 @@ export default class TheHeader extends mixins(device) {
             name: '8 977 811-23-56',
             href: '#'
         },
+    }
+
+    isScroll = false
+
+    mounted (): void {
+        window.addEventListener('scroll', this.onScroll)
+    }
+
+    onScroll (): void {
+        this.isScroll =
+            document.documentElement.getBoundingClientRect().top < -30 + 12
     }
 }
 </script>

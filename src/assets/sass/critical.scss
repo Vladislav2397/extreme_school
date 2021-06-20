@@ -10,7 +10,9 @@
 
 @import 'vars/typography';
 @import 'vars/spaces';
+@import 'vars/susy';
 
 @import 'utility/common';
 
+@import 'ui/ui--critical';
 @import 'sections/sections--critical';

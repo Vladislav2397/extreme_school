@@ -1,0 +1,35 @@
+.title {
+    &--size {
+        &-h1 {
+            @include fontSize(h1);
+        }
+
+        &-h2 {
+            @include fontSize(h2);
+        }
+
+        &-h3 {
+            @include fontSize(h3);
+        }
+    }
+
+    &--align {
+        &-left {
+            text-align: left;
+        }
+
+        &-center {
+            text-align: center;
+        }
+    }
+
+    &--theme {
+        &-default {
+            color: $dark;
+        }
+
+        &-primary {
+            color: $blue;
+        }
+    }
+}

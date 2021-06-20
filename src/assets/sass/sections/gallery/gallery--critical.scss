@@ -1,0 +1,26 @@
+.gallery {
+    padding-top: toRem(100);
+
+    &__container {
+        padding: 0;
+    }
+
+    &__image {
+        max-width: 100%;
+        height: auto;
+        display: inline-block;
+        width: 50%;
+        float: left;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    @include media_min_tablet {
+        &__image {
+            width: 25%;
+        }
+    }
+}

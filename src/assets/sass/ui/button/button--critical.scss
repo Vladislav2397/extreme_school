@@ -1,0 +1,45 @@
+$buttonBackgroundPrimaryColor: $primaryColor;
+$buttonTextPrimaryColor: $white;
+
+$buttonBackgroundSecondaryColor: $secondaryColor;
+
+.button {
+    padding: 0 toRem(23);
+    font-size: toRem(15);
+    line-height: toRem(46);
+    border-radius: 50px;
+    background-color: #cccccc;
+
+    &--theme {
+        &-primary {
+            background-color: $buttonBackgroundPrimaryColor;
+            color: $white;
+        }
+        
+        &-secondary {
+            background-color: $buttonBackgroundSecondaryColor;
+        }
+    }
+
+    &--only-icon {
+        padding: 0;
+        border-radius: 50%;
+        width: toRem(28);
+        height: toRem(28);
+        background-color: #cccccc;
+    }
+
+    &__content {
+        border-bottom: 1px solid transparent;
+    }
+
+    @include media_min_desktop {
+        &__content {
+            transition: border-bottom-color 0.3s ease;
+        }
+
+        &:hover &__content {
+            border-bottom: 1px solid $white;
+        }
+    }
+}
