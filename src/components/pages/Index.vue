@@ -7,8 +7,7 @@ benefit-component
 about-component
 skill-component
 gallery-component
-//.gallery
-.price
+price-component
 .feedback
 .question
 .social
@@ -26,6 +25,7 @@ import Benefit from '../sections/Benefit.vue'
 import About from '../sections/About.vue'
 import Skill from '../sections/Skill.vue'
 import Gallery from '../sections/Gallery.vue'
+import Price from '../sections/Price.vue'
 
 @Options({
     components: {
@@ -36,6 +36,7 @@ import Gallery from '../sections/Gallery.vue'
         'about-component': About,
         'skill-component': Skill,
         'gallery-component': Gallery,
+        'price-component': Price,
     }
 })
 export default class IndexPage extends Vue {}

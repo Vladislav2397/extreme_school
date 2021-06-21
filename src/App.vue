@@ -3,6 +3,6 @@
 </template>
 
 <style lang="scss">
-@import 'assets/sass/critical';
-@import 'assets/sass/main';
+@import 'assets/scss/critical';
+@import 'assets/scss/main';
 </style>

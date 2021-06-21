@@ -1,0 +1,49 @@
+.price {
+    padding-top: toRem(160);
+
+    &__inner {
+        text-align: center;
+    }
+
+    &__title {
+        margin-bottom: toRem(30);
+    }
+
+    &__tab-list {
+        white-space: nowrap;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+
+    &__tab {
+        display: inline-block;
+        font-size: toRem(13);
+        line-height: toRem(40);
+        padding: 0 toRem(20);
+        background-color: $backgroundLevel2;
+        border-radius: toRem(50);
+        color: $dark;
+        margin-bottom: toRem(40);
+        transition-property: background-color, color;
+        transition: 0.3s ease;
+
+        &.active {
+            background-color: $blue;
+            color: $white;
+        }
+
+        & + & {
+            margin-left: toRem(10);
+        }
+    }
+
+    &__tab-button {
+        display: inline-block;
+    }
+
+    @include media_min_desktop {
+        &__tab {
+            cursor: pointer;
+        }
+    }
+}
