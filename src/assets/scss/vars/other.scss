@@ -1,0 +1,7 @@
+@function get-width-col-in-container($container-width, $column-width) {
+    @return ($column-width / $container-width) * 100%;
+}
+
+@function ratio($container-width, $column-width) {
+    @return ($column-width / $container-width) * 100%;
+}

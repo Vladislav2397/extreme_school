@@ -16,9 +16,9 @@ include ../../tools/mixins
                 +e.A.phone(
                     :href="content.phone.href"
                 ) {{ content.phone.name }}
-            +e.BUTTON-COMPONENT.button(
-                tag="button"
-            ) Записаться
+            //+e.BUTTON-COMPONENT.button(
+            //    tag="button"
+            //) Записаться
             +e.burger(
                 v-if="!device.size.desktop"
             )

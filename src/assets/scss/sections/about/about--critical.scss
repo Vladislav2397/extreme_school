@@ -3,6 +3,7 @@
 
     &__image {
         border-radius: toRem(8);
+
         @media (max-width: $maxMobileLate){
             margin-bottom: toRem(24);
         }
@@ -54,12 +55,12 @@
         }
 
         &__image {
-            width: 39.97%;
+            width: ratio(688, 275);
         }
 
         &__author {
-            width: 54.21%;
-            margin-left: 5.82%;
+            width: ratio(688, 373);
+            margin-left: ratio(688, 40);
         }
 
         &__name {

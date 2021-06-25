@@ -1,3 +1,48 @@
 .price-card {
-    padding: toRem(20) toRem(24);
+    padding: toRem(20) toRem(24) toRem(35);
+    background-color: #F8F8F8;
+    border-radius: toRem(8);
+
+    &--small {
+        display: inline-block;
+    }
+
+    &__title {
+        font-size: toRem(17);
+        margin-bottom: toRem(24);
+        position: relative;
+        display: inline-block;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: toRem(-3);
+            height: 2px;
+            background-color: $blue;
+        }
+    }
+
+    &__information {
+        & + & {
+            margin-top: toRem(30);
+        }
+    }
+
+    &__subtitle {
+        margin-bottom: toRem(16);
+        font-size: toRem(17);
+        line-height: toRem(19.96);
+    }
+
+    &__count {
+        font-size: toRem(17);
+        line-height: toRem(19.96);
+        font-weight: 400;
+
+        & + & {
+            margin-top: toRem(8);
+        }
+    }
 }

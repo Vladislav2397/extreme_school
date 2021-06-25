@@ -1,7 +1,7 @@
 html {
     font-size: 12px;
 
-    @media (min-width: 400px) {
+    @media (min-width: $mobileLate + 1) {
         font-size: 13.2px;
     }
 
@@ -27,6 +27,10 @@ body {
     -webkit-backface-visibility: hidden;
     -moz-osx-font-smoothing: grayscale;
     min-width: 320px;
+}
+
+div {
+    box-sizing: border-box;
 }
 
 img {

@@ -4,6 +4,7 @@
 @import 'vars/colors';
 
 @import 'utility/mixins';
+@import 'vars/other';
 @import 'utility/fonts';
 
 @import 'utility/functions';
@@ -15,4 +16,5 @@
 @import 'utility/common';
 
 @import 'ui/ui--critical';
+@import 'blanks/blanks--critical';
 @import 'sections/sections--critical';

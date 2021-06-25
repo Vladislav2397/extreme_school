@@ -4,9 +4,9 @@ $buttonTextPrimaryColor: $white;
 $buttonBackgroundSecondaryColor: $secondaryColor;
 
 .button {
-    padding: 0 toRem(23);
+    padding: 0 toRem(30);
     font-size: toRem(15);
-    line-height: toRem(46);
+    line-height: toRem(58);
     border-radius: 50px;
     background-color: #cccccc;
 
@@ -31,6 +31,11 @@ $buttonBackgroundSecondaryColor: $secondaryColor;
 
     &__content {
         border-bottom: 1px solid transparent;
+    }
+
+    @include media_min_tablet {
+        padding: 0 toRem(23);
+        line-height: toRem(46);
     }
 
     @include media_min_desktop {

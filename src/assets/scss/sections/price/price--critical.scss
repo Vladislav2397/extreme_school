@@ -1,5 +1,10 @@
 .price {
-    padding-top: toRem(160);
+    padding-top: toRem(80);
+    overflow: hidden;
+
+    &__container {
+        padding: 0;
+    }
 
     &__inner {
         text-align: center;
@@ -9,13 +14,20 @@
         margin-bottom: toRem(30);
     }
 
-    &__tab-list {
-        white-space: nowrap;
-        overflow-y: hidden;
-        overflow-x: scroll;
+    &__tab-list,
+    &__card-list {
+        @include media_max_mobile {
+            white-space: nowrap;
+            overflow-x: scroll;
+        }
     }
 
-    &__tab {
+    &__wrapper {
+        padding-left: toRem(20);
+        padding-right: toRem(20);
+    }
+
+    &__tab, &__tab-button {
         display: inline-block;
         font-size: toRem(13);
         line-height: toRem(40);
@@ -35,10 +47,42 @@
         & + & {
             margin-left: toRem(10);
         }
+
+        &:first-child {
+            margin-left: toRem(20);
+        }
     }
 
     &__tab-button {
         display: inline-block;
+
+        // mozilla fix
+        margin-right: toRem(20);
+    }
+
+    &__card-list {
+        white-space: nowrap;
+        margin-bottom: toRem(30);
+    }
+
+    &__card {
+        min-width: toRem(276);
+        text-align: left;
+        font-size: toRem(17);
+        line-height: toRem(19.96);
+
+        & + & {
+            margin-left: toRem(16);
+        }
+
+        // mozilla fix
+        &:first-child {
+            margin-left: toRem(20);
+        }
+
+        &:last-child {
+            margin-right: toRem(20);
+        }
     }
 
     @include media_min_desktop {

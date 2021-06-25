@@ -5,8 +5,13 @@ include ../../tools/mixins
     :is="tag"
     :class="classes"
 )
-    +e.SPAN.content
+    +e.SPAN.content(
+        v-if="isIconOnly"
+    )
         slot
+    slot(
+        v-else
+    )
 
 </template>
 
@@ -23,24 +28,23 @@ import { Vue, Options } from 'vue-class-component'
             type: String,
             default: 'button'
         },
-        isOnlyIcon: String,
-        isIcon: Boolean,
+        isIconOnly: Boolean,
+        icon: String,
     }
 })
 export default class Button extends Vue {
-    theme = 'primary'
-
-    tag = 'button'
-
-    isOnlyIcon = null
+    theme!: string
+    tag!: string
+    isIconOnly!: boolean
+    icon!: string
 
     get classes (): string[] {
         const classes = []
 
         if (this.theme) classes.push(`button--theme-${this.theme}`)
 
-        if (this.isOnlyIcon) classes.push(
-            `button--only-icon button--icon-${this.isOnlyIcon}`
+        if (this.isIconOnly) classes.push(
+            `button--only-icon button--icon-${this.icon}`
         )
 
         return classes

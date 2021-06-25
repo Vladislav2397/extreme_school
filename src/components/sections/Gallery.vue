@@ -5,7 +5,7 @@ include ../../tools/mixins
     +e.container.container
         +e.inner
             +e.image(
-                v-for="image in content.images"
+                v-for="image in device.size.mobile ? content.images.small : content.images.large"
             )
                 img(
                     :src="image.src"
@@ -22,55 +22,77 @@ import device from '../../mixins/utility/device'
 @Options({})
 export default class Gallery extends mixins(device) {
     content = {
-        images: [
-            {
-                src: 'images/gallery/1.jpg',
-                alt: ''
-            },
-            {
-                src: 'images/gallery/2.jpg',
-                alt: ''
-            },
-            {
-                src: 'images/gallery/3.jpg',
-                alt: ''
-            },
-            {
-                src: 'images/gallery/4.jpg',
-                alt: ''
-            },
-            {
-                src: 'images/gallery/5.jpg',
-                alt: ''
-            },
-            {
-                src: 'images/gallery/6.jpg',
-                alt: ''
-            },
-            {
-                src: 'images/gallery/7.jpg',
-                alt: ''
-            },
-            {
-                src: 'images/gallery/8.jpg',
-                alt: ''
-            }
-        ],
+        images: {
+            large: [
+                {
+                    src: 'images/gallery/large/1.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/large/2.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/large/3.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/large/4.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/large/5.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/large/6.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/large/7.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/large/8.jpg',
+                    alt: ''
+                }
+            ],
+            small: [
+                {
+                    src: 'images/gallery/small/1.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/small/2.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/small/3.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/small/4.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/small/5.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/small/6.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/small/7.jpg',
+                    alt: ''
+                },
+                {
+                    src: 'images/gallery/small/8.jpg',
+                    alt: ''
+                }
+            ]
+        },
         rows: this.device.size.mobile ? 4 : 2
-    }
-
-    get images (): {src: string, alt: string}[][] {
-        const images: [{src: string, alt: string}[]] | [] = []
-        // let row: {src: string, alt: string}[] = []
-        // this.content.images.forEach((value, index) => {
-        //     if (index % 2 !== 0) {
-        //         // images.push(row)
-        //         row = []
-        //     } else {
-        //         row.push(value)
-        //     }
-        // })
-        return images
     }
 }
 </script>

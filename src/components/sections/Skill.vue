@@ -9,7 +9,7 @@ include ../../tools/mixins
                 size="h2"
                 align="center"
             ) Вы точно&nbsp;
-                span научитесь
+                u.blue научитесь
             +e.SWIPER.swiper(
                 :pagination="{ clickable: true }"
             )

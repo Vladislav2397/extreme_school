@@ -9,12 +9,12 @@ include ../../tools/mixins
                 size="h2"
                 align="left"
             ) С нами&nbsp;
-                span безопасно
+                u.blue безопасно
             +e.content
                 +e.image
                     img(
-                        :src="content.image.src"
-                        :alt="content.image.alt"
+                        :src="device.size.mobile ? content.image.small.src : content.image.large.src"
+                        :alt="device.size.mobile ? content.image.small.alt : content.image.large.alt"
                     )
                 +e.table
                     +e.row(
@@ -35,14 +35,22 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
+import { Options, mixins } from 'vue-class-component'
+
+import device from '../../mixins/utility/device'
 
 @Options({})
-export default class Benefit extends Vue {
+export default class Benefit extends mixins(device) {
     content = {
         image: {
-            src: 'images/benefit/benefit.png',
-            alt: ''
+            large: {
+                src: 'images/benefit/benefit.png',
+                alt: ''
+            },
+            small: {
+                src: 'images/benefit/benefit-small.png',
+                alt: ''
+            }
         },
         table: [
             [

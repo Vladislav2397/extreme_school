@@ -26,9 +26,11 @@ include ../../tools/mixins
                     +e.caption {{ card.caption }}
             +e.BUTTON-COMPONENT.button--prev.button(
                 theme="secondary"
+                isIconOnly
             )
             +e.BUTTON-COMPONENT.button--next.button(
                 theme="secondary"
+                isIconOnly
             )
 
 </template>

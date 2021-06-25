@@ -1,10 +1,16 @@
 //breakpoints
-$tablet: 650px;
-$maxMobile: $tablet - 1px;
+$maxRems: 1800px;
+$containerCollapse: 1840px;
+$freezeRem: 1440px;
+
+$desktopLate: 1440px;
+$desktop: 1200px;
+
+$maxTablet: $desktop - 1px;
 $tabletLate: 768px;
 $maxMobileLate: $tabletLate - 1px;
-$desktop: 1200px;
-$freezeRem: 1440px;
-$maxTablet: $desktop - 1px;
-$containerCollapse: 1840px;
-$maxRems: 1800px;
+$tablet: 650px;
+
+$maxMobile: $tablet - 1px;
+$mobileLate: 414px;
+$mobile: 414px;

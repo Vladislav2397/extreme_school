@@ -19,6 +19,7 @@ include ../../tools/mixins
             +e.card-list
                 +e.PRICE-CARD-COMPONENT.card(
                     v-for="card in content.cards"
+                    :class="{ 'price-card--small' : content.cards.length >= 2 }"
                     :title="card.title"
                     :cardInfo="card.info"
                 )
@@ -70,6 +71,25 @@ export default class Price extends Vue {
         cards: [
             {
                 title: 'Тренер',
+                info: [
+                    {
+                        title: 'Индивидуальные занятия',
+                        prices: [
+                            '2 000 ₽/60 мин',
+                            '3 000 ₽/120 мин'
+                        ]
+                    },
+                    {
+                        title: 'Групповые занятия',
+                        prices: [
+                            '1 000 ₽/60 мин',
+                            '4 500 ₽/5 занятий'
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Топ-Тренер',
                 info: [
                     {
                         title: 'Индивидуальные занятия',
