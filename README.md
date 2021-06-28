@@ -1,5 +1,7 @@
 # extreme_school
 
+### Site for example on figma and publish to github pages
+
 ## Project setup
 ```
 npm install
