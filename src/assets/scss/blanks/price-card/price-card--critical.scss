@@ -3,8 +3,18 @@
     background-color: #F8F8F8;
     border-radius: toRem(8);
 
-    &--size-small {
-        display: inline-block;
+    &--size {
+        &-small {
+            display: inline-block;
+        }
+
+        &-medium {
+            //
+        }
+
+        &-large {
+            //
+        }
     }
 
     &--align {
@@ -35,8 +45,32 @@
     }
 
     &__information {
-        & + & {
-            margin-top: toRem(30);
+        text-align: center;
+        white-space: normal;
+    }
+
+    &__section {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .text {
+
+        *:last-child {
+            margin-bottom: 0;
+        }
+
+        h4 {
+            margin-bottom: toRem(16);
+            font-size: toRem(17);
+            line-height: toRem(19.96);
+        }
+
+        p {
+            font-size: toRem(17);
+            line-height: toRem(19.96);
+            font-weight: 400;
+            margin-bottom: toRem(8);
         }
     }
 

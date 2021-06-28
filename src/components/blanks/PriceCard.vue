@@ -8,13 +8,14 @@ include ../../tools/mixins
         tag="h3"
         size="h3"
     ) {{ title }}
-    +e.information(
-        v-for="card in cardInfo"
-    )
-        +e.subtitle {{ card.service }}
-        +e.count(
-            v-for="price in card.prices"
-        ) {{ price }}
+    +e.body
+        +e.section.text(
+            v-for="card in cardInfo"
+        )
+            h4 {{ card.service }}
+            p(
+                v-for="price in card.prices"
+            ) {{ price }}
 
 </template>
 

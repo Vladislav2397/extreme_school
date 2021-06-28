@@ -19,7 +19,7 @@ include ../../tools/mixins
             +e.card-list
                 +e.PRICE-CARD-COMPONENT.card(
                     v-for="card in content.products[productIndex].cards"
-                    :size="content.products[productIndex].cards.length >= 2 ? 'small' : 'medium'"
+                    :size="cardSize"
                     :align="content.products[productIndex].cards.length < 2 ? 'center' : 'left'"
                     :title="card.title"
                     :cardInfo="card.info"
@@ -52,12 +52,96 @@ declare type Product = {
     }
 })
 export default class Price extends Vue {
-    productIndex = 0
-
     content = {
         products: [
             {
                 tabName: 'Скейтборд',
+                cards: [
+                    {
+                        title: 'Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: 'Топ-Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            },
+                        ]
+                    }
+                ]
+            },
+            {
+                tabName: 'BMX',
+                cards: [
+                    {
+                        title: 'Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: 'Топ-Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            },
+                        ]
+                    }
+                ]
+            },
+            {
+                tabName: 'Самокат',
                 cards: [
                     {
                         title: 'Тренер',
@@ -106,91 +190,45 @@ export default class Price extends Vue {
                         title: 'Тренер',
                         info: [
                             {
-                                service: 'Индивидуальные занятия',
+                                service: 'Будние дни',
                                 prices: [
                                     '2 000 ₽/60 мин',
                                     '3 000 ₽/120 мин'
                                 ]
                             },
                             {
+                                service: 'Выходные дни',
+                                prices: [
+                                    '3 000 ₽/60 мин',
+                                    '5 000 ₽/120 мин'
+                                ]
+                            },
+                            {
                                 service: 'Групповые занятия',
                                 prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
+                                    '1 500 ₽/60 мин',
+                                    '7 000 ₽/5 занятий'
                                 ]
                             }
-                        ]
-                    }
-                ]
-            },
-            {
-                tabName: 'BMX',
-                cards: [
-                    {
-                        title: 'Топ-Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                tabName: 'Самокат',
-                cards: [
-                    {
-                        title: 'Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        title: 'Топ-Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            },
                         ]
                     }
                 ]
             },
         ] as Product[],
+    }
+
+    productIndex = 0
+    activeProduct = this.content.products[this.productIndex]
+
+    get cardSize (): string {
+        if (this.activeProduct.cards.length === 1) {
+            if (this.activeProduct.cards[0].info.length === 1) {
+                return 'medium'
+            } else {
+                return 'large'
+            }
+        }
+        return 'small'
     }
 
     setActive (index: number): void {
