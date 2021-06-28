@@ -11,18 +11,19 @@ include ../../tools/mixins
             ) Стоимость
             +e.tab-list
                 +e.tab(
-                    v-for="tab in content.tabs"
-                    :class="{ 'active': content.activeTabId === tab.id }"
-                    v-on:click="setActive(tab.id)"
-                ) {{ tab.text }}
+                    v-for="(product, index) in content.products"
+                    :class="{ 'active': index === productIndex }"
+                    v-on:click="setActive(index)"
+                ) {{ product.tabName }}
                 +e.tab-button Ещё
             +e.card-list
                 +e.PRICE-CARD-COMPONENT.card(
-                    v-for="card in content.cards"
-                    :class="{ 'price-card--small' : content.cards.length >= 2 }"
+                    v-for="card in content.products[productIndex].cards"
+                    :size="content.products[productIndex].cards.length >= 2 ? 'small' : 'medium'"
+                    :align="content.products[productIndex].cards.length < 2 ? 'center' : 'left'"
                     :title="card.title"
                     :cardInfo="card.info"
-                )
+               )
             +e.BUTTON-COMPONENT.button(
                 tag="button"
             ) Оставить заявку
@@ -31,11 +32,18 @@ include ../../tools/mixins
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component'
-import PriceCard, { CardInfo } from '../blanks/PriceCard.vue'
+import PriceCard from '../blanks/PriceCard.vue'
 
-declare type PriceCardInfo = {
-    title: string,
-    info: CardInfo[]
+declare type Product = {
+    id: number
+    tabName: string
+    cards: {
+        title: string
+        info: {
+            service: string
+            prices: string[]
+        }[]
+    }[]
 }
 
 @Options({
@@ -44,74 +52,149 @@ declare type PriceCardInfo = {
     }
 })
 export default class Price extends Vue {
+    productIndex = 0
+
     content = {
-        activeTabId: 1,
-        tabs: [
+        products: [
             {
-                id: 1,
-                text: 'Скейтборд'
-            },
-            {
-                id: 2,
-                text: 'BMX'
-            },
-            {
-                id: 3,
-                text: 'Самокат'
-            },
-            {
-                id: 4,
-                text: 'Лонгборд'
-            },
-            {
-                id: 5,
-                text: 'Ролики'
-            }
-        ],
-        cards: [
-            {
-                title: 'Тренер',
-                info: [
+                tabName: 'Скейтборд',
+                cards: [
                     {
-                        title: 'Индивидуальные занятия',
-                        prices: [
-                            '2 000 ₽/60 мин',
-                            '3 000 ₽/120 мин'
+                        title: 'Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            },
                         ]
                     },
                     {
-                        title: 'Групповые занятия',
-                        prices: [
-                            '1 000 ₽/60 мин',
-                            '4 500 ₽/5 занятий'
+                        title: 'Топ-Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            },
                         ]
-                    },
+                    }
                 ]
             },
             {
-                title: 'Топ-Тренер',
-                info: [
+                tabName: 'Лонгборд',
+                cards: [
                     {
-                        title: 'Индивидуальные занятия',
-                        prices: [
-                            '2 000 ₽/60 мин',
-                            '3 000 ₽/120 мин'
+                        title: 'Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            }
                         ]
-                    },
-                    {
-                        title: 'Групповые занятия',
-                        prices: [
-                            '1 000 ₽/60 мин',
-                            '4 500 ₽/5 занятий'
-                        ]
-                    },
+                    }
                 ]
-            }
-        ] as PriceCardInfo[]
+            },
+            {
+                tabName: 'BMX',
+                cards: [
+                    {
+                        title: 'Топ-Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                tabName: 'Самокат',
+                cards: [
+                    {
+                        title: 'Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        title: 'Топ-Тренер',
+                        info: [
+                            {
+                                service: 'Индивидуальные занятия',
+                                prices: [
+                                    '2 000 ₽/60 мин',
+                                    '3 000 ₽/120 мин'
+                                ]
+                            },
+                            {
+                                service: 'Групповые занятия',
+                                prices: [
+                                    '1 000 ₽/60 мин',
+                                    '4 500 ₽/5 занятий'
+                                ]
+                            },
+                        ]
+                    }
+                ]
+            },
+        ] as Product[],
     }
 
-    setActive (tabId: number): void {
-        this.content.activeTabId = tabId
+    setActive (index: number): void {
+        this.productIndex = index
     }
 }
 </script>

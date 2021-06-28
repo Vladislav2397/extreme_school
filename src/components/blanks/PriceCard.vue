@@ -1,7 +1,9 @@
 <template lang="pug">
 include ../../tools/mixins
 
-+b.price-card
++b.price-card(
+    :class="classes"
+)
     +e.TITLE-COMPONENT.title(
         tag="h3"
         size="h3"
@@ -9,7 +11,7 @@ include ../../tools/mixins
     +e.information(
         v-for="card in cardInfo"
     )
-        +e.subtitle {{ card.title }}
+        +e.subtitle {{ card.service }}
         +e.count(
             v-for="price in card.prices"
         ) {{ price }}
@@ -19,15 +21,18 @@ include ../../tools/mixins
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component'
 
-export declare type CardInfo = {
-    title: string
-    prices: string[]
-}
-
 @Options({
     props: {
         title: {
             type: String
+        },
+        size: {
+            type: String,
+            default: 'medium'
+        },
+        align: {
+            type: String,
+            default: 'left'
         },
         cardInfo: {
             type: Array,
@@ -36,6 +41,17 @@ export declare type CardInfo = {
     }
 })
 export default class PriceCard extends Vue {
-    cardInfo!: CardInfo[]
+    size!: string
+    align!: string
+
+    get classes(): string[] | [] {
+        let classes = []
+
+        if (this.size) classes.push(`price-card--size-${this.size}`)
+
+        if (this.align) classes.push(`price-card--align-${this.align}`)
+
+        return classes
+    }
 }
 </script>

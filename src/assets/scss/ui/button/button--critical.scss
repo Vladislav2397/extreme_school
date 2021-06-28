@@ -10,6 +10,16 @@ $buttonBackgroundSecondaryColor: $secondaryColor;
     border-radius: 50px;
     background-color: #cccccc;
 
+    &--state {
+        &-standart {
+            padding: 0 toRem(30);
+        }
+
+        &-circle {
+            padding: 0;
+        }
+    }
+
     &--theme {
         &-primary {
             background-color: $buttonBackgroundPrimaryColor;

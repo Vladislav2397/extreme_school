@@ -66,13 +66,13 @@
     }
 
     &__card {
-        min-width: toRem(276);
-        text-align: left;
+        min-width: ratio(373, 276);
         font-size: toRem(17);
         line-height: toRem(19.96);
 
         & + & {
             margin-left: toRem(16);
+            background-color: rgba($blue, 0.04);
         }
 
         // mozilla fix
