@@ -4,21 +4,9 @@ $buttonTextPrimaryColor: $white;
 $buttonBackgroundSecondaryColor: $secondaryColor;
 
 .button {
-    padding: 0 toRem(30);
     font-size: toRem(15);
     line-height: toRem(58);
     border-radius: 50px;
-    background-color: #cccccc;
-
-    &--state {
-        &-standart {
-            padding: 0 toRem(30);
-        }
-
-        &-circle {
-            padding: 0;
-        }
-    }
 
     &--theme {
         &-primary {
@@ -31,12 +19,17 @@ $buttonBackgroundSecondaryColor: $secondaryColor;
         }
     }
 
-    &--only-icon {
-        padding: 0;
-        border-radius: 50%;
-        width: toRem(28);
-        height: toRem(28);
-        background-color: #cccccc;
+    &--shape {
+        &-circle {
+            padding: 0;
+            width: toRem(28);
+            height: toRem(28);
+            border-radius: 50%;
+        }
+
+        &-standard {
+            padding: 0 toRem(30);
+        }
     }
 
     &__content {
@@ -44,8 +37,13 @@ $buttonBackgroundSecondaryColor: $secondaryColor;
     }
 
     @include media_min_tablet {
-        padding: 0 toRem(23);
         line-height: toRem(46);
+
+        &--shape {
+            &-standard {
+                padding: 0 toRem(23);
+            }
+        }
     }
 
     @include media_min_desktop {

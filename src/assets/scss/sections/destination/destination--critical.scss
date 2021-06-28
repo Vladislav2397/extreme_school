@@ -68,14 +68,14 @@
         }
 
         &__swiper {
-            width: span(10 of 12);
+            width: ratio(928, 767);
             overflow: hidden;
         }
 
         &__button {
             display: block;
             position: absolute;
-            top: toRem(61 + 90);
+            top: toRem(76 + 90);
             z-index: 3;
 
             &--prev {
@@ -91,5 +91,15 @@
     @include media_min_desktop {
         padding-top: toRem(120);
         padding-bottom: toRem(140);
+    }
+
+    @media (min-width: $desktopLate) {
+        &__swiper {
+            width: ratio(1244, 1032);
+        }
+
+        &__button {
+            top: toRem(38 + 60 + 52);
+        }
     }
 }

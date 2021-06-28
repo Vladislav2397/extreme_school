@@ -20,32 +20,38 @@ import { Vue, Options } from 'vue-class-component'
 
 @Options({
     props: {
-        theme: {
-            type: String,
-            default: 'primary'
-        },
         tag: {
             type: String,
             default: 'button'
         },
-        isIconOnly: Boolean,
+        theme: {
+            type: String,
+            default: 'primary'
+        },
         icon: String,
+        isIconOnly: Boolean
     }
 })
 export default class Button extends Vue {
     theme!: string
     tag!: string
-    isIconOnly!: boolean
     icon!: string
+    iconState!: string
+    isIconOnly!: boolean
 
     get classes (): string[] {
         const classes = []
 
         if (this.theme) classes.push(`button--theme-${this.theme}`)
 
-        if (this.isIconOnly) classes.push(
-            `button--only-icon button--icon-${this.icon}`
-        )
+        if (['arrow'].includes(this.icon)) {
+            classes.push(`button--icon-${this.icon}`)
+        }
+
+        if (this.isIconOnly)
+            classes.push('button--shape-circle')
+        else
+            classes.push('button--shape-standard')
 
         return classes
     }
