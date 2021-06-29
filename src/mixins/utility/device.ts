@@ -7,11 +7,13 @@ interface IDevice {
         tablet: boolean,
         tabletLate: boolean,
         desktop: boolean
+        desktopLate: boolean
     },
     breakpoints: {
         tablet: number,
         tabletLate: number,
         desktop: number
+        desktopLate: number
     },
     type: null | string
 }
@@ -23,12 +25,14 @@ export default class Device extends Vue {
             mobileLate: false,
             tablet: false,
             tabletLate: false,
-            desktop: false
+            desktop: false,
+            desktopLate: false
         },
         breakpoints: {
             tablet: 650,
             tabletLate: 768,
-            desktop: 1200
+            desktop: 1024,
+            desktopLate: 1440
         },
         type: null
     }
@@ -50,6 +54,7 @@ export default class Device extends Vue {
         this.device.size.tablet = window.innerWidth >= this.device.breakpoints.tablet && window.innerWidth < this.device.breakpoints.desktop
         this.device.size.tabletLate = window.innerWidth >= this.device.breakpoints.tabletLate && window.innerWidth < this.device.breakpoints.desktop
         this.device.size.desktop = window.innerWidth >= this.device.breakpoints.desktop
+        this.device.size.desktopLate = window.innerWidth >= this.device.breakpoints.desktopLate
     }
 
     getDeviceType (): void {

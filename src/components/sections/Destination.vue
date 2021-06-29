@@ -41,8 +41,6 @@ import SwiperCore, { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import device from '../../mixins/utility/device'
 
-// import 'swiper/swiper.scss'
-
 SwiperCore.use([Navigation])
 
 @Options({
