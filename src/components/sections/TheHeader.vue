@@ -19,6 +19,7 @@ include ../../tools/mixins
             //+e.BUTTON-COMPONENT.button(
             //    tag="button"
             //) Записаться
+
             +e.burger(
                 v-if="!device.size.desktop"
             )

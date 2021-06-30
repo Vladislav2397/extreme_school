@@ -11,6 +11,10 @@
         &-h3 {
             @include fontSize(h3);
         }
+
+        &-h4 {
+            @include fontSize(h4);
+        }
     }
 
     &--align {
