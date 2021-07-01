@@ -23,8 +23,7 @@
         }
 
         &-content {
-            font-size: toRem(13);
-            line-height: toRem(20);
+            @include fontSize(p4);
         }
     }
 

@@ -41,8 +41,8 @@
     }
 
     &__description {
-        font-size: toRem(17);
-        line-height: toRem(24);
+        @include fontSize(p1);
+
         color: inherit;
         margin-bottom: toRem(40);
     }

@@ -34,8 +34,7 @@
     }
 
     &__caption {
-        font-size: toRem(16);
-        line-height: toRem(18.78);
+        @include fontSize(p2);
     }
 
     &__button {

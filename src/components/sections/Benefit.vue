@@ -24,8 +24,9 @@ include ../../tools/mixins
                             v-for="column in row"
                         )
                             +e.TITLE-COMPONENT.table-title(
-                                tag="h3"
-                                size="h3"
+                                tag="h4"
+                                size="h4"
+                                weight="medium"
                                 v-html="column.title"
                             )
                             +e.table-content(

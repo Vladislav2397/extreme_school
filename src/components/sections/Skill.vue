@@ -8,8 +8,8 @@ include ../../tools/mixins
                 tag="h2"
                 size="h2"
                 align="center"
-            ) Вы точно&nbsp;
-                u.blue научитесь
+                v-html="content.title"
+            )
             +e.SWIPER.swiper(
                 :pagination="{ clickable: true }"
             )
@@ -43,6 +43,7 @@ SwiperCore.use([ Pagination ])
 })
 export default class Skill extends Vue {
     content = {
+        title: 'Вы точно&nbsp;<u class="blue">научитесь</u>',
         images: [
             {
                 src: 'images/skill/1.jpg',

@@ -1,19 +1,38 @@
 .price-card {
-    padding: toRem(20) toRem(24) toRem(35);
+    display: inline-block;
+    padding-top: toRem(20);
+    padding-bottom: toRem(35);
     background-color: #F8F8F8;
     border-radius: toRem(8);
 
     &--size {
         &-small {
-            display: inline-block;
+            padding-left: toRem(24);
+            padding-right: toRem(24);
+            min-width: toRem(276);
+
+            .price-card {
+                &__section {
+                    display: block;
+                }
+            }
         }
 
         &-medium {
-            //
+            padding-left: toRem(132);
+            padding-right: toRem(132);
+            min-width: toRem(400);
         }
 
         &-large {
-            //
+            padding-left: toRem(108);
+            padding-right: toRem(108);
+            min-width: toRem(560);
+        }
+
+        &-medium,
+        &-large {
+            text-align: center;
         }
     }
 
@@ -25,6 +44,10 @@
         &-center {
             text-align: center;
         }
+    }
+
+    &__body {
+        white-space: normal;
     }
 
     &__title {
@@ -51,7 +74,10 @@
 
     &__section {
         display: inline-block;
-        width: 50%;
+
+        & + & {
+            margin-top: toRem(30);
+        }
     }
 
     .text {

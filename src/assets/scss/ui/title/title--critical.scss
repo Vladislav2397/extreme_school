@@ -37,6 +37,20 @@
         }
     }
 
+    &--weight {
+        &-light {
+            font-weight: 300;
+        }
+
+        &-regular {
+            font-weight: 400;
+        }
+
+        &-medium {
+            font-weight: 500;
+        }
+    }
+
     u {
         position: relative;
         text-decoration: none;

@@ -27,8 +27,8 @@
     }
 
     &__description {
-        font-size: toRem(15);
-        line-height: toRem(24);
+        @include fontSize(p3);
+
         margin-bottom: toRem(24);
         color: $dark;
     }

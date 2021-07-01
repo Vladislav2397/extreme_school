@@ -17,16 +17,18 @@ include ../../tools/mixins
                 ) {{ product.tabName }}
                 +e.tab-button Ещё
             +e.card-list
+                // TODO: Modificators for view [table, column, row]
                 +e.PRICE-CARD-COMPONENT.card(
-                    v-for="card in content.products[productIndex].cards"
+                    v-for="(card, index) in content.products[productIndex].cards"
                     :size="cardSize"
-                    :align="content.products[productIndex].cards.length < 2 ? 'center' : 'left'"
+                    :align="cardAlign(index)"
                     :title="card.title"
                     :cardInfo="card.info"
                )
             +e.BUTTON-COMPONENT.button(
                 tag="button"
             ) Оставить заявку
+
 
 </template>
 
@@ -118,25 +120,6 @@ export default class Price extends Vue {
                                 ]
                             },
                         ]
-                    },
-                    {
-                        title: 'Топ-Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            },
-                        ]
                     }
                 ]
             },
@@ -152,33 +135,7 @@ export default class Price extends Vue {
                                     '2 000 ₽/60 мин',
                                     '3 000 ₽/120 мин'
                                 ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        title: 'Топ-Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            },
+                            }
                         ]
                     }
                 ]
@@ -218,17 +175,24 @@ export default class Price extends Vue {
     }
 
     productIndex = 0
-    activeProduct = this.content.products[this.productIndex]
 
     get cardSize (): string {
         if (this.activeProduct.cards.length === 1) {
-            if (this.activeProduct.cards[0].info.length === 1) {
+            if (this.activeProduct.cards.length === 1 || this.activeProduct.cards.length === 3) {
                 return 'medium'
             } else {
                 return 'large'
             }
         }
         return 'small'
+    }
+
+    get activeProduct (): Product {
+        return this.content.products[this.productIndex]
+    }
+
+    cardAlign (index: number): string {
+        return index !== 0 && index % 2 === 0 ? 'center' : 'left'
     }
 
     setActive (index: number): void {
