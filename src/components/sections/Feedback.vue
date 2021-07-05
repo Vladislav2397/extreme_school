@@ -2,7 +2,7 @@
 include ../../tools/mixins
 
 +b.feedback
-    +e.container.container
+    +e.container.container--wide
         +e.inner
             +e.TITLE-COMPONENT.title(
                 tag="h2"
@@ -11,15 +11,18 @@ include ../../tools/mixins
                 v-html="content.title"
             )
             +e.comments
-                +e.card
+                +e.card(
+                    v-for="(comment, index) in content.comments"
+                    :key="index"
+                )
                     +e.image
                         img(
-                            src=""
-                            alt=""
+                            :src="comment.image.src"
+                            :alt="comment.image.alt"
                         )
-                    +e.name
-                    +e.text
-
+                    +e.content
+                        +e.name {{ comment.name }}
+                        +e.text {{ comment.text }}
 
 </template>
 
@@ -36,9 +39,25 @@ export default class Feedback extends Vue {
                     src: '',
                     alt: ''
                 },
-                name: '',
-                text: ''
-            }
+                name: 'Анна',
+                text: 'Нашла в инстаграме инструктора @true_school. Дим, спасибо! Без нудятины, чётко по делу, встали и поехали))'
+            },
+            {
+                image: {
+                    src: '',
+                    alt: ''
+                },
+                name: 'Владимир',
+                text: 'Дмитрий, спасибо за тренировку! Вы хороший тренер!'
+            },
+            {
+                image: {
+                    src: '',
+                    alt: ''
+                },
+                name: 'Кристина',
+                text: 'Дима меньше чем за час поставил сына на доску! То ли ещё будет :))'
+            },
         ]
     }
 }

@@ -51,6 +51,22 @@ div {
     @media (min-width: $freezeRem) {
         padding: 0 toRem(98);
     }
+
+    &--wide {
+        padding: 0;
+
+        @include media_min_tablet {
+            padding: 0;
+        }
+
+        @include media_min_desktop {
+            padding: 0;
+        }
+
+        @media (min-width: $freezeRem) {
+            padding: 0;
+        }
+    }
 }
 
 .os-windows {

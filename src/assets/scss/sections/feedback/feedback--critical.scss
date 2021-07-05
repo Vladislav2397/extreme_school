@@ -4,4 +4,55 @@
     &__title {
         margin-bottom: toRem(60);
     }
+
+    &__comments {
+        white-space: nowrap;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+
+    &__card {
+        position: relative;
+        width: toRem(300);
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: toRem(80);
+        height: toRem(80);
+        border-radius: 50%;
+    }
+
+    &__content {
+        padding-left: toRem(100);
+    }
+
+    &__name {
+        @include fontSize(h4);
+
+        font-weight: 500;
+        margin-bottom: toRem(10);
+    }
+
+    &__text {
+        @include fontSize(p3);
+
+        white-space: normal;
+    }
+
+    @include media_min_tablet {
+        &__card {
+            width: toRem(353);
+        }
+    }
+
+    @include media_min_desktop {
+        &__card {
+            width: toRem(458);
+        }
+    }
 }
