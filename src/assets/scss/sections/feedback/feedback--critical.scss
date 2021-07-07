@@ -1,6 +1,11 @@
 .feedback {
     padding-top: toRem(100);
 
+    &__container {
+        max-width: none;
+        text-align: center;
+    }
+
     &__title {
         margin-bottom: toRem(60);
     }
@@ -16,6 +21,7 @@
         width: toRem(300);
         display: inline-block;
         vertical-align: top;
+        text-align: left;
     }
 
     &__image {

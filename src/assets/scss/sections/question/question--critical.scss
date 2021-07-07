@@ -1,0 +1,18 @@
+.question {
+    padding-top: toRem(140);
+
+    &__title {
+        margin-bottom: toRem(40);
+    }
+
+    &__list {
+        max-width: toRem(610);
+        margin: 0 auto;
+    }
+
+    &__item {
+        & + & {
+            margin-top: toRem(16);
+        }
+    }
+}
