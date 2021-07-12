@@ -27,9 +27,9 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
+import { Vue, Component } from 'vue-property-decorator'
 
-@Options({})
+@Component({})
 export default class Feedback extends Vue {
     content = {
         title: 'Ученики <u class="blue">о нас</u>',

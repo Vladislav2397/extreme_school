@@ -27,11 +27,11 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { mixins } from 'vue-class-component'
+import { Mixins } from 'vue-property-decorator'
 
-import device from '../../mixins/utility/device'
+import device from '@/mixins/utility/device'
 
-export default class TheHeader extends mixins(device) {
+export default class TheHeader extends Mixins(device) {
     $refs!: {
         header: HTMLElement
     }

@@ -20,9 +20,9 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
+import { Vue, Component } from 'vue-property-decorator'
 
-@Options({
+@Component({
     props: {
         title: {
             type: String

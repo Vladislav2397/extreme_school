@@ -22,10 +22,10 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
+import { Vue, Component } from 'vue-property-decorator'
 import CardQuestion from '../blanks/CardQuestion.vue'
 
-@Options({
+@Component({
     components: {
         'card-question-component': CardQuestion
     }

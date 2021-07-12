@@ -10,9 +10,9 @@ component.title(
 </template>
 
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
+import { Vue, Component } from 'vue-property-decorator'
 
-@Options({
+@Component({
     props: {
         tag: {
             type: String,

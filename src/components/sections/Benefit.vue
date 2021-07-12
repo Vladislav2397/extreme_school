@@ -36,12 +36,12 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Options, mixins } from 'vue-class-component'
+import { Component, Mixins } from 'vue-property-decorator'
 
 import device from '../../mixins/utility/device'
 
-@Options({})
-export default class Benefit extends mixins(device) {
+@Component
+export default class Benefit extends Mixins(device) {
     content = {
         image: {
             large: {

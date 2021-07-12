@@ -33,7 +33,7 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
+import { Vue, Component } from 'vue-property-decorator'
 import PriceCard from '../blanks/PriceCard.vue'
 
 declare type Product = {
@@ -48,7 +48,7 @@ declare type Product = {
     }[]
 }
 
-@Options({
+@Component({
     components: {
         'price-card-component': PriceCard,
     }

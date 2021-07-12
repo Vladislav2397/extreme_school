@@ -1,17 +1,25 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
-import Title from './components/ui/Title.vue'
-import Button from './components/ui/Button.vue'
+import { Swiper, Pagination, Lazy } from 'swiper'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
-const app = createApp(App)
+Swiper.use([Pagination, Lazy])
+Vue.use(VueAwesomeSwiper)
 
-app.component('title-component', Title)
-app.component('button-component', Button)
+import Title from '@/components/ui/Title.vue'
+import Button from '@/components/ui/Button.vue'
 
-app.use(store)
-app.use(router)
-app.mount('#app')
+Vue.component('title-component', Title)
+Vue.component('button-component', Button)
+
+Vue.config.productionTip = false
+
+new Vue({
+    router,
+    store,
+    render: (h) => h(App),
+}).$mount('#app')

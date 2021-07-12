@@ -12,14 +12,14 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
-@Options({
-    props: {
-        title: String,
-        content: String,
-        isActive: Boolean
-    }
-})
-export default class CardQuestion extends Vue {}
+@Component
+export default class CardQuestion extends Vue {
+
+    @Prop() readonly title!: string
+    @Prop() readonly content!: string
+    @Prop() readonly isActive!: boolean
+
+}
 </script>

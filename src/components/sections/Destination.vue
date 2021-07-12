@@ -11,8 +11,7 @@ include ../../tools/mixins
             ) Наши направления
             +e.SWIPER.swiper(
                 ref="swiper"
-                :navigation="swiperNavigation"
-                :breakpoints="swiperBreakpoint"
+                :options="swiperOptions"
             )
                 +e.SWIPER-SLIDE.slide(
                     v-for="(card, index) in content.cards"
@@ -21,37 +20,62 @@ include ../../tools/mixins
                     +e.image
                         img(
                             :src="card.image"
-                            alt=""
+                           alt=""
                         )
                     +e.caption {{ card.caption }}
             +e.BUTTON-COMPONENT.button--prev.button(
                 theme="secondary"
+                @click="slidePrev"
                 isIconOnly
             )
             +e.BUTTON-COMPONENT.button--next.button(
                 theme="secondary"
+                @click="slideNext"
                 isIconOnly
             )
 
 </template>
 
 <script lang="ts">
-import { Options, mixins } from 'vue-class-component'
-import SwiperCore, { Navigation } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Component, Mixins } from 'vue-property-decorator'
 import device from '../../mixins/utility/device'
 
-SwiperCore.use([Navigation])
+import { SwiperOptions } from 'swiper'
 
-@Options({
-    components: {
-        Swiper,
-        SwiperSlide
-    },
-})
-export default class Destination extends mixins(device) {
+@Component
+export default class Destination extends Mixins(device) {
     $refs!: {
         swiper: any
+    }
+
+    swiperOptions: SwiperOptions = {
+        // lazy: true,
+        navigation: {
+            nextEl: '.destination__button--next',
+            prevEl: '.destination__button--prev'
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 16
+            },
+            414: {
+                slidesPerView: 2,
+                spaceBetween: 16
+            },
+            650: {
+                slidesPerView: 3,
+                spaceBetween: 20
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            1440: {
+                slidesPerView: 4,
+                spaceBetween: 30
+            }
+        }
     }
 
     content = {
@@ -91,35 +115,8 @@ export default class Destination extends mixins(device) {
         ]
     }
 
-    swiperNavigation = {
-        nextEl: '.destination__button--next',
-        prevEl: '.destination__button--prev'
-    }
-
-    swiperBreakpoint = {
-        320: {
-            slidesPerView: 1,
-            spaceBetween: 16
-        },
-        414: {
-            slidesPerView: 2,
-            spaceBetween: 16
-        },
-        650: {
-            slidesPerView: 3,
-            spaceBetween: 20
-        },
-        1024: {
-            slidesPerView: 3,
-            spaceBetween: 30
-        },
-        1440: {
-            slidesPerView: 4,
-            spaceBetween: 30
-        }
-    }
-
     mounted (): void {
+        console.log(this.$refs.swiper.swiperInstance)
         document.documentElement.addEventListener('resize', this.onResize)
     }
 
@@ -129,16 +126,17 @@ export default class Destination extends mixins(device) {
 
     onResize (): void {
         console.log('resize')
-        
-        this.$refs.swiper.init()
+        this.$refs.swiper.swiperInstance.init()
     }
 
     slideNext (): void {
-        this.$refs.swiper.slideNext()
+        console.log('slide next')
+        this.$refs.swiper.swiperInstance.slideNext(500)
     }
 
     slidePrev (): void {
-        this.$refs.swiper.slidePrev(500)
+        console.log('slide prev')
+        this.$refs.swiper.swiperInstance.slidePrev(500)
     }
 }
 </script>

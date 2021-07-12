@@ -4,6 +4,7 @@ include ../../tools/mixins
 +b.SECTION.intro
     +e.container.container
         +e.image(
+            v-if="isMounted"
             :style="backgroundImageStyle"
         )
             // maybe will need img tag
@@ -22,12 +23,12 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Options, mixins } from 'vue-class-component'
+import { Component, Mixins } from 'vue-property-decorator'
 
 import device from '../../mixins/utility/device'
 
-@Options({})
-export default class Intro extends mixins(device) {
+@Component
+export default class Intro extends Mixins(device) {
     content = {
         title: {
             text: 'Школа <u>№1</u> в&nbsp;Москве',
@@ -37,19 +38,25 @@ export default class Intro extends mixins(device) {
         },
         image: {
             small: {
-                src: 'images/intro/intro-small.png',
+                src: 'images/intro/intro-small.webp',
             },
             large: {
-                src: 'images/intro/intro-large.png',
+                src: 'images/intro/intro-large.webp',
             }
         }
     }
 
-    backgroundImageStyle = {
-        'background-image': `url(${this.getImage})`
+    isMounted = false
+
+    mounted (): void {
+        this.isMounted = true
     }
 
-    get getImage(): string {
+    get backgroundImageStyle (): Record<string, string> {
+        return { 'background-image': `url(${this.getImage})` }
+    }
+
+    get getImage (): string {
         return this.device.size.mobile
             ? this.content.image.small.src
             : this.content.image.large.src

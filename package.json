@@ -7,26 +7,32 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "bem": "node ./src/utils/bem.js",
-    "deploy": "sh deploy.sh"
+    "deploy": "sh deploy.sh",
+    "webp": "node src/utils/webConvert.mjs"
   },
   "dependencies": {
+    "animated-scroll-to": "^2.2.0",
     "bemto.pug": "^2.1.0",
+    "chokidar": "^3.5.2",
+    "compress-images": "^1.9.9",
     "core-js": "^3.6.5",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.9",
-    "pug": "^3.0.2",
-    "reflect-metadata": "^0.1.13",
+    "gifsicle": "^5.2.0",
+    "imagemin": "^8.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "ncp": "^2.0.0",
     "register-service-worker": "^1.7.1",
-    "susy": "^3.0.7",
-    "swiper": "^6.7.0",
-    "vue": "^3.0.0",
-    "vue-class-component": "^8.0.0-0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "sharp": "^0.28.3",
+    "svgo": "^2.3.1",
+    "swiper": "^6.7.5",
+    "vue": "^2.6.11",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^9.1.2",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-decorators": "^7.14.5",
     "@types/jest": "^24.0.19",
     "@types/node": "^15.12.5",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
@@ -39,25 +45,14 @@
     "@vue/cli-plugin-unit-jest": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
-    "@vue/test-utils": "^2.0.0-0",
+    "@vue/test-utils": "^1.0.3",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0",
-    "lint-staged": "^9.5.0",
+    "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.12.0",
-    "node-ts": "^5.1.1",
     "sass-loader": "^8.0.2",
-    "ts-node": "^10.0.0",
     "typescript": "~4.1.5",
-    "vue-awesome-swiper": "^4.1.1",
     "vue-cli-plugin-pug": "~2.0.0",
-    "vue-jest": "^5.0.0-0"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "vue-template-compiler": "^2.6.11"
   }
 }
