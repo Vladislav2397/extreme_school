@@ -12,7 +12,7 @@
         position: relative;
         z-index: 2;
         color: $white;
-        width: toRem(275);
+        width: ratio(374, 275);
     }
 
     &__image {

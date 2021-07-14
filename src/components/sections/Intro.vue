@@ -25,7 +25,7 @@ include ../../tools/mixins
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
 
-import device from '../../mixins/utility/device'
+import device from '@/mixins/utility/device'
 
 @Component
 export default class Intro extends Mixins(device) {

@@ -11,11 +11,13 @@ include ../../tools/mixins
             ) С нами&nbsp;
                 u.blue безопасно
             +e.content
-                +e.image
-                    img(
-                        :src="device.size.mobile ? content.image.small.src : content.image.large.src"
-                        :alt="device.size.mobile ? content.image.small.alt : content.image.large.alt"
-                    )
+                +e.IMAGE-COMPONENT.image(
+                    fallbackExt='png'
+                    :path='device.size.mobile ? content.image.small.src : content.image.large.src'
+                    :alt='device.size.mobile ? content.image.small.alt : content.image.large.alt'
+                    :width='device.size.mobile ? content.image.small.width : content.image.large.width'
+                    :height='device.size.mobile ? content.image.small.height : content.image.large.height'
+                )
                 +e.table
                     +e.row(
                         v-for="row in content.table"
@@ -45,12 +47,16 @@ export default class Benefit extends Mixins(device) {
     content = {
         image: {
             large: {
-                src: 'images/benefit/benefit.png',
-                alt: ''
+                src: 'images/benefit/benefit',
+                alt: '',
+                width: 398,
+                height: 318
             },
             small: {
-                src: 'images/benefit/benefit-small.png',
-                alt: ''
+                src: 'images/benefit/benefit-small',
+                alt: '',
+                width: 373,
+                height: 220
             }
         },
         table: [

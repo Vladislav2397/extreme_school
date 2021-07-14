@@ -17,11 +17,10 @@ include ../../tools/mixins
                     v-for="(card, index) in content.cards"
                     :key="index"
                 )
-                    +e.image
-                        img(
-                            :src="card.image"
-                           alt=""
-                        )
+                    +e.IMAGE-COMPONENT.image(
+                        :path="card.image"
+                        fallbackExt="jpg"
+                    )
                     +e.caption {{ card.caption }}
             +e.BUTTON-COMPONENT.button--prev.button(
                 theme="secondary"
@@ -81,35 +80,35 @@ export default class Destination extends Mixins(device) {
     content = {
         cards: [
             {
-                image: 'images/destination/skateboard.jpg',
+                image: 'images/destination/skateboard',
                 caption: 'Скейтборд'
             },
             {
-                image: 'images/destination/longboard.jpg',
+                image: 'images/destination/longboard',
                 caption: 'Лонгборд'
             },
             {
-                image: 'images/destination/bmx.jpg',
+                image: 'images/destination/bmx',
                 caption: 'BMX'
             },
             {
-                image: 'images/destination/scooter.jpg',
+                image: 'images/destination/scooter',
                 caption: 'Самокат'
             },
             {
-                image: 'images/destination/skateboard.jpg',
+                image: 'images/destination/skateboard',
                 caption: 'Скейтборд'
             },
             {
-                image: 'images/destination/longboard.jpg',
+                image: 'images/destination/longboard',
                 caption: 'Лонгборд'
             },
             {
-                image: 'images/destination/bmx.jpg',
+                image: 'images/destination/bmx',
                 caption: 'BMX'
             },
             {
-                image: 'images/destination/scooter.jpg',
+                image: 'images/destination/scooter',
                 caption: 'Самокат'
             },
         ]

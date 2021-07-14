@@ -5,10 +5,11 @@ include ../../tools/mixins
     +e.container.container
         +e.inner
             +e.image(
-                v-for="image in device.size.mobile ? content.images.small : content.images.large"
+                v-for="image in content.images"
             )
-                img(
-                    :src="image.src"
+                image-component(
+                    fallbackExt="jpg"
+                    :path="`${content.imagePath}/${imageSize}/${image.name}`"
                     :alt="image.alt"
                 )
 
@@ -17,82 +18,51 @@ include ../../tools/mixins
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
 
-import device from '../../mixins/utility/device'
+import device from '@/mixins/utility/device'
 
 @Component
 export default class Gallery extends Mixins(device) {
     content = {
-        images: {
-            large: [
-                {
-                    src: 'images/gallery/large/1.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/large/2.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/large/3.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/large/4.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/large/5.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/large/6.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/large/7.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/large/8.jpg',
-                    alt: ''
-                }
-            ],
-            small: [
-                {
-                    src: 'images/gallery/small/1.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/small/2.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/small/3.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/small/4.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/small/5.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/small/6.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/small/7.jpg',
-                    alt: ''
-                },
-                {
-                    src: 'images/gallery/small/8.jpg',
-                    alt: ''
-                }
-            ]
-        },
-        rows: this.device.size.mobile ? 4 : 2
+        imagePath: 'images/gallery',
+        images: [
+            {
+                name: '1',
+                alt: ''
+            },
+            {
+                name: '2',
+                alt: ''
+            },
+            {
+                name: '3',
+                alt: ''
+            },
+            {
+                name: '4',
+                alt: ''
+            },
+            {
+                name: '5',
+                alt: ''
+            },
+            {
+                name: '6',
+                alt: ''
+            },
+            {
+                name: '7',
+                alt: ''
+            },
+            {
+                name: '8',
+                alt: ''
+            }
+        ],
+        rows: 4
+    }
+
+    get imageSize (): string {
+        return this.device.size.mobile ? 'small' : 'large'
     }
 }
 </script>

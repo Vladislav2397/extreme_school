@@ -10,3 +10,45 @@
     @return #{$newSize};
 }
 
+// settings only in px
+$susyOptions: (
+    'mobile': (
+        'container':    $mobile,
+        'margins':      20px,
+        'gutters':      16px,
+        'columns':      4,
+    ),
+    'tablet': (
+        'container':    $tablet,
+        'margins':      40px,
+        'gutters':      20px,
+        'columns':      12,
+    ),
+    'desktop': (
+        'container':    $desktop,
+        'margins':      48px,
+        'gutters':      20px,
+        'columns':      12,
+    )
+);
+
+// width: susy('mobile', 3);
+
+@function susy($deviceType, $width) {
+    $data: map-get($susyOptions, $deviceType); // >>> (container, margins, gutters, columns)
+
+    $container: map-get($data, 'container');
+    $margins: map-get($data, 'margins');
+    $gutters: map-get($data, 'gutters');
+    $columns: map-get($data, 'columns');
+
+    $containerNormalWidth: $container - ($margins * 2);
+    $containerColumnWidth: ($containerNormalWidth - ($gutters * ($columns - 1)));
+    $gutterPercent: $gutters / $containerNormalWidth * 100%;
+    $columnWidth: $containerColumnWidth / $columns;
+    $columnWidthPercent: ($columnWidth / $containerColumnWidth) * 100%;
+
+    @warn 'column width #{$columnWidth}';
+
+    @return $columnWidthPercent * 3;
+}

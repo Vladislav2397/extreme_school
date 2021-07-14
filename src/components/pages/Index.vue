@@ -7,7 +7,7 @@ div
     benefit-component
     about-component
     skill-component
-    //- gallery-component
+    gallery-component
     price-component
     feedback-component
     question-component
@@ -22,28 +22,61 @@ import { Vue, Component } from 'vue-property-decorator'
 import TheHeader from '@/components/sections/TheHeader.vue'
 import Intro from '@/components/sections/Intro.vue'
 import Destination from '@/components/sections/Destination.vue'
-import Benefit from '@/components/sections/Benefit.vue'
-import About from '@/components/sections/About.vue'
-// import Skill from '@/components/sections/Skill.vue'
-import Gallery from '@/components/sections/Gallery.vue'
-// import Price from '@/components/sections/Price.vue'
-// import Feedback from '@/components/sections/Feedback.vue'
-// import Question from '@/components/sections/Question.vue'
+
+const Benefit = () => ({
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Benefit.vue'
+    )
+})
+
+const About = () => ({
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/About.vue'
+    )
+})
+
+const Gallery = () => ({
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Gallery.vue'
+    )
+})
 
 const Skill = () => ({
-    component: import(/* webpackPreload: true */ '@/components/sections/Skill.vue')
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Skill.vue'
+    )
 })
 
 const Price = () => ({
-    component: import(/* webpackPreload: true */ '@/components/sections/Price.vue')
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Price.vue'
+    )
 })
 
 const Feedback = () => ({
-    component: import(/* webpackPreload: true */ '@/components/sections/Feedback.vue')
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Feedback.vue'
+    )
 })
 
 const Question = () => ({
-    component: import(/* webpackPreload: true */ '@/components/sections/Question.vue')
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Question.vue'
+    )
 })
 
 @Component({

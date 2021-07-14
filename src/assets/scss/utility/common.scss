@@ -33,6 +33,11 @@ div {
     box-sizing: border-box;
 }
 
+img {
+    width: auto;
+    height: auto;
+}
+
 .container {
     box-sizing: border-box;
     max-width: $maxRems;
