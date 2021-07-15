@@ -5,17 +5,17 @@
         //:srcset="`${path}.webp`"
         source(
             type="image/webp"
-            :srcset="`${path}.webp`"
+            :data-srcset="`${path}.webp`"
             :width="width"
             :height="height"
         )
 
         //:srcset="fallbackSrc"
         source(
+            :type="`image/${fallbackExt}`"
+            :data-srcset="fallbackSrc"
             :width="width"
             :height="height"
-            :srcset="fallbackSrc"
-            :type="`image/${fallbackExt}`"
         )
 
         //:src="fallbackSrc"
@@ -29,6 +29,9 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
+
+// import lazyload from '@/utils/directive/lazysizes'
+// import lazyload from '@/utils/lazy'
 
 @Component
 class ImageLazy extends Vue {

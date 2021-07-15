@@ -19,9 +19,9 @@ include ../../tools/mixins
                         v-for="image in content.images"
                     )
                         +e.image
-                            img(
-                                :src="image.src"
-                                :alt="image.alt"
+                            image-component(
+                                :path="image.src"
+                                fallbackExt="jpg"
                             )
                             +e.caption
                                 span(
@@ -64,22 +64,22 @@ export default class Skill extends Mixins(device) {
         title: 'Вы точно&nbsp;<u class="blue">научитесь</u>',
         images: [
             {
-                src: 'images/skill/1.jpg',
+                src: 'images/skill/1',
                 alt: '',
                 caption: 'уверено кататься, выполнять<br>трюки и спортивные элементы '
             },
             {
-                src: 'images/skill/2.jpg',
+                src: 'images/skill/2',
                 alt: '',
                 caption: 'уверено кататься, выполнять<br>трюки и спортивные элементы '
             },
             {
-                src: 'images/skill/3.jpg',
+                src: 'images/skill/3',
                 alt: '',
                 caption: 'уверено кататься, выполнять<br>трюки и спортивные элементы '
             },
             {
-                src: 'images/skill/4.jpg',
+                src: 'images/skill/4',
                 alt: '',
                 caption: 'уверено кататься, выполнять<br>трюки и спортивные элементы '
             },

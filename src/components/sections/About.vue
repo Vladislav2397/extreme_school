@@ -6,8 +6,8 @@ include ../../tools/mixins
         +e.inner
             +e.image
                 img(
-                    :src="content.image.src"
-                    :alt="content.image.alt"
+                    :src="content.image.large.src"
+                    :alt="content.image.large.alt"
                 )
             +e.author
                 +e.TITLE-COMPONENT.name(
@@ -34,8 +34,18 @@ import { Vue, Component } from 'vue-property-decorator'
 export default class About extends Vue {
     content = {
         image: {
-            src: 'images/about/about.jpg',
-            alt: ''
+            large: {
+                src: 'images/about/about.jpg',
+                alt: '',
+                width: 200,
+                height: 200
+            },
+            small: {
+                src: 'images/about/about.jpg',
+                alt: '',
+                width: 200,
+                height: 200
+            }
         },
         author: {
             name: 'Дмитрий',
