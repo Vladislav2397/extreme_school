@@ -37,9 +37,11 @@ include ../../tools/mixins
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
-import device from '../../mixins/utility/device'
-
 import { SwiperOptions } from 'swiper'
+
+import device from '../../mixins/utility/device'
+import { IDestination } from '@/store/types/content'
+import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Destination extends Mixins(device) {
@@ -77,45 +79,7 @@ export default class Destination extends Mixins(device) {
         }
     }
 
-    content = {
-        cards: [
-            {
-                image: 'images/destination/skateboard',
-                caption: 'Скейтборд'
-            },
-            {
-                image: 'images/destination/longboard',
-                caption: 'Лонгборд'
-            },
-            {
-                image: 'images/destination/bmx',
-                caption: 'BMX'
-            },
-            {
-                image: 'images/destination/scooter',
-                caption: 'Самокат'
-            },
-            {
-                image: 'images/destination/skateboard',
-                caption: 'Скейтборд'
-            },
-            {
-                image: 'images/destination/longboard',
-                caption: 'Лонгборд'
-            },
-            {
-                image: 'images/destination/bmx',
-                caption: 'BMX'
-            },
-            {
-                image: 'images/destination/scooter',
-                caption: 'Самокат'
-            },
-        ]
-    }
-
     mounted (): void {
-        console.log(this.$refs.swiper.swiperInstance)
         document.documentElement.addEventListener('resize', this.onResize)
     }
 
@@ -124,18 +88,19 @@ export default class Destination extends Mixins(device) {
     }
 
     onResize (): void {
-        console.log('resize')
         this.$refs.swiper.swiperInstance.init()
     }
 
     slideNext (): void {
-        console.log('slide next')
         this.$refs.swiper.swiperInstance.slideNext(500)
     }
 
     slidePrev (): void {
-        console.log('slide prev')
         this.$refs.swiper.swiperInstance.slidePrev(500)
+    }
+
+    get content (): IDestination {
+        return ContentModule.destination
     }
 }
 </script>

@@ -13,10 +13,10 @@ include ../../tools/mixins
             +e.content
                 +e.IMAGE-COMPONENT.image(
                     fallbackExt='png'
-                    :path='device.size.mobile ? content.image.small.src : content.image.large.src'
-                    :alt='device.size.mobile ? content.image.small.alt : content.image.large.alt'
-                    :width='device.size.mobile ? content.image.small.width : content.image.large.width'
-                    :height='device.size.mobile ? content.image.small.height : content.image.large.height'
+                    :path='device.size.mobile ? content.image.mobile.src : content.image.desktop.src'
+                    :alt='device.size.mobile ? content.image.mobile.alt : content.image.desktop.alt'
+                    :width='device.size.mobile ? content.image.mobile.width : content.image.desktop.width'
+                    :height='device.size.mobile ? content.image.mobile.height : content.image.desktop.height'
                 )
                 +e.table
                     +e.row(
@@ -41,46 +41,13 @@ include ../../tools/mixins
 import { Component, Mixins } from 'vue-property-decorator'
 
 import device from '@/mixins/utility/device'
+import { IBenefit } from '@/store/types/content'
+import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Benefit extends Mixins(device) {
-    content = {
-        image: {
-            large: {
-                src: 'images/benefit/benefit',
-                alt: '',
-                width: 398,
-                height: 318
-            },
-            small: {
-                src: 'images/benefit/benefit-small',
-                alt: '',
-                width: 373,
-                height: 220
-            }
-        },
-        table: [
-            [
-                {
-                    title: 'От новичка <br> до профи',
-                    content: 'Комплексный подход к&nbsp;тренировкам: занимаемся общей физической подготовкой'
-                },
-                {
-                    title: 'Результат от&nbsp;каждой <br> тренировки',
-                    content: 'Сделаем всё, чтобы вы добились нужных результатов'
-                }
-            ],
-            [
-                {
-                    title: 'Площадки <br> по&nbsp;всей Москве',
-                    content: 'Приедем к вам в пределах МКАД'
-                },
-                {
-                    title: 'Бесплатно',
-                    content: 'Предоставим защиту и спорт инвертарь'
-                },
-            ]
-        ]
+    get content (): IBenefit {
+        return ContentModule.benefit
     }
 }
 </script>

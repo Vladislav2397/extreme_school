@@ -19,50 +19,17 @@ include ../../tools/mixins
 import { Component, Mixins } from 'vue-property-decorator'
 
 import device from '@/mixins/utility/device'
+import { IGallery } from '@/store/types/content'
+import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Gallery extends Mixins(device) {
-    content = {
-        imagePath: 'images/gallery',
-        images: [
-            {
-                name: '1',
-                alt: ''
-            },
-            {
-                name: '2',
-                alt: ''
-            },
-            {
-                name: '3',
-                alt: ''
-            },
-            {
-                name: '4',
-                alt: ''
-            },
-            {
-                name: '5',
-                alt: ''
-            },
-            {
-                name: '6',
-                alt: ''
-            },
-            {
-                name: '7',
-                alt: ''
-            },
-            {
-                name: '8',
-                alt: ''
-            }
-        ],
-        rows: 4
-    }
-
     get imageSize (): string {
         return this.device.size.mobile ? 'small' : 'large'
+    }
+
+    get content (): IGallery {
+        return ContentModule.gallery
     }
 }
 </script>

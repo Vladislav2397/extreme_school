@@ -35,18 +35,9 @@ include ../../tools/mixins
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import PriceCard from '../blanks/PriceCard.vue'
-
-declare type Product = {
-    id: number
-    tabName: string
-    cards: {
-        title: string
-        info: {
-            service: string
-            prices: string[]
-        }[]
-    }[]
-}
+import { IPrice } from '@/store/types/content'
+import { IProduct } from '@/store/types'
+import ContentModule from '@/store/modules/content'
 
 @Component({
     components: {
@@ -54,126 +45,6 @@ declare type Product = {
     }
 })
 export default class Price extends Vue {
-    content = {
-        products: [
-            {
-                tabName: 'Скейтборд',
-                cards: [
-                    {
-                        title: 'Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        title: 'Топ-Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            },
-                        ]
-                    }
-                ]
-            },
-            {
-                tabName: 'BMX',
-                cards: [
-                    {
-                        title: 'Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 000 ₽/60 мин',
-                                    '4 500 ₽/5 занятий'
-                                ]
-                            },
-                        ]
-                    }
-                ]
-            },
-            {
-                tabName: 'Самокат',
-                cards: [
-                    {
-                        title: 'Тренер',
-                        info: [
-                            {
-                                service: 'Индивидуальные занятия',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                tabName: 'Лонгборд',
-                cards: [
-                    {
-                        title: 'Тренер',
-                        info: [
-                            {
-                                service: 'Будние дни',
-                                prices: [
-                                    '2 000 ₽/60 мин',
-                                    '3 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Выходные дни',
-                                prices: [
-                                    '3 000 ₽/60 мин',
-                                    '5 000 ₽/120 мин'
-                                ]
-                            },
-                            {
-                                service: 'Групповые занятия',
-                                prices: [
-                                    '1 500 ₽/60 мин',
-                                    '7 000 ₽/5 занятий'
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-        ] as Product[],
-    }
-
     productIndex = 0
 
     get cardSize (): string {
@@ -187,7 +58,7 @@ export default class Price extends Vue {
         return 'small'
     }
 
-    get activeProduct (): Product {
+    get activeProduct (): IProduct {
         return this.content.products[this.productIndex]
     }
 
@@ -197,6 +68,10 @@ export default class Price extends Vue {
 
     setActive (index: number): void {
         this.productIndex = index
+    }
+
+    get content (): IPrice {
+        return ContentModule.price
     }
 }
 </script>

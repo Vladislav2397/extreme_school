@@ -28,37 +28,13 @@ include ../../tools/mixins
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import { IFeedback } from '@/store/types/content'
+import ContentModule from '@/store/modules/content'
 
-@Component({})
+@Component
 export default class Feedback extends Vue {
-    content = {
-        title: 'Ученики <u class="blue">о нас</u>',
-        comments: [
-            {
-                image: {
-                    src: '',
-                    alt: ''
-                },
-                name: 'Анна',
-                text: 'Нашла в инстаграме инструктора @true_school. Дим, спасибо! Без нудятины, чётко по делу, встали и поехали))'
-            },
-            {
-                image: {
-                    src: '',
-                    alt: ''
-                },
-                name: 'Владимир',
-                text: 'Дмитрий, спасибо за тренировку! Вы хороший тренер!'
-            },
-            {
-                image: {
-                    src: '',
-                    alt: ''
-                },
-                name: 'Кристина',
-                text: 'Дима меньше чем за час поставил сына на доску! То ли ещё будет :))'
-            },
-        ]
+    get content (): IFeedback {
+        return ContentModule.feedback
     }
 }
 </script>

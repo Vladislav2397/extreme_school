@@ -10,10 +10,10 @@ include ../../tools/mixins
             // maybe will need img tag
         +e.inner
             +e.TITLE-COMPONENT.title(
-                v-html="content.title.text"
+                v-html="content.title"
             )
             +e.description(
-                v-html="content.description.text"
+                v-html="content.description"
             )
             +e.BUTTON-COMPONENT(
                 tag="button"
@@ -26,30 +26,19 @@ include ../../tools/mixins
 import { Component, Mixins } from 'vue-property-decorator'
 
 import device from '@/mixins/utility/device'
+import { IIntro } from '@/store/types/content'
+import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Intro extends Mixins(device) {
-    content = {
-        title: {
-            text: 'Школа <u>№1</u> в&nbsp;Москве',
-        },
-        description: {
-            text: 'Обучаем детей и взрослых: скейт, лонгробрд, BMX, самокат, ролики и&nbsp;другие направления'
-        },
-        image: {
-            small: {
-                src: 'images/intro/intro-small.webp',
-            },
-            large: {
-                src: 'images/intro/intro-large.webp',
-            }
-        }
-    }
-
     isMounted = false
 
     mounted (): void {
         this.isMounted = true
+    }
+
+    get content (): IIntro {
+        return ContentModule.intro
     }
 
     get backgroundImageStyle (): Record<string, string> {
@@ -58,8 +47,8 @@ export default class Intro extends Mixins(device) {
 
     get getImage (): string {
         return this.device.size.mobile
-            ? this.content.image.small.src
-            : this.content.image.large.src
+            ? this.content.image.mobile.src
+            : this.content.image.desktop.src
     }
 }
 </script>

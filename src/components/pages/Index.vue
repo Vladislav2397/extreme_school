@@ -39,19 +39,19 @@ const About = () => ({
     )
 })
 
-const Gallery = () => ({
-    component: import(
-        /* webpackPrefetch: true */
-        /* webpackMode: "lazy" */
-        '@/components/sections/Gallery.vue'
-    )
-})
-
 const Skill = () => ({
     component: import(
         /* webpackPrefetch: true */
         /* webpackMode: "lazy" */
         '@/components/sections/Skill.vue'
+    )
+})
+
+const Gallery = () => ({
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Gallery.vue'
     )
 })
 

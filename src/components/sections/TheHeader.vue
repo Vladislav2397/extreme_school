@@ -27,47 +27,26 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Mixins } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
+import ContentModule from '@/store/modules/content'
+import { IHeader } from '@/store/types/content'
 
 import device from '@/mixins/utility/device'
 
+@Component
 export default class TheHeader extends Mixins(device) {
     $refs!: {
         header: HTMLElement
     }
 
-    content = {
-        links: [
-            {
-                name: 'Направления',
-                href: '#'
-            },
-            {
-                name: 'Тренеры',
-                href: '#'
-            },
-            {
-                name: 'Стоимость',
-                href: '#'
-            },
-            {
-                name: 'Контакты',
-                href: '#'
-            },
-            {
-                name: 'Блог',
-                href: '#'
-            },
-        ],
-        phone: {
-            name: '8 977 811-23-56',
-            href: '#'
-        },
-    }
-
     isScroll = false
 
+    get content (): IHeader {
+        return ContentModule.header
+    }
+
     mounted (): void {
+        this.content.links[0].name
         window.addEventListener('scroll', this.onScroll)
     }
 

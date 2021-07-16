@@ -6,8 +6,8 @@ include ../../tools/mixins
         +e.inner
             +e.image
                 img(
-                    :src="content.image.large.src"
-                    :alt="content.image.large.alt"
+                    :src="content.image.desktop.src"
+                    :alt="content.image.desktop.alt"
                 )
             +e.author
                 +e.TITLE-COMPONENT.name(
@@ -29,50 +29,13 @@ include ../../tools/mixins
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import { IAbout } from '@/store/types/content'
+import ContentModule from '@/store/modules/content'
 
 @Component
 export default class About extends Vue {
-    content = {
-        image: {
-            large: {
-                src: 'images/about/about.jpg',
-                alt: '',
-                width: 200,
-                height: 200
-            },
-            small: {
-                src: 'images/about/about.jpg',
-                alt: '',
-                width: 200,
-                height: 200
-            }
-        },
-        author: {
-            name: 'Дмитрий',
-            status: 'Основатель школы',
-            description:
-                'Я собрал лучших специалистов для вашего комфортного ' +
-                'обучения по разным направлениям.<br><br>' +
-                'Мы очень ценим каждого нашего ученика и для тех, ' +
-                'кто планирует развиваться вместе с нами ' +
-                'на&nbsp;постоянной основе, мы предоставляем очень ' +
-                'приятные бонусы: скидки на абонементы, интенсивы ' +
-                'и нашу фирменную одежду.',
-            links: [
-                {
-                    href: '#',
-                    text: 'Instagram'
-                },
-                {
-                    href: '#',
-                    text: 'VK'
-                },
-                {
-                    href: '#',
-                    text: 'Facebook'
-                },
-            ]
-        }
+    get content (): IAbout {
+        return ContentModule.about
     }
 }
 </script>

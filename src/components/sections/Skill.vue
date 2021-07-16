@@ -48,6 +48,8 @@ import { Component, Mixins } from 'vue-property-decorator'
 import device from '@/mixins/utility/device'
 
 import { SwiperOptions } from 'swiper'
+import { ISkill } from '@/store/types/content'
+import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Skill extends Mixins(device) {
@@ -60,32 +62,6 @@ export default class Skill extends Mixins(device) {
         lazy: true
     }
 
-    content = {
-        title: 'Вы точно&nbsp;<u class="blue">научитесь</u>',
-        images: [
-            {
-                src: 'images/skill/1',
-                alt: '',
-                caption: 'уверено кататься, выполнять<br>трюки и спортивные элементы '
-            },
-            {
-                src: 'images/skill/2',
-                alt: '',
-                caption: 'уверено кататься, выполнять<br>трюки и спортивные элементы '
-            },
-            {
-                src: 'images/skill/3',
-                alt: '',
-                caption: 'уверено кататься, выполнять<br>трюки и спортивные элементы '
-            },
-            {
-                src: 'images/skill/4',
-                alt: '',
-                caption: 'уверено кататься, выполнять<br>трюки и спортивные элементы '
-            },
-        ]
-    }
-
     mounted (): void {
         document.documentElement.addEventListener('resize', this.onResize)
     }
@@ -95,7 +71,6 @@ export default class Skill extends Mixins(device) {
     }
 
     onResize (): void {
-        console.log('resize')
         this.$refs.swiper.swiperInstance.init()
     }
 
@@ -105,6 +80,10 @@ export default class Skill extends Mixins(device) {
 
     slidePrev (): void {
         this.$refs.swiper.swiperInstance.slidePrev(500)
+    }
+
+    get content (): ISkill {
+        return ContentModule.skill
     }
 }
 </script>

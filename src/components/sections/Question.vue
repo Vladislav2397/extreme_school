@@ -24,6 +24,8 @@ include ../../tools/mixins
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import CardQuestion from '../blanks/CardQuestion.vue'
+import { IQuestion } from '@/store/types/content'
+import ContentModule from '@/store/modules/content'
 
 @Component({
     components: {
@@ -31,35 +33,8 @@ import CardQuestion from '../blanks/CardQuestion.vue'
     }
 })
 export default class Question extends Vue {
-    content = {
-        title: 'Есть вопросы?<br>Сейчас ответим',
-        activeIndexes: [0],
-        questions: [
-            {
-                title: 'По каким направлениям проходят тренировки?',
-                content: ''
-            },
-            {
-                title: 'Кто тренирует?',
-                content: ''
-            },
-            {
-                title: 'А взрослым можно обучаться экстремальному спорту?',
-                content: ''
-            },
-            {
-                title: 'Какие есть площадки и где проходят тренировки?',
-                content: ''
-            },
-            {
-                title: 'С какого возраста берёте детей? Есть ли групповые занятия?',
-                content: ''
-            },
-            {
-                title: 'Сколько стоят тренировки?',
-                content: ''
-            },
-        ]
+    get content (): IQuestion {
+        return ContentModule.question
     }
 }
 </script>

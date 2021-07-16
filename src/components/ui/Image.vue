@@ -1,5 +1,7 @@
 <template lang="pug">
-.image
+.image(
+    ref="container"
+)
     picture
 
         //:srcset="`${path}.webp`"
@@ -20,6 +22,7 @@
 
         //:src="fallbackSrc"
         img(
+            ref="image"
             v-lazy="fallbackSrc"
             :width="width"
             :height="height"
@@ -48,6 +51,11 @@ class ImageLazy extends Vue {
     @Prop({ default: 100 }) readonly width!: number
 
     @Prop({ default: 100 }) readonly height!: number
+
+    $refs!: {
+        container: HTMLElement,
+        image: HTMLElement
+    }
 
     get fallbackSrc (): string {
         return `${this.path}.${this.fallbackExt}`
