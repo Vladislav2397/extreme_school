@@ -19,7 +19,7 @@ import {
     store,
 })
 class ContentModule extends VuexModule {
-    header: IHeader = {
+    private _header: IHeader = {
         links: [
             {
                 name: 'Направления',
@@ -48,7 +48,7 @@ class ContentModule extends VuexModule {
         },
     }
 
-    intro: IIntro = {
+    private _intro: IIntro = {
         title: 'Школа <u>№1</u> в&nbsp;Москве',
         description: 'Обучаем детей и взрослых: скейт, лонгробрд, BMX, самокат, ролики и&nbsp;другие направления',
         image: {
@@ -63,7 +63,7 @@ class ContentModule extends VuexModule {
         }
     }
 
-    destination: IDestination = {
+    private _destination: IDestination = {
         cards: [
             {
                 image: 'images/destination/skateboard',
@@ -100,7 +100,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    benefit: IBenefit = {
+    private _benefit: IBenefit = {
         image: {
             desktop: {
                 src: 'images/benefit/benefit',
@@ -139,7 +139,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    about: IAbout = {
+    private _about: IAbout = {
         image: {
             desktop: {
                 src: 'images/about/about.jpg',
@@ -182,7 +182,7 @@ class ContentModule extends VuexModule {
         }
     }
 
-    skill: ISkill = {
+    private _skill: ISkill = {
         title: 'Вы точно&nbsp;<u class="blue">научитесь</u>',
         images: [
             {
@@ -208,7 +208,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    gallery: IGallery = {
+    private _gallery: IGallery = {
         imagePath: 'images/gallery',
         images: [
             {
@@ -246,7 +246,7 @@ class ContentModule extends VuexModule {
         ],
     }
 
-    price: IPrice = {
+    private _price: IPrice = {
         products: [
             {
                 tabName: 'Скейтборд',
@@ -366,7 +366,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    feedback: IFeedback = {
+    private _feedback: IFeedback = {
         title: 'Ученики <u class="blue">о нас</u>',
         comments: [
             {
@@ -396,7 +396,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    question: IQuestion = {
+    private _question: IQuestion = {
         title: 'Есть вопросы?<br>Сейчас ответим',
         activeIndexes: [0],
         questions: [
@@ -425,6 +425,46 @@ class ContentModule extends VuexModule {
                 content: ''
             },
         ]
+    }
+
+    get header (): IHeader {
+        return this._header
+    }
+
+    get intro (): IIntro {
+        return this._intro
+    }
+
+    get destination (): IDestination {
+        return this._destination
+    }
+
+    get benefit (): IBenefit {
+        return this._benefit
+    }
+
+    get about (): IAbout {
+        return this._about
+    }
+
+    get skill (): ISkill {
+        return this._skill
+    }
+
+    get gallery (): IGallery {
+        return this._gallery
+    }
+
+    get price (): IPrice {
+        return this._price
+    }
+
+    get feedback (): IFeedback {
+        return this._feedback
+    }
+
+    get question (): IQuestion {
+        return this._question
     }
 }
 

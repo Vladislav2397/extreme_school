@@ -46,6 +46,7 @@ import ContentModule from '@/store/modules/content'
 })
 export default class Price extends Vue {
     productIndex = 0
+    content = ContentModule.price
 
     get cardSize (): string {
         if (this.activeProduct.cards.length === 1) {
@@ -68,10 +69,6 @@ export default class Price extends Vue {
 
     setActive (index: number): void {
         this.productIndex = index
-    }
-
-    get content (): IPrice {
-        return ContentModule.price
     }
 }
 </script>

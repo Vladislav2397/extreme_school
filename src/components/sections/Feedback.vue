@@ -28,13 +28,10 @@ include ../../tools/mixins
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { IFeedback } from '@/store/types/content'
 import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Feedback extends Vue {
-    get content (): IFeedback {
-        return ContentModule.feedback
-    }
+    content = ContentModule.feedback
 }
 </script>

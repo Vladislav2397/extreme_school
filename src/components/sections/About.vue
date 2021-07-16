@@ -29,13 +29,10 @@ include ../../tools/mixins
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { IAbout } from '@/store/types/content'
 import ContentModule from '@/store/modules/content'
 
 @Component
 export default class About extends Vue {
-    get content (): IAbout {
-        return ContentModule.about
-    }
+    content = ContentModule.about
 }
 </script>

@@ -24,7 +24,6 @@ include ../../tools/mixins
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import CardQuestion from '../blanks/CardQuestion.vue'
-import { IQuestion } from '@/store/types/content'
 import ContentModule from '@/store/modules/content'
 
 @Component({
@@ -33,8 +32,6 @@ import ContentModule from '@/store/modules/content'
     }
 })
 export default class Question extends Vue {
-    get content (): IQuestion {
-        return ContentModule.question
-    }
+    content = ContentModule.question
 }
 </script>

@@ -26,19 +26,15 @@ include ../../tools/mixins
 import { Component, Mixins } from 'vue-property-decorator'
 
 import device from '@/mixins/utility/device'
-import { IIntro } from '@/store/types/content'
 import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Intro extends Mixins(device) {
     isMounted = false
+    content = ContentModule.intro
 
     mounted (): void {
         this.isMounted = true
-    }
-
-    get content (): IIntro {
-        return ContentModule.intro
     }
 
     get backgroundImageStyle (): Record<string, string> {

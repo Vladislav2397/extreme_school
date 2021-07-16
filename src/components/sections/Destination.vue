@@ -40,7 +40,6 @@ import { Component, Mixins } from 'vue-property-decorator'
 import { SwiperOptions } from 'swiper'
 
 import device from '../../mixins/utility/device'
-import { IDestination } from '@/store/types/content'
 import ContentModule from '@/store/modules/content'
 
 @Component
@@ -48,6 +47,8 @@ export default class Destination extends Mixins(device) {
     $refs!: {
         swiper: any
     }
+
+    content = ContentModule.destination
 
     swiperOptions: SwiperOptions = {
         // lazy: true,
@@ -97,10 +98,6 @@ export default class Destination extends Mixins(device) {
 
     slidePrev (): void {
         this.$refs.swiper.swiperInstance.slidePrev(500)
-    }
-
-    get content (): IDestination {
-        return ContentModule.destination
     }
 }
 </script>

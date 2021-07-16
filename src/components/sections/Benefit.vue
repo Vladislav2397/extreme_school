@@ -41,13 +41,10 @@ include ../../tools/mixins
 import { Component, Mixins } from 'vue-property-decorator'
 
 import device from '@/mixins/utility/device'
-import { IBenefit } from '@/store/types/content'
 import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Benefit extends Mixins(device) {
-    get content (): IBenefit {
-        return ContentModule.benefit
-    }
+    content = ContentModule.benefit
 }
 </script>

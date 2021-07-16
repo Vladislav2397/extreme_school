@@ -29,7 +29,6 @@ include ../../tools/mixins
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
 import ContentModule from '@/store/modules/content'
-import { IHeader } from '@/store/types/content'
 
 import device from '@/mixins/utility/device'
 
@@ -40,10 +39,7 @@ export default class TheHeader extends Mixins(device) {
     }
 
     isScroll = false
-
-    get content (): IHeader {
-        return ContentModule.header
-    }
+    content = ContentModule.header
 
     mounted (): void {
         this.content.links[0].name

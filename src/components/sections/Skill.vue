@@ -48,7 +48,6 @@ import { Component, Mixins } from 'vue-property-decorator'
 import device from '@/mixins/utility/device'
 
 import { SwiperOptions } from 'swiper'
-import { ISkill } from '@/store/types/content'
 import ContentModule from '@/store/modules/content'
 
 @Component
@@ -56,6 +55,8 @@ export default class Skill extends Mixins(device) {
     $refs!: {
         swiper: any
     }
+
+    content = ContentModule.skill
 
     swiperOptions: SwiperOptions = {
         slidesPerView: 1,
@@ -80,10 +81,6 @@ export default class Skill extends Mixins(device) {
 
     slidePrev (): void {
         this.$refs.swiper.swiperInstance.slidePrev(500)
-    }
-
-    get content (): ISkill {
-        return ContentModule.skill
     }
 }
 </script>
