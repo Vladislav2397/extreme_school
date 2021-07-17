@@ -4,8 +4,8 @@ import {
     IHeader,
     IIntro,
     IDestination,
-    IBenefit,
     IAbout,
+    IBenefit,
     ISkill,
     IGallery,
     IPrice,
@@ -52,12 +52,13 @@ class ContentModule extends VuexModule {
         title: 'Школа <u>№1</u> в&nbsp;Москве',
         description: 'Обучаем детей и взрослых: скейт, лонгробрд, BMX, самокат, ролики и&nbsp;другие направления',
         image: {
+            // FIXME: Change this image on jpg
             mobile: {
-                src: 'images/intro/intro-small.webp',
+                src: 'images/intro/intro-small.png',
                 alt: ''
             },
             desktop: {
-                src: 'images/intro/intro-large.webp',
+                src: 'images/intro/intro-large.png',
                 alt: ''
             }
         }

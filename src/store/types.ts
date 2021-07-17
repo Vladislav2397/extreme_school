@@ -3,17 +3,22 @@ export type ILink = {
     href: string
 }
 
+export type IImageData = {
+    src: string
+    alt: string
+    width?: number
+    height?: number
+}
+
 export type IImage = {
     desktop: IImageData
     medium?: IImageData
     mobile?: IImageData
 }
 
-export type IImageData = {
-    src: string
-    alt: string
-    width?: number
-    height?: number
+export type ISlide = {
+    image: IImageData
+    caption: string
 }
 
 

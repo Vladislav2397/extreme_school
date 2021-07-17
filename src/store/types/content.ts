@@ -43,6 +43,10 @@ export type IAbout = {
 
 export type ISkill = {
     title: string
+    slides?: {
+        image: IImageData,
+        caption: string
+    }[]
     images: {
         src: string
         alt: string

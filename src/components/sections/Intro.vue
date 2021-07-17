@@ -7,7 +7,6 @@ include ../../tools/mixins
             v-if="isMounted"
             :style="backgroundImageStyle"
         )
-            // maybe will need img tag
         +e.inner
             +e.TITLE-COMPONENT.title(
                 v-html="content.title"
@@ -18,6 +17,7 @@ include ../../tools/mixins
             +e.BUTTON-COMPONENT(
                 tag="button"
                 theme="primary"
+                type="text"
             ) Записаться
 
 </template>
@@ -41,9 +41,9 @@ export default class Intro extends Mixins(device) {
         return { 'background-image': `url(${this.getImage})` }
     }
 
-    get getImage (): string {
+    get getImage (): string | undefined {
         return this.device.size.mobile
-            ? this.content.image.mobile.src
+            ? this.content.image.mobile?.src
             : this.content.image.desktop.src
     }
 }

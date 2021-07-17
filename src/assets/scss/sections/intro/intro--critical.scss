@@ -13,6 +13,7 @@
         z-index: 2;
         color: $white;
         width: ratio(374, 275);
+        min-width: toRem(275);
     }
 
     &__image {
@@ -49,6 +50,10 @@
 
     @include media_min_tablet {
         padding-bottom: toRem(79);
+
+        &__inner {
+            width: ratio(687, 275);
+        }
 
         &__description {
             font-size: toRem(16);

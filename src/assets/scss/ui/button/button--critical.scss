@@ -13,22 +13,30 @@ $buttonBackgroundSecondaryColor: $secondaryColor;
             background-color: $buttonBackgroundPrimaryColor;
             color: $white;
         }
-        
+
         &-secondary {
             background-color: $buttonBackgroundSecondaryColor;
         }
     }
 
-    &--shape {
-        &-circle {
+    &--type {
+        &-text {
+            padding: 0 toRem(30);
+        }
+
+        &-icon {
             padding: 0;
-            width: toRem(28);
-            height: toRem(28);
+            min-width: toRem(28);
+            min-height: toRem(28);
             border-radius: 50%;
         }
 
-        &-standard {
-            padding: 0 toRem(30);
+        &-text-icon {
+            padding: 0 toRem(30 + 24) 0 toRem(30);
+        }
+
+        &-icon-text {
+            padding: 0 toRem(30) 0 toRem(30 + 24);
         }
     }
 
@@ -43,16 +51,6 @@ $buttonBackgroundSecondaryColor: $secondaryColor;
             &-standard {
                 padding: 0 toRem(23);
             }
-        }
-    }
-
-    @include media_min_desktop {
-        &__content {
-            transition: border-bottom-color 0.3s ease;
-        }
-
-        &:hover &__content {
-            border-bottom: 1px solid $white;
         }
     }
 }

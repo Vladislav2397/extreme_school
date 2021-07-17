@@ -5,53 +5,56 @@ include ../../tools/mixins
     :is="tag"
     :class="classes"
 )
-    +e.SPAN.content(
-        v-if="isIconOnly"
-    )
-        slot
     slot(
+        v-if="type === 'icon'"
+    )
+    +e.SPAN.content(
         v-else
     )
+        slot
 
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
-@Component({
-    props: {
-        tag: {
-            type: String,
-            default: 'button'
-        },
-        theme: {
-            type: String,
-            default: 'primary'
-        },
-        icon: String,
-        isIconOnly: Boolean
-    }
-})
+@Component
 export default class Button extends Vue {
-    theme!: string
-    tag!: string
-    icon!: string
-    iconState!: string
-    isIconOnly!: boolean
+
+    @Prop({
+        default: 'button',
+        validator(value: string) {
+            return ['button', 'a', 'div'].includes(value)
+        }
+    }) readonly tag!: string
+
+    @Prop({
+        default: 'primary',
+        validator(value: string) {
+            return ['primary', 'secondary'].includes(value)
+        }
+    }) readonly theme!: string
+
+    @Prop({
+        validator(value: string) {
+            return ['text', 'icon', 'text-icon', 'icon-text'].includes(value)
+        }
+    }) readonly type!: string
+
+    @Prop({
+        validator(value: string) {
+            return ['chevron-left', 'chevron-right'].includes(value)
+        }
+    }) readonly icon!: string
 
     get classes (): string[] {
         const classes = []
 
         if (this.theme) classes.push(`button--theme-${this.theme}`)
 
-        if (['arrow'].includes(this.icon)) {
-            classes.push(`button--icon-${this.icon}`)
-        }
+        if (this.type) classes.push(`button--type-${this.type}`)
 
-        if (this.isIconOnly)
-            classes.push('button--shape-circle')
-        else
-            classes.push('button--shape-standard')
+        if (this.icon) classes.push(`button--icon-${this.icon}`)
 
         return classes
     }

@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?> 
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <font id="icons" horiz-adv-x="16">
+    <font-face font-family="icons"
+      units-per-em="16" ascent="16"
+      descent="0" />
+    <missing-glyph horiz-adv-x="0" />
+    <glyph glyph-name="chevron-left"
+      unicode="&#xF101;"
+      horiz-adv-x="16" d=" M10.795 13.49517C10.5216 13.76854 10.0784 13.76854 9.80503 13.49517L4.31005 8.0002L9.80503 2.5052C10.0784 2.2319 10.5216 2.2319 10.795 2.5052C11.0683 2.7786 11.0683 3.2218 10.795 3.4952L6.28995 8.0002L10.795 12.50522C11.0683 12.77859 11.0683 13.2218 10.795 13.49517z" />
+    <glyph glyph-name="chevron-right"
+      unicode="&#xF102;"
+      horiz-adv-x="16" d=" M5.50581 13.49517C5.77917 13.76854 6.22239 13.76854 6.49576 13.49517L11.9907 8.0002L6.49576 2.5052C6.22239 2.2319 5.77917 2.2319 5.50581 2.5052C5.23244 2.7786 5.23244 3.2218 5.50581 3.4952L10.0108 8.0002L5.50581 12.50522C5.23244 12.77859 5.23244 13.2218 5.50581 13.49517z" />
+  </font>
+</defs>
+</svg>
