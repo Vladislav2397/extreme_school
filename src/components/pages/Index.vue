@@ -11,9 +11,10 @@ div
     price-component
     feedback-component
     question-component
-//.social
-//.order
-//.footer
+    social-component
+    order-component
+    footer-component
+
 </template>
 
 <script lang="ts">
@@ -79,6 +80,30 @@ const Question = () => ({
     )
 })
 
+const Social = () => ({
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Social.vue'
+    )
+})
+
+const Order = () => ({
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/Order.vue'
+    )
+})
+
+const TheFooter = () => ({
+    component: import(
+        /* webpackPrefetch: true */
+        /* webpackMode: "lazy" */
+        '@/components/sections/TheFooter.vue'
+    )
+})
+
 @Component({
     components: {
         'the-header-component': TheHeader,
@@ -91,6 +116,9 @@ const Question = () => ({
         'price-component': Price,
         'feedback-component': Feedback,
         'question-component': Question,
+        'social-component': Social,
+        'order-component': Order,
+        'footer-component': TheFooter
     }
 })
 export default class IndexPage extends Vue {}

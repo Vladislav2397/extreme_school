@@ -32,14 +32,14 @@ include ../../tools/mixins
                 )
                     +e.BUTTON-COMPONENT.button--prev(
                         theme="secondary"
+                        type="icon"
                         @click="slidePrev"
-                        isIconOnly
                     )
                         i.icon-chevron-left
                     +e.BUTTON-COMPONENT.button--next(
                         theme="secondary"
+                        type="icon"
                         @click="slideNext"
-                        isIconOnly
                     )
                         i.icon-chevron-right
 

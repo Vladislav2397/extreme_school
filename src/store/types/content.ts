@@ -83,3 +83,32 @@ export type IQuestion = {
         content: string
     }[]
 }
+
+export type ISocial = {
+    title: string
+    links: {
+        icon: string
+        href: string
+    }[]
+}
+
+export type IOrder = {
+    title: string
+    inputs: {
+        placeholder: string
+        value: string
+    }[]
+    description: string
+    button: string
+}
+
+export type IFooter = {
+    columns: {
+        title: string
+        links: {
+            href: string
+            text: string
+        }[]
+    }[]
+    information: string
+}

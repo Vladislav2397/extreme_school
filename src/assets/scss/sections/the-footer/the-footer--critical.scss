@@ -1,0 +1,109 @@
+.the-footer {
+    padding-top: toRem(20);
+    padding-bottom: toRem(30);
+    background-color: $dark;
+    color: $white;
+
+    &__logo {
+        font-size: toRem(24);
+        line-height: toRem(28);
+        margin-bottom: toRem(30);
+    }
+
+    &__list {
+        margin-bottom: toRem(30);
+    }
+
+    &__column {
+        display: inline-block;
+        width: ratio(374, 179);
+        vertical-align: top;
+
+        &--top {
+            margin-bottom: toRem(40);
+        }
+
+        &--even {
+            margin-left: ratio(374, 16);
+        }
+
+        h5 {
+            font-size: toRem(18);
+            line-height: toRem(21);
+            font-weight: 500;
+            margin-bottom: toRem(8);
+        }
+
+        a, span {
+            display: block;
+            color: $white;
+        }
+    }
+
+    &__link {
+        font-size: toRem(14);
+        line-height: toRem(16);
+
+        & + & {
+            margin-top: toRem(12);
+        }
+    }
+
+    @include media_min_tablet {
+        &__column {
+            width: ratio(452, 98);
+
+            & + & {
+                margin-left: ratio(452, 20);
+            }
+        }
+    }
+
+    @media (min-width: $tabletLate) {
+        &__logo {
+            display: inline-block;
+            width: ratio(688, 98);
+            vertical-align: top;
+            font-size: toRem(14);
+            line-height: toRem(16);
+        }
+
+        &__list {
+            display: inline-block;
+            width: ratio(688, 452);
+            margin-left: ratio(688, 20);
+            vertical-align: top;
+        }
+
+        &__column {
+            h5 {
+                font-size: toRem(12);
+                line-height: toRem(14);
+            }
+
+            a, span {
+                font-size: toRem(10);
+                line-height: toRem(12);
+            }
+        }
+    }
+
+    @include media_min_desktop {
+        &__logo {
+            font-size: toRem(24);
+            line-height: toRem(28);
+        }
+
+        &__column {
+            h5 {
+                font-size: toRem(16);
+                line-height: toRem(18);
+            }
+
+            a, span {
+                font-size: toRem(13);
+                line-height: toRem(15);
+            }
+        }
+    }
+}

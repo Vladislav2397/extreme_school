@@ -25,10 +25,18 @@ $buttonBackgroundSecondaryColor: $secondaryColor;
         }
 
         &-icon {
+            position: relative;
             padding: 0;
             min-width: toRem(28);
             min-height: toRem(28);
             border-radius: 50%;
+
+            i {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
         }
 
         &-text-icon {

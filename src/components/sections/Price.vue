@@ -26,7 +26,7 @@ include ../../tools/mixins
                     :cardInfo="card.info"
                )
             +e.BUTTON-COMPONENT.button(
-                tag="button"
+                type="text"
             ) Оставить заявку
 
 
@@ -35,7 +35,6 @@ include ../../tools/mixins
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import PriceCard from '../blanks/PriceCard.vue'
-import { IPrice } from '@/store/types/content'
 import { IProduct } from '@/store/types'
 import ContentModule from '@/store/modules/content'
 

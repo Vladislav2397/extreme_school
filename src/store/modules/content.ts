@@ -10,7 +10,10 @@ import {
     IGallery,
     IPrice,
     IFeedback,
-    IQuestion
+    IQuestion,
+    ISocial,
+    IOrder,
+    IFooter
 } from '@/store/types/content'
 
 @Module({
@@ -428,6 +431,142 @@ class ContentModule extends VuexModule {
         ]
     }
 
+    private _social: ISocial = {
+        title: 'Мы в <u class="blue">соц.сетях</u>',
+        links: [
+            {
+                icon: 'chevron-left',
+                href: '#'
+            },
+            {
+                icon: 'chevron-right',
+                href: '#'
+            },
+            {
+                icon: 'chevron-left',
+                href: '#'
+            },
+            {
+                icon: 'chevron-right',
+                href: '#'
+            }
+        ]
+    }
+
+    private _order: IOrder = {
+        title: 'Ждем вас на первое занятие',
+        inputs: [
+            {
+                placeholder: 'Ваше имя',
+                value: ''
+            },
+            {
+                placeholder: 'Номер телефона',
+                value: ''
+            }
+        ],
+        description: 'Отправляя заявку, вы даете согласие на обработку ваших персональных данных.',
+        button: 'Записаться'
+    }
+
+    private _footer: IFooter = {
+        columns: [
+            {
+                title: 'Контакты',
+                links: [
+                    {
+                        href: 'tel://89999999999',
+                        text: '8 999 999 99 99'
+                    },
+                    {
+                        href: 'mailto://pochta@mail.ru',
+                        text: 'pochta@mail.ru'
+                    },
+                    {
+                        href: '#',
+                        text: 'Оставить заявку'
+                    },
+                ]
+            },
+            {
+                title: 'Направления',
+                links: [
+                    {
+                        href: '#',
+                        text: 'Скейтборд'
+                    },
+                    {
+                        href: '#',
+                        text: 'Лонгборд'
+                    },
+                    {
+                        href: '#',
+                        text: 'Самокат'
+                    },
+                    {
+                        href: '#',
+                        text: 'Ролики'
+                    },
+                    {
+                        href: '#',
+                        text: 'BMX'
+                    },
+                    {
+                        href: '#',
+                        text: 'Лыжи'
+                    },
+                    {
+                        href: '#',
+                        text: 'Сноуборд'
+                    },
+                    {
+                        href: '#',
+                        text: 'Батут'
+                    },
+                    {
+                        href: '#',
+                        text: 'Растяжка'
+                    }
+                ]
+            },
+            {
+                title: 'Мы в соц.сетях',
+                links: [
+                    {
+                        href: '#',
+                        text: 'Instagram'
+                    },
+                    {
+                        href: '#',
+                        text: 'facebook'
+                    },
+                    {
+                        href: '#',
+                        text: 'TikTok'
+                    },
+                    {
+                        href: '#',
+                        text: 'YouTube'
+                    },
+                ]
+            },
+            {
+                title: 'Адреса',
+                links: [
+                    {
+                        href: '',
+                        text: 'ул. Лестера 19к3'
+                    },
+                    {
+                        href: '',
+                        text: 'ул. Москвичная 2'
+                    },
+                ]
+            },
+        ],
+        information: 'ИП Костыль А.А.'
+    }
+
     get header (): IHeader {
         return this._header
     }
@@ -466,6 +605,18 @@ class ContentModule extends VuexModule {
 
     get question (): IQuestion {
         return this._question
+    }
+
+    get social (): ISocial {
+        return this._social
+    }
+
+    get order (): IOrder {
+        return this._order
+    }
+
+    get footer (): IFooter {
+        return this._footer
     }
 }
 

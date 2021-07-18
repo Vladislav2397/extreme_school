@@ -1,0 +1,63 @@
+.social {
+    padding-top: toRem(80);
+    padding-bottom: toRem(135);
+
+    &__title {
+        margin-bottom: toRem(40);
+    }
+
+    &__list {
+        max-width: toRem(354);
+        margin: 0 auto;
+    }
+
+    &__item {
+        position: relative;
+        display: inline-block;
+        width: ratio(354, 78);
+        height: toRem(54);
+        background-color: rgba($blue, 0.04);
+        border-radius: toRem(8);
+
+        & + & {
+            margin-left: ratio(354, 14);
+        }
+
+        i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: toRem(30);
+        }
+    }
+
+    @include media_min_tablet {
+        &__list {
+            max-width: toRem(372);
+        }
+
+        &__item {
+            width: ratio(372, 78);
+
+            & + & {
+                margin-left: ratio(372, 20);
+            }
+        }
+    }
+
+    @include media_min_desktop {
+        &__list {
+            max-width: toRem(468);
+        }
+
+        &__item {
+            width: ratio(468, 102);
+            height: toRem(72);
+
+            & + & {
+                margin-left: ratio(468, 20);
+            }
+        }
+    }
+}
