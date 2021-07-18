@@ -8,6 +8,7 @@ include ../../tools/mixins
             :style="backgroundImageStyle"
         )
         +e.inner
+            i.icon
             +e.TITLE-COMPONENT.title(
                 v-html="content.title"
             )

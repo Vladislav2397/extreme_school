@@ -435,19 +435,19 @@ class ContentModule extends VuexModule {
         title: 'Мы в <u class="blue">соц.сетях</u>',
         links: [
             {
-                icon: 'chevron-left',
+                icon: 'brand-instagram',
                 href: '#'
             },
             {
-                icon: 'chevron-right',
+                icon: 'brand-facebook',
                 href: '#'
             },
             {
-                icon: 'chevron-left',
+                icon: 'brand-tiktok',
                 href: '#'
             },
             {
-                icon: 'chevron-right',
+                icon: 'brand-youtube',
                 href: '#'
             }
         ]

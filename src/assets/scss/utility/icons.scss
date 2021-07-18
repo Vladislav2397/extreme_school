@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Icons';
-    src: url('/fonts/icons/icons.woff2') format('woff2'),
+    src: url('/public/fonts/icons/icons.woff2') format('woff2'),
     url('/fonts/icons/icons.woff') format('woff'),
     url('/fonts/icons/icons.ttf') format('truetype'),
     url('/fonts/icons/icons.svg#icons') format('svg');
@@ -17,9 +17,24 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-chevron-left:before {
+.icon-brand-facebook:before {
     content: "\f101";
 }
-.icon-chevron-right:before {
+.icon-brand-instagram:before {
     content: "\f102";
+}
+.icon-brand-tiktok:before {
+    content: "\f103";
+}
+.icon-brand-youtube:before {
+    content: "\f104";
+}
+.icon-chevron-left:before {
+    content: "\f105";
+}
+.icon-chevron-right:before {
+    content: "\f106";
+}
+.icon-plus:before {
+    content: "\f107";
 }
