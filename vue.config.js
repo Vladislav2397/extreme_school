@@ -12,29 +12,36 @@ module.exports = {
             splitChunks: {
                 chunks: 'all',
                 cacheGroups: {
-                    vueVendor: {
-                        test: /[\\/]node_modules[\\/](vue)[\\/]/,
-                        name: 'vue-vendor'
-                    },
-                    vueRouterVendor: {
-                        test: /[\\/]node_modules[\\/](vue-router)[\\/]/,
-                        name: 'vue-router-vendor'
-                    },
+                    // debugVendor: {
+                    //     test(module) {
+                    //         return /[\\/]node_modules[\\/](vue-class-component)[\\/]/.test(module.resource)
+                    //     },
+                    //     name: 'debug-vendor'
+                    // },
                     vueVuexVendor: {
-                        test: /[\\/]node_modules[\\/](vuex)[\\/]/,
-                        name: 'vue-vuex-vendor'
+                        test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
+                        name: 'vue-vuex-vendor',
+                        enforce: true
                     },
-                    vueClassComponentVendor: {
-                        test: /[\\/]node_modules[\\/](vue-class-component)[\\/]/,
-                        name: 'vue-class-component-vendor'
+                    vueUtilsVendor: {
+                        test: /[\\/]node_modules[\\/](vue-property-decorator|vue-class-component|vue-lazyload)[\\/]/,
+                        name: 'vue-utils-vendor',
+                        enforce: true
                     },
-                    vueAwesomeSwiperVendor: {
+                    vueSwiperVendor: {
                         test: /[\\/]node_modules[\\/](vue-awesome-swiper)[\\/]/,
-                        name: 'vue-awesome-swiper-vendor'
+                        name: 'vue-awesome-swiper-vendor',
+                        enforce: true
                     },
-                    vendor: {
-                        test: /[\\/]node_modules[\\/].*[\\/]/,
-                        name: 'vendor'
+                    swiperVendor: {
+                        test: /[\\/]node_modules[\\/](swiper)[\\/]/,
+                        name: 'swiper-vendor',
+                        enforce: true
+                    },
+                    utilsVendor: {
+                        test: /[\\/]node_modules[\\/](es6-promise|vue-class-component|vue-lazyload)[\\/]/,
+                        name: 'utils-vendor',
+                        enforce: true
                     }
                 }
             }

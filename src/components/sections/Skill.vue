@@ -16,7 +16,8 @@ include ../../tools/mixins
                     :options="swiperOptions"
                 )
                     +e.SWIPER-SLIDE.slide(
-                        v-for="image in content.images"
+                        v-for="(image, index) in content.images"
+                        :key="index"
                     )
                         +e.image
                             image-component(
