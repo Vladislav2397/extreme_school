@@ -3,11 +3,11 @@
         font-family: '#{$family}';
         src: url('/fonts/#{$pathName}.eot'); /* IE9 Compat Modes */
         src:
-            url('/fonts/#{$pathName}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-            url('/fonts/#{$pathName}.eot') format('embedded-opentype'),
-            url('/fonts/#{$pathName}.ttf') format('truetype'),
-            url('/fonts/#{$pathName}.woff2') format('woff2'),
-            url('/fonts/#{$pathName}.woff') format('woff');
+            url('./../fonts/#{$pathName}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('./../fonts/#{$pathName}.eot') format('embedded-opentype'),
+            url('./../fonts/#{$pathName}.ttf') format('truetype'),
+            url('./../fonts/#{$pathName}.woff2') format('woff2'),
+            url('./../fonts/#{$pathName}.woff') format('woff');
         font-weight: #{$weight};
         font-style: normal;
         font-display: swap;

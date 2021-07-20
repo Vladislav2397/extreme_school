@@ -1,7 +1,7 @@
 module.exports = {
     pluginOptions: {
         webpackBundleAnalyzer: {
-            openAnalyzer: true
+            openAnalyzer: false
         }
     },
     publicPath: process.env.NODE_ENV === 'production'
