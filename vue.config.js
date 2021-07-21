@@ -1,7 +1,11 @@
+/**
+ * Settings for vue
+ * @type { import('@vue/cli-service').ProjectOptions }
+ */
 module.exports = {
     pluginOptions: {
         webpackBundleAnalyzer: {
-            openAnalyzer: false
+            openAnalyzer: true
         }
     },
     publicPath: process.env.NODE_ENV === 'production'
@@ -12,12 +16,6 @@ module.exports = {
             splitChunks: {
                 chunks: 'all',
                 cacheGroups: {
-                    // debugVendor: {
-                    //     test(module) {
-                    //         return /[\\/]node_modules[\\/](vue-class-component)[\\/]/.test(module.resource)
-                    //     },
-                    //     name: 'debug-vendor'
-                    // },
                     vueVuexVendor: {
                         test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
                         name: 'vue-vuex-vendor',
