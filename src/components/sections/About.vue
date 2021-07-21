@@ -4,11 +4,11 @@ include ../../tools/mixins
 +b.about
     +e.container.container
         +e.inner
-            +e.image
-                img(
-                    :src="content.image.desktop.src"
-                    :alt="content.image.desktop.alt"
-                )
+            +e.IMAGE-COMPONENT.image(
+                :path="imagePath"
+                fallbackExt="jpg"
+                :alt="content.image.alt"
+            )
             +e.author
                 +e.TITLE-COMPONENT.name(
                     tag="h2"
@@ -28,11 +28,26 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
 import ContentModule from '@/store/modules/content'
 
+import device from '@/mixins/utility/device'
+import { IAbout } from '@/store/types/content'
+
 @Component
-export default class About extends Vue {
-    content = ContentModule.about
+export default class About extends Mixins(device) {
+    get content (): IAbout {
+        return ContentModule.about
+    }
+
+    get imagePath (): string {
+        if (this.content) {
+            console.log(this.content)
+            return this.device.size.mobile
+                ? this.content?.image.mobile.src
+                : this.content?.image.desktop.src
+        }
+        return ''
+    }
 }
 </script>

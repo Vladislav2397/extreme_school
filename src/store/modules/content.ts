@@ -22,7 +22,7 @@ import {
     store,
 })
 class ContentModule extends VuexModule {
-    private _header: IHeader = {
+    header: IHeader = {
         links: [
             {
                 name: 'Направления',
@@ -51,7 +51,7 @@ class ContentModule extends VuexModule {
         },
     }
 
-    private _intro: IIntro = {
+    intro: IIntro = {
         title: 'Школа <u>№1</u> в&nbsp;Москве',
         description: 'Обучаем детей и взрослых: скейт, лонгробрд, BMX, самокат, ролики и&nbsp;другие направления',
         image: {
@@ -67,7 +67,7 @@ class ContentModule extends VuexModule {
         }
     }
 
-    private _destination: IDestination = {
+    destination: IDestination = {
         cards: [
             {
                 image: 'images/destination/skateboard',
@@ -104,7 +104,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    private _benefit: IBenefit = {
+    benefit: IBenefit = {
         image: {
             desktop: {
                 src: 'images/benefit/benefit',
@@ -143,17 +143,16 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    private _about: IAbout = {
+    about: IAbout = {
         image: {
+            alt: '',
             desktop: {
-                src: 'images/about/about.jpg',
-                alt: '',
+                src: 'images/about/about',
                 width: 200,
                 height: 200
             },
             mobile: {
-                src: 'images/about/about.jpg',
-                alt: '',
+                src: 'images/about/about',
                 width: 200,
                 height: 200
             }
@@ -186,7 +185,7 @@ class ContentModule extends VuexModule {
         }
     }
 
-    private _skill: ISkill = {
+    skill: ISkill = {
         title: 'Вы точно&nbsp;<u class="blue">научитесь</u>',
         images: [
             {
@@ -212,7 +211,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    private _gallery: IGallery = {
+    gallery: IGallery = {
         imagePath: 'images/gallery',
         images: [
             {
@@ -250,7 +249,7 @@ class ContentModule extends VuexModule {
         ],
     }
 
-    private _price: IPrice = {
+    price: IPrice = {
         products: [
             {
                 tabName: 'Скейтборд',
@@ -370,7 +369,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    private _feedback: IFeedback = {
+    feedback: IFeedback = {
         title: 'Ученики <u class="blue">о нас</u>',
         comments: [
             {
@@ -400,7 +399,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    private _question: IQuestion = {
+    question: IQuestion = {
         title: 'Есть вопросы?<br>Сейчас ответим',
         activeIndexes: [0],
         questions: [
@@ -431,7 +430,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    private _social: ISocial = {
+    social: ISocial = {
         title: 'Мы в <u class="blue">соц.сетях</u>',
         links: [
             {
@@ -453,7 +452,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    private _order: IOrder = {
+    order: IOrder = {
         title: 'Ждем вас на первое занятие',
         inputs: [
             {
@@ -469,7 +468,7 @@ class ContentModule extends VuexModule {
         button: 'Записаться'
     }
 
-    private _footer: IFooter = {
+    footer: IFooter = {
         columns: [
             {
                 title: 'Контакты',
@@ -565,58 +564,6 @@ class ContentModule extends VuexModule {
             },
         ],
         information: 'ИП Костыль А.А.'
-    }
-
-    get header (): IHeader {
-        return this._header
-    }
-
-    get intro (): IIntro {
-        return this._intro
-    }
-
-    get destination (): IDestination {
-        return this._destination
-    }
-
-    get benefit (): IBenefit {
-        return this._benefit
-    }
-
-    get about (): IAbout {
-        return this._about
-    }
-
-    get skill (): ISkill {
-        return this._skill
-    }
-
-    get gallery (): IGallery {
-        return this._gallery
-    }
-
-    get price (): IPrice {
-        return this._price
-    }
-
-    get feedback (): IFeedback {
-        return this._feedback
-    }
-
-    get question (): IQuestion {
-        return this._question
-    }
-
-    get social (): ISocial {
-        return this._social
-    }
-
-    get order (): IOrder {
-        return this._order
-    }
-
-    get footer (): IFooter {
-        return this._footer
     }
 }
 

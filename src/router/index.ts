@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import IndexPage from '@/components/pages/Index.vue'
+import ExamplePage from '@/components/pages/Example.vue'
 
 Vue.use(VueRouter)
 
@@ -10,11 +11,15 @@ const routes: Array<RouteConfig> = [
         name: 'Index',
         component: IndexPage,
     },
+    {
+        path: '/example',
+        name: 'Example',
+        component: ExamplePage,
+    },
 ]
 
 const router = new VueRouter({
     mode: 'history',
-    base: process.env.BASE_URL,
     routes,
 })
 
