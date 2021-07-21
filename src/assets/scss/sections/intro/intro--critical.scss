@@ -4,6 +4,12 @@
     position: relative;
     overflow: hidden;
 
+    i.icon::before {
+        content: '\ea00';
+        font-family: 'Icon', sans-serif;
+        font-size: 24px;
+    }
+
     &__container {
         position: relative;
     }
@@ -78,6 +84,12 @@
     @include media_min_desktop {
         padding-top: toRem(162);
         padding-bottom: toRem(192);
+        height: 100vh;
+        box-sizing: border-box;
+
+        &__container {
+            height: 100%;
+        }
 
         &__inner {
             width: toRem(373);

@@ -3,8 +3,6 @@
         font-family: '#{$family}';
         src: url('/fonts/#{$pathName}.eot'); /* IE9 Compat Modes */
         src:
-            url('/fonts/#{$pathName}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-            url('/fonts/#{$pathName}.eot') format('embedded-opentype'),
             url('/fonts/#{$pathName}.ttf') format('truetype'),
             url('/fonts/#{$pathName}.woff2') format('woff2'),
             url('/fonts/#{$pathName}.woff') format('woff');
@@ -20,4 +18,4 @@
 @include newFont('Raleway Cyrillic Font','raleway-v19-cyrillic-500', 500);
 @include newFont('Roboto Condensed','roboto-condensed-v19-latin-300', 300);
 
-@include newFont('Icon', 'icons/icons', 400)
+@include newFont('Icon', 'icons/webfont', 400)
