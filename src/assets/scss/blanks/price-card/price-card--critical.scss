@@ -48,11 +48,13 @@
 
     &__body {
         white-space: normal;
+        min-width: toRem(344);
     }
 
     &__title {
         font-size: toRem(17);
         margin-bottom: toRem(24);
+        max-width: toRem(292);
         position: relative;
         display: inline-block;
 
@@ -75,8 +77,37 @@
     &__section {
         display: inline-block;
 
-        & + & {
-            margin-top: toRem(30);
+        &--view {
+            &-table {
+                width: ratio(344, 132);
+
+                & + & {
+                    margin-left: ratio(344, 80);
+                }
+
+                &:last-child {
+                    margin-left: 0;
+                    margin-top: toRem(30);
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+
+            &-column {
+                display: block;
+
+                & + & {
+                    margin-top: toRem(30);
+                }
+            }
+
+            &-row {
+                width: ratio(344, 132);
+
+                & + & {
+                    margin-left: ratio(344, 80);
+                }
+            }
         }
     }
 
