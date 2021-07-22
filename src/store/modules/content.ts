@@ -16,11 +16,7 @@ import {
     IFooter
 } from '@/store/types/content'
 
-@Module({
-    name: 'content',
-    dynamic: true,
-    store,
-})
+@Module({ name: 'content', dynamic: true, store })
 class ContentModule extends VuexModule {
     private _header: IHeader = {
         links: [

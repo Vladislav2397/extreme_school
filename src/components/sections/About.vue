@@ -6,7 +6,7 @@ include ../../tools/mixins
         +e.inner
             +e.image
                 img(
-                    :src="content.image.desktop.src"
+                    :src="imageSize"
                     :alt="content.image.desktop.alt"
                 )
             +e.author
@@ -28,11 +28,19 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
 import ContentModule from '@/store/modules/content'
 
+import device from '@/mixins/utility/device'
+
 @Component
-export default class About extends Vue {
+export default class About extends Mixins(device) {
     content = ContentModule.about
+
+    get imageSize (): string {
+        return this.device.size.mobile && this.content.image.mobile
+            ? this.content.image.mobile.src
+            : this.content.image.desktop.src
+    }
 }
 </script>

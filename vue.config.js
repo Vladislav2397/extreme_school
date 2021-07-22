@@ -3,14 +3,17 @@
  * @type { import('@vue/cli-service').ProjectOptions }
  */
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/extreme_school/'
+        : '/',
     pluginOptions: {
         webpackBundleAnalyzer: {
             openAnalyzer: true
         }
     },
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/extreme_school/'
-        : '/',
+    transpileDependencies: [
+        'vuex-module-decorators'
+    ],
     configureWebpack: {
         optimization: {
             splitChunks: {
