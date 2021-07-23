@@ -30,7 +30,7 @@ class ContentModule extends VuexModule {
             },
             {
                 name: 'Стоимость',
-                href: '#'
+                href: '#costs'
             },
             {
                 name: 'Контакты',
@@ -298,14 +298,14 @@ class ContentModule extends VuexModule {
                         title: 'Тренер',
                         info: [
                             {
-                                service: 'Индивидуальные занятия',
+                                service: 'Будние дни',
                                 prices: [
                                     '2 000 ₽/60 мин',
                                     '3 000 ₽/120 мин'
                                 ]
                             },
                             {
-                                service: 'Групповые занятия',
+                                service: 'Выходные дни',
                                 prices: [
                                     '1 000 ₽/60 мин',
                                     '4 500 ₽/5 занятий'
@@ -336,7 +336,7 @@ class ContentModule extends VuexModule {
                 tabName: 'Лонгборд',
                 cards: [
                     {
-                        title: 'Тренер',
+                        title: '2 тренера по направлениям:<br>фрирайд и денс(фристайл)',
                         info: [
                             {
                                 service: 'Будние дни',

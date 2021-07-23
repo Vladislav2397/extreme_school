@@ -56,14 +56,20 @@ import ContentModule from '@/store/modules/content'
 @Component
 export default class Skill extends Mixins(device) {
     $refs!: {
-        swiper: any
+        swiper: HTMLElement & {
+            swiperInstance: {
+                init: () => void,
+                slideNext: (speed: number) => void,
+                slidePrev: (speed: number) => void,
+            }
+        }
     }
 
     content = ContentModule.skill
 
     swiperOptions: SwiperOptions = {
         slidesPerView: 1,
-        lazy: true
+        lazy: true,
     }
 
     mounted (): void {

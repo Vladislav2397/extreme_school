@@ -48,11 +48,14 @@
 
     &__body {
         white-space: normal;
+        margin: 0 auto;
     }
 
     &__title {
         font-size: toRem(17);
         margin-bottom: toRem(24);
+        max-width: toRem(292);
+        text-align: center;
         position: relative;
         display: inline-block;
 
@@ -74,9 +77,28 @@
 
     &__section {
         display: inline-block;
+        white-space: nowrap;
 
-        & + & {
-            margin-top: toRem(30);
+        &--view {
+            &-column {
+                display: block;
+
+                & + & {
+                    margin-top: toRem(30);
+                }
+            }
+
+            &-row {
+                width: ratio(344, 132);
+
+                &:nth-child(even) {
+                    margin-left: ratio(344, 80);
+                }
+
+                & + & + & {
+                    margin-top: toRem(30);
+                }
+            }
         }
     }
 

@@ -7,10 +7,12 @@ include ../../tools/mixins
     +e.TITLE-COMPONENT.title(
         tag="h3"
         size="h3"
-    ) {{ title }}
+        v-html="title"
+    )
     +e.body
         +e.section.text(
             v-for="card in cardInfo"
+            :class="sectionClasses"
         )
             h4 {{ card.service }}
             p(
@@ -20,30 +22,23 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
-@Component({
-    props: {
-        title: {
-            type: String
-        },
-        size: {
-            type: String,
-            default: 'medium'
-        },
-        align: {
-            type: String,
-            default: 'left'
-        },
-        cardInfo: {
-            type: Array,
-            required: true
-        }
-    }
-})
+@Component
 export default class PriceCard extends Vue {
-    size!: string
-    align!: string
+    @Prop() readonly title!: string
+
+    @Prop() readonly size!: string
+
+    @Prop() readonly align!: string
+
+    @Prop() readonly cardInfo!: { service: string, prices: string[] }[]
+
+    @Prop({
+        validator(value: string): boolean {
+            return ['table', 'column', 'row'].includes(value)
+        }
+    }) readonly view!: string
 
     get classes(): string[] | [] {
         let classes = []
@@ -51,6 +46,14 @@ export default class PriceCard extends Vue {
         if (this.size) classes.push(`price-card--size-${this.size}`)
 
         if (this.align) classes.push(`price-card--align-${this.align}`)
+
+        return classes
+    }
+
+    get sectionClasses(): string[] | [] {
+        const classes = []
+
+        if (this.view) classes.push(`price-card__section--view-${this.view}`)
 
         return classes
     }

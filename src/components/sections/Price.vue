@@ -1,7 +1,7 @@
 <template lang="pug">
 include ../../tools/mixins
 
-+b.price
++b.price#costs
     +e.container.container
         +e.inner
             +e.TITLE-COMPONENT.title(
@@ -17,13 +17,13 @@ include ../../tools/mixins
                 ) {{ product.tabName }}
                 +e.tab-button Ещё
             +e.card-list
-                // TODO: Modificators for view [table, column, row]
                 +e.PRICE-CARD-COMPONENT.card(
                     v-for="(card, index) in content.products[productIndex].cards"
                     :size="cardSize"
-                    :align="cardAlign(index)"
+                    :align="cardAlign"
                     :title="card.title"
                     :cardInfo="card.info"
+                    :view="cardView"
                )
             +e.BUTTON-COMPONENT.button(
                 type="text"
@@ -33,26 +33,30 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
 import PriceCard from '../blanks/PriceCard.vue'
 import { IProduct } from '@/store/types'
 import ContentModule from '@/store/modules/content'
+
+import device from '@/mixins/utility/device'
 
 @Component({
     components: {
         'price-card-component': PriceCard,
     }
 })
-export default class Price extends Vue {
+export default class Price extends Mixins(device) {
     productIndex = 0
     content = ContentModule.price
 
     get cardSize (): string {
-        if (this.activeProduct.cards.length === 1) {
-            if (this.activeProduct.cards.length === 1 || this.activeProduct.cards.length === 3) {
-                return 'medium'
-            } else {
-                return 'large'
+        if ( !this.device.size.mobile) {
+            if (this.activeProduct.cards.length === 1) {
+                if (this.activeProduct.cards[0].info.length === 1) {
+                    return 'medium'
+                } else {
+                    return 'large'
+                }
             }
         }
         return 'small'
@@ -62,8 +66,19 @@ export default class Price extends Vue {
         return this.content.products[this.productIndex]
     }
 
-    cardAlign (index: number): string {
-        return index !== 0 && index % 2 === 0 ? 'center' : 'left'
+    get cardView (): string {
+        if ( !this.device.size.mobile) {
+            if (this.cardSize === 'large' && this.activeProduct.cards.length === 1) {
+                return 'row'
+            }
+        }
+        return 'column'
+    }
+
+    get cardAlign (): string {
+        return this.content.products[this.productIndex].cards.length > 1
+            ? 'left'
+            : 'center'
     }
 
     setActive (index: number): void {

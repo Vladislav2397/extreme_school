@@ -46,14 +46,20 @@ import ContentModule from '@/store/modules/content'
 
 @Component
 export default class Destination extends Mixins(device) {
-    $refs!: {
-        swiper: any
-    }
-
     content = ContentModule.destination
 
+    $refs!: {
+        swiper: HTMLElement & {
+            swiperInstance: {
+                init: () => void,
+                slideNext: (speed: number) => void,
+                slidePrev: (speed: number) => void,
+            }
+        }
+    }
+
     swiperOptions: SwiperOptions = {
-        // lazy: true,
+        lazy: true,
         navigation: {
             nextEl: '.destination__button--next',
             prevEl: '.destination__button--prev'
