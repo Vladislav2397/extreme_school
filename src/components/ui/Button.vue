@@ -4,6 +4,7 @@ include ../../tools/mixins
 +b.COMPONENT.button(
     :is="tag"
     :class="classes"
+    @click="$emit('click', $event)"
 )
     slot(
         v-if="type === 'icon'"
