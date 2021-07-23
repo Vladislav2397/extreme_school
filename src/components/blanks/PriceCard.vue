@@ -7,7 +7,8 @@ include ../../tools/mixins
     +e.TITLE-COMPONENT.title(
         tag="h3"
         size="h3"
-    ) {{ title }}
+        v-html="title"
+    )
     +e.body
         +e.section.text(
             v-for="card in cardInfo"
@@ -23,7 +24,7 @@ include ../../tools/mixins
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-@Component({})
+@Component
 export default class PriceCard extends Vue {
     @Prop() readonly title!: string
 

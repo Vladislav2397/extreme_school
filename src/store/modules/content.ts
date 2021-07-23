@@ -340,7 +340,7 @@ class ContentModule extends VuexModule {
                 tabName: 'Лонгборд',
                 cards: [
                     {
-                        title: '2 тренера по направлениям: фрирайд и денс(фристайл)',
+                        title: '2 тренера по направлениям:<br>фрирайд и денс(фристайл)',
                         info: [
                             {
                                 service: 'Будние дни',

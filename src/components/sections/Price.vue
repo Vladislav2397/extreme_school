@@ -17,14 +17,13 @@ include ../../tools/mixins
                 ) {{ product.tabName }}
                 +e.tab-button Ещё
             +e.card-list
-                // TODO: Modificators for view [table, column, row]
                 +e.PRICE-CARD-COMPONENT.card(
                     v-for="(card, index) in content.products[productIndex].cards"
                     :size="cardSize"
-                    :align="content.products[productIndex].cards.length > 1 ? 'left' : 'center'"
+                    :align="cardAlign"
                     :title="card.title"
                     :cardInfo="card.info"
-                    :view="priceCardView"
+                    :view="cardView"
                )
             +e.BUTTON-COMPONENT.button(
                 type="text"
@@ -53,13 +52,12 @@ export default class Price extends Mixins(device) {
     get cardSize (): string {
         if ( !this.device.size.mobile) {
             if (this.activeProduct.cards.length === 1) {
-                if (this.activeProduct.cards.length === 1 || this.activeProduct.cards.length === 3) {
+                if (this.activeProduct.cards[0].info.length === 1) {
                     return 'medium'
                 } else {
                     return 'large'
                 }
             }
-            return 'small'
         }
         return 'small'
     }
@@ -68,20 +66,19 @@ export default class Price extends Mixins(device) {
         return this.content.products[this.productIndex]
     }
 
-    get priceCardView (): string {
+    get cardView (): string {
         if ( !this.device.size.mobile) {
-            if (this.cardSize === 'medium' && this.activeProduct.cards.length === 1) {
-                if (this.activeProduct.cards[0].info.length === 3)
-                    return 'table'
-                else
-                    return 'row'
+            if (this.cardSize === 'large' && this.activeProduct.cards.length === 1) {
+                return 'row'
             }
         }
         return 'column'
     }
 
-    cardAlign (index: number): string {
-        return index !== 0 && index % 2 === 0 ? 'center' : 'left'
+    get cardAlign (): string {
+        return this.content.products[this.productIndex].cards.length > 1
+            ? 'left'
+            : 'center'
     }
 
     setActive (index: number): void {
