@@ -4,6 +4,13 @@
     border-radius: toRem(8);
     position: relative;
 
+    &--active {
+        .card-question__content {
+            opacity: 1;
+            height: 0;
+        }
+    }
+
     &__title {
         @include fontSize(p2);
     }
@@ -41,5 +48,10 @@
         &:hover::before {
             opacity: 1;
         }
+    }
+
+    &__content {
+        opacity: 0;
+        height: 0;
     }
 }

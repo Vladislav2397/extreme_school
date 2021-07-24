@@ -3,9 +3,7 @@
  * @type { import('@vue/cli-service').ProjectOptions }
  */
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/extreme_school/'
-        : '/',
+    publicPath: '/',
     pluginOptions: {
         webpackBundleAnalyzer: {
             openAnalyzer: true
@@ -14,14 +12,25 @@ module.exports = {
     transpileDependencies: [
         'vuex-module-decorators'
     ],
+    productionSourceMap: false,
     configureWebpack: {
         optimization: {
             splitChunks: {
                 chunks: 'all',
                 cacheGroups: {
-                    vueVuexVendor: {
-                        test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
-                        name: 'vue-vuex-vendor',
+                    vueVendor: {
+                        test: /[\\/]node_modules[\\/](vue)[\\/]/,
+                        name: 'vue-vendor',
+                        enforce: true
+                    },
+                    vuexVendor: {
+                        test: /[\\/]node_modules[\\/](vuex)[\\/]/,
+                        name: 'vuex-vendor',
+                        enforce: true
+                    },
+                    vueRouterVendor: {
+                        test: /[\\/]node_modules[\\/](vue-router)[\\/]/,
+                        name: 'vue-router-vendor',
                         enforce: true
                     },
                     vueUtilsVendor: {
@@ -34,16 +43,56 @@ module.exports = {
                         name: 'vue-awesome-swiper-vendor',
                         enforce: true
                     },
+                    // swiperOtherVendor: {
+                    //     test: ({ resource }) => {
+                    //         if (/[\\/]node_modules[\\/]swiper[\\/]esm[\\/]components[\\/](effect-\w+|history)[\\/]/.test(resource)) {
+                    //             console.log(true)
+                    //             return true
+                    //         }
+                    //     },
+                    //     name: 'swiper-other-vendor',
+                    //     enforce: true,
+                    // },
+                    swiperCoreVendor: {
+                        test: /[\\/]node_modules[\\/]swiper[\\/]esm[\\/]components[\\/]core[\\/]/,
+                        name: 'swiper-core-vendor',
+                        enforce: true,
+                    },
+                    swiperOtherVendor: {
+                        test: /[\\/]node_modules[\\/]swiper[\\/]esm[\\/]components[\\/](?!core)[\\/]/,
+                        name: 'swiper-other-vendor',
+                        enforce: true,
+                    },
+                    swiperEsmVendor: {
+                        test: /[\\/]node_modules[\\/]swiper[\\/]esm[\\/](?!components|utils)/,
+                        name: 'swiper-esm-vendor',
+                        enforce: true,
+                    },
+                    swiperUtilsVendor: {
+                        test: /[\\/]node_modules[\\/]swiper[\\/]esm[\\/]utils[\\/]/,
+                        name: 'swiper-utils-vendor',
+                        enforce: true
+                    },
                     swiperVendor: {
-                        test: /[\\/]node_modules[\\/](swiper)[\\/]/,
+                        test: /[\\/]node_modules[\\/]swiper[\\/](?!esm)[\\/]/,
                         name: 'swiper-vendor',
                         enforce: true
                     },
-                    utilsVendor: {
-                        test: /[\\/]node_modules[\\/](es6-promise|vue-class-component|vue-lazyload)[\\/]/,
-                        name: 'utils-vendor',
+                    es6Vendor: {
+                        test: /[\\/]node_modules[\\/](es6-promise)[\\/]/,
+                        name: 'es6-vendor',
                         enforce: true
-                    }
+                    },
+                    // debugVendor: {
+                    //     test: (module) => {
+                    //         if (/[\\/]swiper[\\/]esm[\\/]components[\\/]/.test(module.resource)) {
+                    //             console.log('module name ->', module.resource)
+                    //             return true
+                    //         }
+                    //         return false
+                    //     },
+                    //     name: 'debug-vendor'
+                    // },
                 }
             }
         }

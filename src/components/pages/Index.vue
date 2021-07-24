@@ -22,7 +22,13 @@ import { Vue, Component } from 'vue-property-decorator'
 
 import TheHeader from '@/components/sections/TheHeader.vue'
 import Intro from '@/components/sections/Intro.vue'
-import Destination from '@/components/sections/Destination.vue'
+
+const Destination = () => ({
+    component: import(
+        /* webpackPreload: true */
+        '@/components/sections/Destination.vue'
+    )
+})
 
 const Benefit = () => ({
     component: import(
