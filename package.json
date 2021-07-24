@@ -4,7 +4,8 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "serve:production": "vue-cli-service serve --mode production",
-        "build": "vue-cli-service build",
+        "build": "vue-cli-service build --modern",
+        "watch": "vue-cli-service build && serve -s dist",
         "build:analyze": "vue-cli-service build --report",
         "test:unit": "vue-cli-service test:unit",
         "lint": "vue-cli-service lint",
@@ -61,6 +62,7 @@
         "node-sass": "^4.12.0",
         "sass-loader": "^8.0.2",
         "typescript": "~4.1.5",
+        "vue-cli-plugin-critical": "~1.1.0",
         "vue-cli-plugin-pug": "~2.0.0",
         "vue-template-compiler": "^2.6.11"
     }

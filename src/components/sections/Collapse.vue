@@ -27,9 +27,9 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 class Collapse extends Vue {
     @Prop() readonly title: string | undefined
 
-    @Prop() readonly content: string
+    @Prop({ default: '' }) readonly content: string | undefined
 
-    @Prop() readonly initActive: boolean
+    @Prop({ default: false }) readonly initActive: boolean | undefined
 
     $refs!: {
         collapse: HTMLElement
@@ -38,7 +38,7 @@ class Collapse extends Vue {
     collapse = {
         isActive: false,
         style: {
-            height: '0px'
+            height: '0px' as string | null
         }
     }
 

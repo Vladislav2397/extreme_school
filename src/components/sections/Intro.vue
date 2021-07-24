@@ -28,6 +28,7 @@ import { Component, Mixins } from 'vue-property-decorator'
 import device from '@/mixins/utility/device'
 import ContentModule from '@/store/modules/content'
 
+// todo: Fix container max-width on 2560px
 @Component
 export default class Intro extends Mixins(device) {
     isMounted = false

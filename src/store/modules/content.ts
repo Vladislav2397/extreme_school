@@ -53,11 +53,11 @@ class ContentModule extends VuexModule {
         image: {
             // FIXME: Change this image on jpg
             mobile: {
-                src: 'images/intro/intro-small.png',
+                src: 'images/intro/intro-small.webp',
                 alt: ''
             },
             desktop: {
-                src: 'images/intro/intro-large.png',
+                src: 'images/intro/intro-large.webp',
                 alt: ''
             }
         }

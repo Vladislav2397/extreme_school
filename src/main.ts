@@ -4,6 +4,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+import './assets/scss/critical.scss'
+
 import { Swiper, Pagination, Lazy } from 'swiper'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import VueLazyload from 'vue-lazyload'

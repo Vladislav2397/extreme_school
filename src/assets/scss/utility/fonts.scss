@@ -1,11 +1,12 @@
 @mixin newFont($family, $pathName, $weight) {
     @font-face {
         font-family: '#{$family}';
-        src: url('/../fonts/#{$pathName}.eot'); /* IE9 Compat Modes */
+        // todo: Решить проблему с путями на проде
+        src: url('/fonts/#{$pathName}.eot'); /* IE9 Compat Modes */
         src:
-            url('/../fonts/#{$pathName}.ttf') format('truetype'),
-            url('/../fonts/#{$pathName}.woff2') format('woff2'),
-            url('/../fonts/#{$pathName}.woff') format('woff');
+            url('/fonts/#{$pathName}.ttf') format('truetype'),
+            url('/fonts/#{$pathName}.woff2') format('woff2'),
+            url('/fonts/#{$pathName}.woff') format('woff');
         font-weight: #{$weight};
         font-style: normal;
         font-display: swap;

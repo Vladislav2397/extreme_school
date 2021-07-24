@@ -32,6 +32,7 @@ import ContentModule from '@/store/modules/content'
 
 import device from '@/mixins/utility/device'
 
+// todo: Create header collapse on mobile
 @Component
 export default class TheHeader extends Mixins(device) {
     $refs!: {

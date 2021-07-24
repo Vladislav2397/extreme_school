@@ -4,9 +4,9 @@ module.exports = {
         node: true,
     },
     extends: [
-        "plugin:vue/essential",
-        "eslint:recommended",
-        "@vue/typescript/recommended",
+        'plugin:vue/essential',
+        'eslint:recommended',
+        '@vue/typescript/recommended',
     ],
     parserOptions: {
         ecmaVersion: 2020,
@@ -16,15 +16,15 @@ module.exports = {
         'no-debugger': 'off',
         'vue/html-closing-bracket-spacing': 'warn',
         'vue/mustache-interpolation-spacing': 'warn',
-          semi: ['warn', 'never'],
-          quotes: ['warn', 'single'],
-          indent: ['error', 4]
+        semi: ['warn', 'never'],
+        quotes: ['warn', 'single'],
+        indent: ['error', 4]
     },
     overrides: [
         {
             files: [
-                  '**/__tests__/*.{j,t}s?(x)',
-                  '**/tests/unit/**/*.spec.{j,t}s?(x)',
+                '**/__tests__/*.{j,t}s?(x)',
+                '**/tests/unit/**/*.spec.{j,t}s?(x)',
             ],
             env: {
                 jest: true,

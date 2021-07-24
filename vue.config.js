@@ -9,6 +9,10 @@ module.exports = {
     pluginOptions: {
         webpackBundleAnalyzer: {
             openAnalyzer: true
+        },
+        critical: {
+            width: 1920,
+            height: 1080
         }
     },
     transpileDependencies: [
@@ -45,16 +49,6 @@ module.exports = {
                         name: 'vue-awesome-swiper-vendor',
                         enforce: true
                     },
-                    // swiperOtherVendor: {
-                    //     test: ({ resource }) => {
-                    //         if (/[\\/]node_modules[\\/]swiper[\\/]esm[\\/]components[\\/](effect-\w+|history)[\\/]/.test(resource)) {
-                    //             console.log(true)
-                    //             return true
-                    //         }
-                    //     },
-                    //     name: 'swiper-other-vendor',
-                    //     enforce: true,
-                    // },
                     swiperCoreVendor: {
                         test: /[\\/]node_modules[\\/]swiper[\\/]esm[\\/]components[\\/]core[\\/]/,
                         name: 'swiper-core-vendor',
