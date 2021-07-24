@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "icons";
+    src: url("./icons.eot?d3e7c53304d9906f622ebf731c0ecc60?#iefix") format("embedded-opentype"),
+url("./icons.woff2?d3e7c53304d9906f622ebf731c0ecc60") format("woff2"),
+url("./icons.woff?d3e7c53304d9906f622ebf731c0ecc60") format("woff"),
+url("./icons.ttf?d3e7c53304d9906f622ebf731c0ecc60") format("truetype"),
+url("./icons.svg?d3e7c53304d9906f622ebf731c0ecc60#icons") format("svg");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-brand-facebook:before {
+    content: "\f101";
+}
+.icon-brand-instagram:before {
+    content: "\f102";
+}
+.icon-brand-tiktok:before {
+    content: "\f103";
+}
+.icon-brand-youtube:before {
+    content: "\f104";
+}
+.icon-chevron-left:before {
+    content: "\f105";
+}
+.icon-chevron-right:before {
+    content: "\f106";
+}
+.icon-plus:before {
+    content: "\f107";
+}
