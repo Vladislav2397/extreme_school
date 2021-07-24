@@ -1,0 +1,16 @@
+.collapse {
+    &.active {
+        .collapse__container {
+            opacity: 1;
+        }
+    }
+
+    &__container {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    &__content {
+        transition: height 0.3s ease;
+    }
+}

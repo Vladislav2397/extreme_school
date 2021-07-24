@@ -11,24 +11,30 @@ include ../../tools/mixins
                 v-html="content.title"
             )
             +e.list
-                +e.CARD-QUESTION-COMPONENT.item(
+                +e.COLLAPSE-COMPONENT.item(
                     v-for="(question, index) in content.questions"
                     :key="index"
-                    :title="question.title"
                     :content="question.content"
-                    :isActive="content.activeIndexes.includes(index)"
+                    :initActive="index === 0"
                 )
-
+                    template(
+                        v-slot:header
+                    )
+                        +e.name {{ question.title }}
+                        +e.icon
+                            i
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import CardQuestion from '../blanks/CardQuestion.vue'
+
 import ContentModule from '@/store/modules/content'
+
+import Collapse from '@/components/sections/Collapse.vue'
 
 @Component({
     components: {
-        'card-question-component': CardQuestion
+        'collapse-component': Collapse
     }
 })
 export default class Question extends Vue {

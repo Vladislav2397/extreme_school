@@ -3,7 +3,9 @@
  * @type { import('@vue/cli-service').ProjectOptions }
  */
 module.exports = {
-    publicPath: '/',
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/extreme_school/'
+        : '/',
     pluginOptions: {
         webpackBundleAnalyzer: {
             openAnalyzer: true

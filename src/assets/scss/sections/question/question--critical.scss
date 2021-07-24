@@ -11,8 +11,56 @@
     }
 
     &__item {
+        background-color: rgba($blue, 0.04);
+        padding: toRem(16) toRem(60) toRem(16) toRem(14);
+        border-radius: toRem(8);
+        position: relative;
+        cursor: pointer;
+
         & + & {
             margin-top: toRem(16);
         }
+
+        &.active {
+            .question__icon {
+                transform: rotateZ(45deg);
+            }
+        }
+    }
+
+    &__name {
+        @include fontSize(p2);
+    }
+
+    &__icon {
+        position: absolute;
+        top: toRem(16);
+        right: toRem(14);
+        z-index: 3;
+
+        i {
+            display: block;
+            width: toRem(20);
+            height: toRem(20);
+            background-color: #cccccc;
+            border-radius: toRem(4);
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: toRem(-10);
+            left: toRem(-10);
+            width: toRem(40);
+            height: toRem(40);
+            background-color: $blue;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+        }
+    }
+
+    .collapse__container {
+        padding-top: toRem(14);
     }
 }

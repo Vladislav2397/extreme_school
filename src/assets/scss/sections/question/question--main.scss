@@ -1,0 +1,29 @@
+.question {
+    &__item {
+        &.active {
+            .question__icon::before {
+                opacity: 1;
+            }
+        }
+    }
+    &__icon {
+        &::before {
+            transition: opacity 0.3s ease;
+        }
+
+        transition: transform 0.3s ease;
+    }
+
+    @include media_min_desktop {
+        &__icon {
+            cursor: pointer;
+        }
+        &__item {
+            &:hover {
+                .question__icon::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
