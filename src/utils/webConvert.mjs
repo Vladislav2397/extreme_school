@@ -6,7 +6,7 @@ const outputPath = 'public/images/'
 compressImages(
     inputPath,
     outputPath,
-    { compress_force: false, statistic: true, autoupdate: true },
+    { compress_force: true, statistic: true, autoupdate: true },
     false,
     { jpg: { engine: 'webp', command: false }},
     { png: { engine: 'webp', command: false }},
@@ -19,9 +19,9 @@ compressImages(
                 outputPath,
                 { compress_force: false, statistic: true, autoupdate: false },
                 false,
-                { jpg: { engine: 'mozjpeg', command: false }},
-                { png: { engine: 'pngquant', command: ['--quality=20-50', '-o'] }},
-                { svg: { engine: false, command: false }},
+                { jpg: { engine: 'mozjpeg', command: ['-quality', '60'] }},
+                { png: { engine: 'pngquant', command: ['--quality=50-80', '-o'] }},
+                { svg: { engine: 'svgo', command: '--multipass' }},
                 { gif: { engine: false, command: false }},
                 // eslint-disable-next-line @typescript-eslint/no-empty-function
                 function () {}

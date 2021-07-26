@@ -13,6 +13,7 @@ const vueDirectory = './src/components'
 const isValidType = validTypes.includes(type)
 
 if (isValidType) {
+    //
 } else {
     let equal = validTypes.find(t => type.indexOf(t) !== -1)
 
@@ -113,7 +114,7 @@ function vueFileTemplate(cssName, vueName, nesting) {
     return `<template lang="pug">
     include ../${'../'.repeat(nesting)}tools/mixins
     +b.${cssName}
-    
+
 </template>
 
 <script lang="ts">

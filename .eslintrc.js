@@ -18,7 +18,7 @@ module.exports = {
         'vue/mustache-interpolation-spacing': 'warn',
         semi: ['warn', 'never'],
         quotes: ['warn', 'single'],
-        indent: ['error', 4]
+        indent: ['error', 4, { "SwitchCase": 1 } ]
     },
     overrides: [
         {

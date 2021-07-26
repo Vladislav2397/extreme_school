@@ -18,6 +18,7 @@ include ../../tools/mixins
                 tag="button"
                 theme="primary"
                 type="text"
+                @click="onClick"
             ) Записаться
 
 </template>
@@ -36,6 +37,10 @@ export default class Intro extends Mixins(device) {
 
     mounted (): void {
         this.isMounted = true
+    }
+
+    onClick (event): void {
+        console.log(event)
     }
 
     get backgroundImageStyle (): Record<string, string> {
