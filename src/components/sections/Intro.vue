@@ -39,8 +39,8 @@ export default class Intro extends Mixins(device) {
         this.isMounted = true
     }
 
-    onClick (event): void {
-        console.log(event)
+    onClick (data: unknown): void {
+        console.log(data)
     }
 
     get backgroundImageStyle (): Record<string, string> {
