@@ -1,24 +1,13 @@
-import fastify from 'fastify'
+import { fastify, FastifyInstance } from 'fastify'
+import routes from './routes/routes'
 
-const server = fastify({logger: true})
+const server: FastifyInstance = fastify({logger: true})
+    .register(routes)
 
-server.register(import('fastify-mongodb'), {
-    forceClose: true,
-    url: 'mongodb://localhost:27017/extreme_school_db'
-})
-
-server.get('/api/general', function (req: any, reply: any) {
-    const db: any = this.mongo.db
-
-    db.collection('general', (error: string, col: any) => {
-        if (error) return reply.send(error)
-
-        col.findOne({id: req.params.id}, (err: any, general: any) => {
-            reply.send(general)
-        })
-    })
-})
-
-server.listen(8081, error => {
-    console.error(error)
+server.listen(8081, (error: Error, address: string) => {
+    if (error) {
+        console.error(error)
+        process.exit(1)
+    }
+    console.log(`Server listening at ${address}`)
 })
