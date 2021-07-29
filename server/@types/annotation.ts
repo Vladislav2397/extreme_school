@@ -1,4 +1,7 @@
-import * as fastify from 'fastify'
-import * as http from 'http'
+import { FastifyInstanse } from 'fastify'
 
-import { Db }
+declare module 'fastify' {
+    export interface FastifyInstanse {
+        blipp(): void
+    }
+}

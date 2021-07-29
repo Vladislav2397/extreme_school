@@ -1,12 +1,4 @@
-import { Document, Schema, Model, model } from 'mongoose'
-
-export interface GeneralDocument extends Document {
-    phone: string,
-    email: string,
-    director: string
-}
-
-export interface GeneralModel extends GeneralDocument {}
+import { Schema, model } from 'mongoose'
 
 export const GeneralSchema: Schema = new Schema(
     {
@@ -15,3 +7,5 @@ export const GeneralSchema: Schema = new Schema(
         director: String,
     }
 )
+
+export const General = model('general', GeneralSchema)

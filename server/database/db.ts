@@ -1,3 +1,5 @@
+import { Model } from 'mongoose'
+import * as Mongoose from 'mongoose'
 import fastifyPlugin from 'fastify-plugin'
 import {
     FastifyInstance,
@@ -11,6 +13,7 @@ export default fastifyPlugin(async (
     options: FastifyPluginOptions
 ): Promise<void> => {
     fastify.register(fastifyMongodb, {
-        url: 'mongodb://localhost:27017/extreme_school_db'
-    })
+        url: 'mongodb://localhost:27017/extreme_school_db',
+        name: 'mongodb'
+    } as fastifyMongodb.FastifyMongodbOptions)
 }) as FastifyPluginAsync
