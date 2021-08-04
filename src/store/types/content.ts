@@ -112,3 +112,19 @@ export type IFooter = {
     }[]
     information: string
 }
+
+export type IContent = {
+    header: IHeader
+    intro: IIntro
+    destination: IDestination
+    benefit: IBenefit
+    about: IAbout
+    skill: ISkill
+    gallery: IGallery
+    price: IPrice
+    feedback: IFeedback
+    question: IQuestion
+    social: ISocial
+    order: IOrder
+    footer: IFooter
+}

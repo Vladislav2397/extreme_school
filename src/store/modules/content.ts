@@ -1,5 +1,12 @@
 import store from '@/store/index'
-import { getModule, Module, VuexModule } from 'vuex-module-decorators'
+import {
+    getModule,
+    Module,
+    Mutation,
+    Action,
+    MutationAction,
+    VuexModule
+} from 'vuex-module-decorators'
 import {
     IHeader,
     IIntro,
@@ -13,8 +20,10 @@ import {
     IQuestion,
     ISocial,
     IOrder,
-    IFooter
+    IFooter,
+    IContent
 } from '@/store/types/content'
+import axios from 'axios'
 
 @Module({ name: 'content', dynamic: true, store })
 class ContentModule extends VuexModule {
@@ -159,12 +168,12 @@ class ContentModule extends VuexModule {
             status: 'Основатель школы',
             description:
                 'Я собрал лучших специалистов для вашего комфортного ' +
-            'обучения по разным направлениям.<br><br>' +
-            'Мы очень ценим каждого нашего ученика и для тех, ' +
-            'кто планирует развиваться вместе с нами ' +
-            'на&nbsp;постоянной основе, мы предоставляем очень ' +
-            'приятные бонусы: скидки на абонементы, интенсивы ' +
-            'и нашу фирменную одежду.',
+                'обучения по разным направлениям.<br><br>' +
+                'Мы очень ценим каждого нашего ученика и для тех, ' +
+                'кто планирует развиваться вместе с нами ' +
+                'на&nbsp;постоянной основе, мы предоставляем очень ' +
+                'приятные бонусы: скидки на абонементы, интенсивы ' +
+                'и нашу фирменную одежду.',
             links: [
                 {
                     href: '#',
@@ -613,6 +622,27 @@ class ContentModule extends VuexModule {
 
     get footer (): IFooter {
         return this._footer
+    }
+
+    // @Mutation
+    // updateData (content: IContent): void {
+    //     this._header = content.header
+    //     this._intro = content.intro
+    // }
+    //
+    // @Action
+    // async fetchData (): Promise<void> {
+    //     const content = await axios.get('localhost:8081/api/content')
+    //     this.context.commit('updateData', content)
+    // }
+
+    @MutationAction({mutate: ['header', 'intro']})
+    async fetchData(): Promise<{ header: IHeader, intro: IIntro }> {
+        const content: IContent = await axios.get('localhost:8081/api/content')
+        return {
+            header: content.header,
+            intro: content.intro
+        }
     }
 }
 
