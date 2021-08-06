@@ -12,7 +12,7 @@ import ContentModule from '@/store/modules/content'
 export default class App extends Vue {
 
     mounted (): void {
-        ContentModule.fetchData()
+        ContentModule.updateData()
     }
 }
 </script>

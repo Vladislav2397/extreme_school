@@ -644,6 +644,25 @@ class ContentModule extends VuexModule {
             intro: content.intro
         }
     }
+
+    @Mutation
+    async updateData(): Promise<void> {
+        await axios.put('localhost:8081/api/content', {
+            header: this.header,
+            intro: this.intro,
+            destination: this.destination,
+            benefit: this.benefit,
+            about: this.about,
+            skill: this.skill,
+            gallery: this.gallery,
+            price: this.price,
+            feedback: this.feedback,
+            question: this.question,
+            social: this.social,
+            order: this.order,
+            footer: this.footer,
+        })
+    }
 }
 
 export default getModule(ContentModule)
