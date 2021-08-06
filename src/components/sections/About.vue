@@ -42,7 +42,6 @@ export default class About extends Mixins(device) {
 
     get imagePath (): string {
         if (this.content) {
-            console.log(this.content)
             return this.device.size.mobile
                 ? this.content?.image.mobile.src
                 : this.content?.image.desktop.src
