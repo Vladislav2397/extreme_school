@@ -8,11 +8,9 @@
             name="header"
         )
         +e.content(
-            :style="collapse.style"
-            v-on:click.stop
+            v-if="collapse.isActive"
         )
             +e.container(
-                ref="collapse"
                 v-html="content"
             )
                 slot(
@@ -45,33 +43,15 @@ class Collapse extends Vue {
     created () : void {
         if (this.initActive) {
             this.collapse.isActive = this.initActive
-            this.collapse.style.height = null
         }
     }
 
     mounted () : void {
-        if (this.initActive) {
-            this.heightCollapse()
-        }
-    }
-
-    heightCollapse () : void {
-        this.collapse.style.height =
-            `${this.$refs.collapse.getBoundingClientRect().height}px`
+        //
     }
 
     toggleCollapse () : void {
-        if (!this.collapse.isActive) {
-            setTimeout(() => {
-                this.collapse.isActive = true
-            }, 150)
-            this.heightCollapse()
-        } else {
-            this.collapse.isActive = false
-            setTimeout(() => {
-                this.collapse.style.height = '0px'
-            }, 150)
-        }
+        this.collapse.isActive = !this.collapse.isActive
     }
 }
 

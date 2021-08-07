@@ -1,0 +1,27 @@
+.input {
+    width: 100%;
+
+    &__field {
+        font-size: toRem(16);
+        background-color: rgba($blue, 0.1);
+        border-radius: toRem(8);
+        padding: 0 toRem(18);
+
+        &--size {
+            &-l {
+                line-height: toRem(60);
+                height: toRem(60);
+            }
+
+            &-m {
+                line-height: toRem(44);
+                height: toRem(44);
+            }
+
+            &-s {
+                line-height: toRem(36);
+                height: toRem(36);
+            }
+        }
+    }
+}

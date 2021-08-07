@@ -23,6 +23,17 @@ include ../../tools/mixins
                         +e.name {{ question.title }}
                         +e.icon
                             i
+
+            button(
+                style="padding:12px 20px;background:green;"
+                v-on:click="show = !show"
+            ) button
+            transition(
+                name="fade"
+            )
+                p(
+                    v-if="show"
+                ) Some content for opacity hidden #[br] Yeah
 </template>
 
 <script lang="ts">
@@ -39,5 +50,7 @@ import Collapse from '@/components/sections/Collapse.vue'
 })
 export default class Question extends Vue {
     content = ContentModule.question
+
+    show = true
 }
 </script>

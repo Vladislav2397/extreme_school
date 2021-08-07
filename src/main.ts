@@ -17,8 +17,10 @@ Vue.use(VueLazyload)
 import Title from '@/components/ui/Title.vue'
 import Button from '@/components/ui/Button.vue'
 import Image from '@/components/ui/Image.vue'
+import Input from '@/components/ui/Input.vue'
 
 Vue.component('title-component', Title)
+Vue.component('input-component', Input)
 Vue.component('button-component', Button)
 Vue.component('image-component', Image)
 

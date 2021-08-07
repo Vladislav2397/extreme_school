@@ -19,7 +19,7 @@ $buttonBackgroundSecondaryColor: $secondaryColor;
         }
     }
 
-    &--type {
+    &--type, &--view {
         &-text {
             padding: 0 toRem(30);
         }

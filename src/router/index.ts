@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import IndexPage from '@/components/pages/Index.vue'
 import SkateboardPage from '@/components/pages/Destination.vue'
-import UiKit from '@/components/pages/UiKit.vue'
+import UiKit from '@/components/ui-kit/UiKit.vue'
 
 Vue.use(VueRouter)
 

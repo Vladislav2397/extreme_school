@@ -1,11 +1,11 @@
 .button {
     @include media_min_desktop {
         &__content {
-            transition: border-bottom-color 0.3s ease;
+            transition: text-decoration 0.3s ease;
         }
 
-        &:hover &__content {
-            border-bottom: 1px solid $white;
+        &:hover {
+            text-decoration: underline;
         }
     }
 }
