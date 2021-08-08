@@ -6,7 +6,6 @@ import {
 } from 'fastify'
 import { Collection } from 'mongodb'
 import fastifyBlipp from 'fastify-blipp'
-import fastifyMongooseAPI from 'fastify-mongoose-api'
 import fastifyMongodb from 'fastify-mongodb'
 import fastifyCors from 'fastify-cors'
 import routes from './routes/routes'
@@ -19,7 +18,6 @@ server.register(fastifyCors, {
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 })
-server.register(fastifyMongooseAPI)
 server.register(fastifyMongodb, {
     url: 'mongodb://localhost:27017/extreme_school_db',
 })
