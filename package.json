@@ -14,7 +14,7 @@
         "bem": "node ./src/utils/bem.js",
         "deploy": "sh deploy.sh",
         "webp": "node src/utils/webConvert.mjs",
-        "draft": "ts-node ./src/utils/example.ts"
+        "draft": "ts-node ./src/utils/webpConvert.ts"
     },
     "dependencies": {
         "@types/imagemin": "^7.0.1",

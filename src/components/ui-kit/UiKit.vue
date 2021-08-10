@@ -22,7 +22,7 @@ include ../../tools/mixins
                         ) {{ component.name }}
                         p(
                             v-if="'v-model' in component"
-                        ) {{ component['v-model'] }}
+                        ) v-model: {{ component['v-model'] }}
                     +e.settings
                         template(
                             v-for="(value, key) in component.attrs"
@@ -36,21 +36,12 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Mixins } from 'vue-property-decorator'
 import ButtonRender from '@/components/ui/ButtonRender.vue'
 import Toggle from '@/components/ui/Toggle.vue'
 import Setting from '@/components/ui-kit/Setting.vue'
 import Select from '@/components/ui/Select.vue'
-
-declare type IAttribute = string[] | string | boolean
-
-declare type IComponent = {
-    name: string
-    attrs?: Record<string, IAttribute>
-    'v-model'?: string | boolean
-    listeners?: Record<string, (payload: any) => void>
-    state?: Record<string, string | any>
-}
+import Components from '@/components/ui-kit/components'
 
 @Component({
     components: {
@@ -60,121 +51,7 @@ declare type IComponent = {
         'select-component': Select,
     }
 })
-export default class UiKit extends Vue {
-    components: IComponent[] = [
-        {
-            name: 'button-render',
-            attrs: {
-                tag: [
-                    'button',
-                    'a',
-                    'div'
-                ],
-                view: [
-                    'text',
-                    'icon',
-                    'icon-text',
-                    'text-icon'
-                ],
-                theme: [
-                    'primary',
-                    'secondary'
-                ],
-                icon: 'brand-facebook'
-            },
-            listeners: {
-                change (payload: { value: string }): void {
-                    console.log('change', payload)
-                }
-            },
-            state: {
-                tag: 'button',
-                view: 'text',
-                theme: 'primary'
-            }
-        },
-        {
-            name: 'input',
-            'v-model': '',
-            attrs: {
-                size: [
-                    's',
-                    'm',
-                    'l'
-                ],
-                placeholder: '',
-                readonly: true
-            },
-            listeners: {
-                input (payload: string): void {
-                    console.log('input', payload)
-                }
-            },
-            state: {
-                placeholder: 'Placeholder',
-                size: 's'
-            }
-        },
-        {
-            name: 'toggle',
-            'v-model': false,
-            listeners: {
-                input (value: string): void {
-                    console.log('toggle v-model value', value)
-                }
-            }
-        },
-        {
-            name: 'select',
-            state: {
-                options: [
-                    {
-                        id: 1,
-                        value: 'some'
-                    },
-                    {
-                        id: 2,
-                        value: 'unknown'
-                    },
-                    {
-                        id: 3,
-                        value: 'variable'
-                    }
-                ]
-            }
-        },
-        {
-            name: 'title',
-            attrs: {
-                tag: [
-                    'h1',
-                    'h2',
-                    'h3'
-                ],
-                size: [
-                    'h1',
-                    'h2',
-                    'h3'
-                ],
-                align: [
-                    'left',
-                    'center'
-                ],
-                weight: [
-                    'light',
-                    'regular',
-                    'medium'
-                ]
-            },
-            state: {
-                tag: 'h1',
-                size: 'h1',
-                align: 'left',
-                weight: 'regular'
-            }
-        }
-    ]
-
+export default class UiKit extends Mixins(Components) {
     onChange (payload: any): void {
         payload.state[payload.name] = payload.value
     }

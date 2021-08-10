@@ -4,7 +4,14 @@ include ../../tools/mixins
 div
     h4 {{ title }}
     template(
-        v-if="typeof attribute === 'object'"
+        v-if="typeof attribute === 'object' && attribute.length <= 3"
+    )
+        button.ui-kit-button(
+            v-for="attr in attribute"
+            v-on:click="onChange(attr)"
+        ) {{ attr }}
+    template(
+        v-else-if="typeof attribute === 'object'"
     )
         select(
             v-on:change="onChange($event.target.value)"
@@ -13,14 +20,14 @@ div
                 v-for="item in attribute"
             ) {{ item }}
     template(
-        v-if="typeof attribute === 'string'"
+        v-else-if="typeof attribute === 'string'"
     )
-        input-component(
+        input(
             size="s"
-            @change="onChange"
+            v-on:input="onChange($event.target.value)"
         )
     template(
-        v-if="typeof attribute === 'boolean'"
+        v-else-if="typeof attribute === 'boolean'"
     )
         toggle-component(
             @change="onChange"
@@ -47,3 +54,12 @@ export default class Setting extends Vue {
     }
 }
 </script>
+
+<style lang="scss">
+button.ui-kit-button {
+    padding: 4px 12px;
+    background-color: #3c6ea3;
+    color: #ffffff;
+    border-radius: 8px;
+}
+</style>

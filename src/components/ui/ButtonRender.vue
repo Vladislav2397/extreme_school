@@ -4,9 +4,9 @@ import { CreateElement, VNode } from 'vue'
 import {
     buttonViewNameTypes,
     tagNameTypes,
-} from '@/@types/mixins'
+} from '@/types/mixins'
 // import IsIcon from '@/mixins/ui/button/IsIcon'
-import { themeNameTypes } from '@/@types/mixins'
+import { themeNameTypes } from '@/types/mixins'
 
 @Component
 export default class ButtonRender extends Vue {
