@@ -1,5 +1,6 @@
 <template lang="pug">
     include ../../tools/mixins
+
     +b.toggle(
         :class="{'active': isActive}"
         v-on:click="toggleActive"
@@ -22,3 +23,4 @@ export default class Toggle extends Vue {
 }
 
 </script>
+

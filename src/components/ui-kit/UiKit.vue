@@ -36,10 +36,10 @@ include ../../tools/mixins
 </template>
 
 <script lang="ts">
-import { Vue, Component, Mixins } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
 import ButtonRender from '@/components/ui/ButtonRender.vue'
 import Toggle from '@/components/ui/Toggle.vue'
-import Setting from '@/components/ui-kit/Setting.vue'
+import Setting from '@/components/ui-kit/UiSetting.vue'
 import Select from '@/components/ui/Select.vue'
 import Components from '@/components/ui-kit/components'
 

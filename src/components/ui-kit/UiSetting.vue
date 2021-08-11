@@ -24,23 +24,24 @@ div
     )
         input(
             size="s"
-            v-on:input="onChange($event.target.value)"
+            v-on:change="onChange($event.target.value)"
         )
     template(
         v-else-if="typeof attribute === 'boolean'"
     )
-        toggle-component(
+        ui-toggle-component(
             @change="onChange"
+            v-model="attribute"
         )
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import Toggle from '@/components/ui/Toggle.vue'
+import UiToggle from '@/components/ui-kit/UiToggle.vue'
 
 @Component({
     components: {
-        'toggle-component': Toggle
+        'ui-toggle-component': UiToggle
     }
 })
 export default class Setting extends Vue {
