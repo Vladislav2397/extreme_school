@@ -18,6 +18,11 @@ const routes: Array<RouteConfig> = [
         component: SkateboardPage,
     },
     {
+        path: '/draft',
+        name: 'Draft',
+        component: () => import('@/components/pages/Draft.vue'),
+    },
+    {
         path: '/ui-kit',
         name: 'UiKit',
         component: UiKit,

@@ -4,6 +4,19 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+import { viewLauncher } from 'view-launcher'
+
+viewLauncher({
+    theme: 'dark',
+    editor: 'webstorm',
+    shortcuts: {
+        open: 'd',
+        inspect: 'a a',
+        inspectComponent: 'c c',
+        inspectParent: 'p'
+    }
+})
+
 import './assets/scss/critical.scss'
 
 import { Swiper, Pagination, Lazy } from 'swiper'

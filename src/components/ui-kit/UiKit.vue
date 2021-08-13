@@ -4,8 +4,19 @@ include ../../tools/mixins
 +b.ui-kit
     +e.container.container
         +e.inner
+            +e.n-component
+                +e.n-title Some title
+                +e.n-body
+                    +e.n-workspace
+                        +e.n-preview
+                        +e.n-panel
+                        +e.n-panel
+                        +e.n-panel
+                    // may be make float buttons as material
+                    +e.n-controls
+                        +e.UI-BUTTON-COMPONENT.n-button Settings
             +e.component(
-                v-for="component in components"
+                v-for="(component, index) in components"
             )
                 +e.TITLE-COMPONENT.title(
                     tag="h1"
@@ -15,36 +26,59 @@ include ../../tools/mixins
                 +e.body
                     +e.preview
                         component(
+                            v-if="'vModel' in component"
                             :is="`${component.name}-component`"
                             v-bind="component.state"
                             v-on="component.listeners"
-                            v-model="component['v-model']"
+                            v-model="component.vModel"
+                            ref="items"
+                        ) {{ component.name }}
+                        component(
+                            :is="`${component.name}-component`"
+                            v-bind="component.state"
+                            v-on="component.listeners"
+                            v-else
+                            ref="items"
                         ) {{ component.name }}
                         p(
-                            v-if="'v-model' in component"
-                        ) v-model: {{ component['v-model'] }}
-                    +e.settings
-                        template(
-                            v-for="(value, key) in component.attrs"
+                            v-if="'vModel' in component"
+                        ) v-model: {{ component.vModel }}
+                        +e.buttons
+                            +e.UI-BUTTON-COMPONENT.button(
+                                @click="isSettingsActive = !isSettingsActive"
+                            ) Settings
+                            +e.UI-BUTTON-COMPONENT.button(
+                                @click="isCodeActive = !isCodeActive"
+                            ) Code
+                        +e.settings(
+                            :class="{ 'active': isSettingsActive }"
                         )
-                            +e.SETTING-COMPONENT.item(
-                                :title="key"
-                                :attribute="value"
-                                v-model="component.state[key]"
+                            template(
+                                v-for="(value, key) in component.attrs"
                             )
+                                +e.SETTING-COMPONENT.item(
+                                    :title="key"
+                                    :attribute="value"
+                                    v-model="component.state[key]"
+                                )
+                        +e.code {{ codes[index] }}
 
 </template>
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
+
+import Components from '@/components/ui-kit/Components'
+import Setting from '@/components/ui-kit/UiSetting.vue'
+import UiButton from '@/components/ui-kit/UiButton.vue'
+
 import ButtonRender from '@/components/ui/ButtonRender.vue'
 import Toggle from '@/components/ui/Toggle.vue'
-import Setting from '@/components/ui-kit/UiSetting.vue'
 import Select from '@/components/ui/Select.vue'
-import Components from '@/components/ui-kit/components'
 
 @Component({
     components: {
+        'ui-button-component': UiButton,
         'button-render-component': ButtonRender,
         'setting-component': Setting,
         'toggle-component': Toggle,
@@ -52,6 +86,29 @@ import Components from '@/components/ui-kit/components'
     }
 })
 export default class UiKit extends Mixins(Components) {
+    $refs!: {
+        items: HTMLElement
+    }
+
+    codes = []
+
+    isSettingsActive = false
+    isCodeActive = false
+
+    mounted (): void {
+        this.components.forEach((item, index) => {
+            this.codes.push(this.$refs.items[index].$el.outerHTML)
+        })
+    }
+
+    getCode (index: number): string {
+        return this.$refs?.items[index].outerHTML || ''
+    }
+
+    get itemHtml (): string {
+        return this.$refs?.items?.outerHTML || ''
+    }
+
     onChange (payload: any): void {
         payload.state[payload.name] = payload.value
     }
@@ -59,6 +116,11 @@ export default class UiKit extends Mixins(Components) {
 </script>
 
 <style lang="scss">
+@import '../../assets/scss/vars/breakpoints';
+@import '../../assets/scss/utility/functions';
+
+@import './ui-kit';
+
 .ui-kit {
     padding: 10rem 0;
 
@@ -74,7 +136,7 @@ export default class UiKit extends Mixins(Components) {
 
     &__body {
         width: 100%;
-        min-height: 20rem;
+        min-height: toRem(200);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -84,32 +146,50 @@ export default class UiKit extends Mixins(Components) {
         }
     }
 
-    &__preview,
-    &__settings {
-        width: 30%;
-        height: 20rem;
+    &__preview {
+        min-height: 20rem;
         vertical-align: top;
         box-shadow: 0 0 12px 1px #000000;
         padding: 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    &__preview {
-        width: 65%;
-        flex-direction: column;
-        justify-content: space-evenly;
+        overflow: hidden;
     }
 
     &__settings {
-        flex-direction: column;
-        align-items: baseline;
+        padding: toRem(20);
+        height: 100%;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        right: 0;
         background-color: #aaa;
+        transition: transform 0.3s ease;
+        transform: translateX(100%);
+
+        &.active {
+            transform: translateX(0);
+        }
     }
 
-    &__code {
-        background-color: #111;
+    &__preview {
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-evenly;
+        position: relative;
+    }
+
+    &__buttons {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &__button {
+        & + & {
+            margin-left: toRem(6);
+        }
     }
 
     &__item {
@@ -124,7 +204,7 @@ export default class UiKit extends Mixins(Components) {
 
         h4 {
             display: inline-block;
-            min-width: 100px;
+            min-width: 100 / 12 * 1rem;
         }
     }
 }

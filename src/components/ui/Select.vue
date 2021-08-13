@@ -1,22 +1,24 @@
 <template lang="pug">
-    include ../../tools/mixins
-    +b.LABEL.select(
-        v-on:click="toggleActive()"
+
+include ../../tools/mixins
+
++b.LABEL.select(
+    v-on:click="toggleActive()"
+)
+    +e.INPUT-COMPONENT.input(
+        size="s"
+        readonly
+        v-on:click="onClick"
+        v-model="value"
     )
-        +e.INPUT-COMPONENT.input(
-            size="s"
-            readonly
-            v-on:click="onClick"
-            v-model="value"
-        )
-        +e.UL.list(
-            v-show="isActive"
-        )
-            +e.LI.item(
-                v-for="(option, index) in options"
-                :key="index"
-                v-on:click="setActive(index)"
-            ) {{ option.value }}
+    +e.UL.list(
+        v-show="isActive"
+    )
+        +e.LI.item(
+            v-for="(option, index) in options"
+            :key="index"
+            v-on:click="setActive(index)"
+        ) {{ option.value }}
 
 </template>
 

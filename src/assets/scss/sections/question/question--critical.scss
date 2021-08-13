@@ -36,14 +36,17 @@
         position: absolute;
         top: toRem(16);
         right: toRem(14);
+        width: toRem(20);
+        height: toRem(20);
         z-index: 3;
 
-        i {
-            display: block;
-            width: toRem(20);
-            height: toRem(20);
-            background-color: #cccccc;
-            border-radius: toRem(4);
+        &::after {
+            content: '\ea01';
+            font-family: $icon;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         &::before {
@@ -63,12 +66,4 @@
     .collapse__container {
         padding-top: toRem(14);
     }
-}
-
-.fade-enter, .fade-leave-to {
-    opacity: 0;
-}
-
-.fade-enter-active, .fade-leave-active {
-    transition: opacity 1s;
 }

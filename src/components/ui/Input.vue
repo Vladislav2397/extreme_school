@@ -17,13 +17,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class Input extends Vue {
+    @Prop({required: true}) value!: string
+
     @Prop() readonly size!: string
 
     @Prop() readonly placeholder!: string
 
     @Prop() readonly readonly!: boolean
-
-    @Prop() value!: string
 
     get inputValue (): string {
         return this.value

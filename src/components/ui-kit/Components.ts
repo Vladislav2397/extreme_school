@@ -5,7 +5,7 @@ declare type IAttribute = string[] | string | boolean
 declare type IComponent = {
     name: string
     attrs?: Record<string, IAttribute>
-    'v-model'?: string | boolean
+    vModel?: string | boolean
     listeners?: Record<string, (payload: any) => void>
     state?: Record<string, string | any>
 }
@@ -32,7 +32,6 @@ export default class Components extends Vue {
                     'primary',
                     'secondary'
                 ],
-                icon: 'brand-facebook'
             },
             listeners: {
                 change (payload: { value: string }): void {
@@ -48,30 +47,29 @@ export default class Components extends Vue {
         // =============== INPUT ===============
         {
             name: 'input',
-            'v-model': '',
+            vModel: '',
             attrs: {
                 size: [
                     's',
                     'm',
                     'l'
                 ],
-                placeholder: '',
                 readonly: true
             },
             listeners: {
-                input (payload: string): void {
+                change (payload: string): void {
                     console.log('input', payload)
                 }
             },
             state: {
                 placeholder: 'Placeholder',
-                size: 's'
+                size: 's',
             }
         },
         // =============== TOGGLE ===============
         {
             name: 'toggle',
-            'v-model': false,
+            vModel: false,
             listeners: {
                 input (value: string): void {
                     console.log('toggle v-model value', value)

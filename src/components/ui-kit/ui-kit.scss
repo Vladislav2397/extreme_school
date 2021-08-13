@@ -1,0 +1,38 @@
+@import '../../assets/scss/utility/functions';
+@import '../../assets/scss/utility/mixins';
+@import '../../assets/scss/vars/typography';
+
+.ui-kit {
+    &__n-title {
+        @include fontSize(h1);
+
+        margin-bottom: toRem(40);
+    }
+
+    &__n-workspace,
+    &__n-controls {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &__n-workspace {
+        box-shadow: 0 0 12px rgba(#000, 0.25);
+        width: 90%;
+        height: 100%;
+        min-height: toRem(300);
+        position: relative;
+    }
+
+    &__n-controls {
+        width: 10%;
+        text-align: right;
+    }
+
+    &__n-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 40%;
+    }
+}
