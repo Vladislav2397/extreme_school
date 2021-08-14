@@ -1,3 +1,7 @@
+@import "utility/mixins";
+@import "vars/breakpoints";
+@import "vars/colors";
+
 @import 'ui/ui--main';
 @import 'blanks/blanks--main';
 @import 'sections/sections--main';
