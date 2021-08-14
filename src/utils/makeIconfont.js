@@ -32,7 +32,7 @@ const makeIconfont = function () {
 
     webfont({
         files: './src/assets/icons/**/*.svg',
-        template: './src/util/template.html',
+        template: './src/util/template.html.njk',
         templateFontPath: fontPath,
         fontName: 'iconfont',
         formats: [

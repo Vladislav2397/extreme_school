@@ -28,3 +28,4 @@ deploy.sh
 
 .storybook
 src/stories
+public/images

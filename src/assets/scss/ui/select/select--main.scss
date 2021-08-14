@@ -1,0 +1,17 @@
+.select {
+    @media (min-width: $desktop) {
+        &__input {
+            * {
+                cursor: pointer;
+            }
+        }
+
+        &__item {
+            cursor: pointer;
+
+            &:hover {
+                background-color: #eee;
+            }
+        }
+    }
+}

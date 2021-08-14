@@ -14,7 +14,7 @@
     "bem": "node ./src/utils/bem.js",
     "deploy": "sh deploy.sh",
     "webp": "node src/utils/webConvert.mjs",
-    "draft": "ts-node ./src/utils/example.ts",
+    "draft": "ts-node ./src/utils/webpConvert.ts",
     "sb": "start-storybook -p 6006",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

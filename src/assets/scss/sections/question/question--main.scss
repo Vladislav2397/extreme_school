@@ -1,11 +1,4 @@
 .question {
-    &__item {
-        &.active {
-            .question__icon::before {
-                opacity: 1;
-            }
-        }
-    }
     &__icon {
         &::before {
             transition: opacity 0.3s ease;

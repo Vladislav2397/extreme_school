@@ -1,0 +1,9 @@
+.toggle {
+    &::before {
+        transition: left 0.3s ease;
+    }
+
+    @media (min-width: $desktop) {
+        cursor: pointer;
+    }
+}

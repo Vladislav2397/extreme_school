@@ -1,4 +1,5 @@
 <template lang="pug">
+
 include ../../tools/mixins
 
 +b.question
@@ -21,8 +22,8 @@ include ../../tools/mixins
                         v-slot:header
                     )
                         +e.name {{ question.title }}
-                        +e.icon
-                            i
+                        +e.I.icon
+
 </template>
 
 <script lang="ts">
@@ -30,7 +31,7 @@ import { Vue, Component } from 'vue-property-decorator'
 
 import ContentModule from '@/store/modules/content'
 
-import Collapse from '@/components/sections/Collapse.vue'
+import Collapse from '@/components/ui/Collapse.vue'
 
 @Component({
     components: {
@@ -39,5 +40,7 @@ import Collapse from '@/components/sections/Collapse.vue'
 })
 export default class Question extends Vue {
     content = ContentModule.question
+
+    show = true
 }
 </script>

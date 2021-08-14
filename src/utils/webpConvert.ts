@@ -1,4 +1,4 @@
-import imagemin from 'imagemin/index'
+import imagemin from 'imagemin'
 import imageminMozjpeg from 'imagemin-mozjpeg'
 import imageminPngquant from 'imagemin-pngquant'
 import fs, { PathLike } from 'fs'
@@ -10,10 +10,10 @@ import sharp from 'sharp'
 console.log('webp')
 
 const src = './src/assets/images/'
-const dist = './public/images/new/'
+const dist = './public/images/'
 
 function removeBrackets(str: string): string {
-    const brackets = str.match(/\[(.*?)\]/)
+    const brackets = str.match(/\[(.*)\]/)
     return brackets ? str.replace(brackets[0], '') : str
 }
 
@@ -26,14 +26,14 @@ if (needToWatch) {
 }
 
 watcher?.on('add', (path, stats) => {
-    console.log('run watch', path, stats)
+    //
 })
 
 function fileWatch(path: string, stats: fs.Stats | undefined): void {
     //
 }
 
-// declare type IWatcher = typeof watcher
+declare type IWatcher = typeof watcher
 
 // function startWatch(watcher: IWatcher) {
 //     console.log(`\n\n watching ${ src } directory for changes\n\n`)
@@ -120,97 +120,98 @@ function fileWatch(path: string, stats: fs.Stats | undefined): void {
 //             .catch(() => console.error('file not exists'))
 //     })
 // }
-//
-// // function that will recursively check images directory
-// function walkSync (dir: PathLike | string) {
-//     fsPromises.readdir(dir)
-//         .then(files => {
-//             files.forEach(file => {
-//                 const ext = (`${dir}/${file}`).substring((`${dir}/${file}`).lastIndexOf('.') + 1, (`${dir}/${file}`).length)
-//                 if (fs.statSync(`${dir}/${file}`).isDirectory()) {
-//                     // if file is a directory - open this directory
-//                     walkSync(`${dir}/${file}`)
-//                 } else if (ext === 'png' || ext === 'jpg') {
-//                     // else optimize this file and generate webp
-//                     const filename = (`${dir}/${file}`).replace(/^.*[\\\/]/, '')
-//                     const matches = filename.match(/\[(.*?)\]/)
-//                     let width: number | null = null
-//                     if (matches) {
-//                         width = parseInt(matches[1], 10)
-//                     }
-//
-//                     let brackets: RegExpMatchArray | string | null = (`${dir}/${file}`).match(/\[(.*?)\]/)
-//                     if (brackets) {
-//                         brackets = brackets[0]
-//                     } else {
-//                         brackets = ''
-//                     }
-//                     sharp(`${dir}/${file}`)/* resize and generate webp */
-//                         .resize(width)
-//                         .webp({quality: 80})
-//                         .toFile(`${dir}/${removeBrackets(file).substring(0, removeBrackets(file).lastIndexOf('.'))}.webp`)
-//                         .then(() => sharp(`${dir}/${file}`)/* resize and output to buffer */
-//                             .resize(width)
-//                             .toBuffer())
-//                         .then(buffer => {
-//                             /* write buffer into a file */
-//                             fsPromises.access(`${dir}/${file}`, fs.constants.F_OK)
-//                                 .then(() => {
-//                                     if (!brackets) {
-//                                         fs.writeFileSync(`${dir}/${file}`, buffer)
-//                                     } else {
-//                                         fsPromises.rename(`${dir}/${file}`, `${dir}/${removeBrackets(file)}`)
-//                                             .then(() => {
-//                                                 fs.writeFileSync(`${dir}/${removeBrackets(file)}`, buffer)
-//                                             })
-//                                     }
-//                                 })
-//                                 .catch(() => console.error('not exists'))
-//                         })
-//                         .then(() => {
-//                             console.log(`starting optimize ${dir}/${removeBrackets(file)}`)
-//                         })
-//                         /* optimize rewrited image */
-//                         .then(() => imagemin([`${dir}/${removeBrackets(file)}`], {
-//                             destination: `${dir}/`,
-//                             plugins: [
-//                                 imageminMozjpeg(),
-//                                 imageminPngquant({
-//                                     quality: [0.6, 0.8]
-//                                 })
-//                             ]
-//                         }))
-//                         .then(res => {
-//                             console.log(`image ${dir}/${removeBrackets(file)} optimized`)
-//                         })
-//                         .catch(err => {
-//                             console.log(`Cannot optimize ${dir}/${removeBrackets(file)} image because of an error: \n${err}`)
-//                         })
-//                 }
-//             })
-//         })
-// }
-// // entry point
-// export function buildImages (): void {
-//     // removing existing directory
-//     fsPromises.rmdir(dist, {recursive: true})
-//         .then(() => fsPromises.mkdir(dist))
-//         .then(() => {
-//             console.log('images folder created')
-//             ncp(src, dist, () => {
-//                 // optimizing and creating webp
-//                 walkSync(dist.substring(0, dist.length - 1))
-//
-//                 if (needToWatch) {
-//                     startWatch(watcher)
-//                 }
-//                 // adding watcher to serve images in ./src/assets/images
-//             })
-//         })
-// }
-//
-// if (process.argv.indexOf('optimize') !== -1) {
-//     buildImages()
-// }
 
-export {}
+// function that will recursively check images directory
+async function walkSync (dir: PathLike | string) {
+    try {
+        const files = await fsPromises.readdir(dir)
+
+        for (const file of files) {
+            console.log('file', file)
+            const fileData = parseFile(`${dir}/${file}`)
+
+            const path = fileData.fullPath
+            const ext = fileData.ext
+            const filename = fileData.filename
+            const width = fileData.width ? +(fileData.width) : null
+
+            if (fs.statSync(path).isDirectory()) {
+                walkSync(path)
+            } else if (ext && ['png', 'jpg'].includes(ext)) {
+
+                console.log('width', width)
+                console.log(parseFile(path))
+
+                /* resize and generate webp */
+                await sharp(path)
+                    .resize(width)
+                    .webp({ quality: 80 })
+                    .toFile(`${dir}/${filename}.webp`)
+
+                /* resize and output to buffer */
+                const buffer = await sharp(path)
+                    .resize(width)
+                    .toBuffer()
+
+                /* write buffer into a file */
+                await fsPromises.access(path, fs.constants.F_OK)
+
+                await fs.writeFileSync(path, buffer)
+                console.log(`starting optimize ${path}`)
+
+                /* optimize rewrited image */
+                await imagemin([path], {
+                    destination: `${dir}/`,
+                    plugins: [
+                        imageminMozjpeg(),
+                        imageminPngquant({
+                            quality: [0.6, 0.8]
+                        })
+                    ]
+                })
+                // console.log(`image ${dir}/${removeBrackets(file)} optimized`)
+            }
+        }
+    } catch (error) {
+        console.log(`Cannot optimize ${dir} image because of an error: \n${error}`)
+        console.error(error)
+        return process.exit(1)
+    }
+}
+
+function parseFile(path: string): any {
+    const match = path.match(/^\.*[\\/](?<path>.*[\\/])(?<brackets>\[(?<width>\d+)\])?(?<filename>.+)\.(?<ext>\w+)$/)
+    return {
+        fullPath: path,
+        path: match?.groups?.path || null,
+        brackets: match?.groups?.brackets || null,
+        width: match?.groups?.width || null,
+        filename: match?.groups?.filename || null,
+        ext: match?.groups?.ext || null,
+    }
+}
+
+// entry point
+export function buildImages (): void {
+    // removing existing directory
+    fsPromises.rmdir(dist, {recursive: true})
+        .then(() => fsPromises.mkdir(dist))
+        .then(() => {
+            console.log('images folder created')
+            ncp(src, dist, () => {
+                // optimizing and creating webp
+                walkSync(dist.substring(0, dist.length - 1))
+
+                // if (needToWatch) {
+                //     startWatch(watcher)
+                // }
+                // adding watcher to serve images in ./src/assets/images
+            })
+        })
+}
+
+if (process.argv.indexOf('optimize') !== -1) {
+    buildImages()
+}
+
+buildImages()

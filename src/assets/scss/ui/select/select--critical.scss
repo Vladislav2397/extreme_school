@@ -1,0 +1,23 @@
+.select {
+    position: relative;
+
+    &__input {
+        width: 100%;
+        background-color: #eee;
+    }
+
+    &__list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border: 1px solid $secondaryColor;
+        background-color: #cccccc;
+        border-radius: toRem(4);
+        overflow: hidden;
+    }
+
+    &__item {
+        padding: toRem(12) toRem(16);
+    }
+}
