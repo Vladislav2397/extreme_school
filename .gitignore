@@ -25,3 +25,6 @@ package-lock.json
 yarn.lock
 compares
 deploy.sh
+
+.storybook
+src/stories
