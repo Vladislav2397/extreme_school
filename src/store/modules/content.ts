@@ -18,7 +18,7 @@ import {
 
 @Module({ name: 'content', dynamic: true, store })
 class ContentModule extends VuexModule {
-    header: IHeader = {
+    private _header: IHeader = {
         links: [
             {
                 name: 'Направления',
@@ -47,7 +47,7 @@ class ContentModule extends VuexModule {
         },
     }
 
-    intro: IIntro = {
+    private _intro: IIntro = {
         title: 'Школа <u>№1</u> в&nbsp;Москве',
         description: 'Обучаем детей и взрослых: скейт, лонгробрд, BMX, самокат, ролики и&nbsp;другие направления',
         image: {
@@ -63,7 +63,7 @@ class ContentModule extends VuexModule {
         }
     }
 
-    destination: IDestination = {
+    private _destination: IDestination = {
         cards: [
             {
                 image: 'images/destination/skateboard',
@@ -100,7 +100,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    benefit: IBenefit = {
+    private _benefit: IBenefit = {
         image: {
             desktop: {
                 src: 'images/benefit/benefit',
@@ -139,16 +139,17 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    about: IAbout = {
+    private _about: IAbout = {
         image: {
-            alt: '',
             desktop: {
-                src: 'images/about/about',
+                src: 'images/about/about.jpg',
+                alt: '',
                 width: 200,
                 height: 200
             },
             mobile: {
-                src: 'images/about/about',
+                src: 'images/about/about.jpg',
+                alt: '',
                 width: 200,
                 height: 200
             }
@@ -181,7 +182,7 @@ class ContentModule extends VuexModule {
         }
     }
 
-    skill: ISkill = {
+    private _skill: ISkill = {
         title: 'Вы точно&nbsp;<u class="blue">научитесь</u>',
         images: [
             {
@@ -207,7 +208,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    gallery: IGallery = {
+    private _gallery: IGallery = {
         imagePath: 'images/gallery',
         images: [
             {
@@ -245,7 +246,7 @@ class ContentModule extends VuexModule {
         ],
     }
 
-    price: IPrice = {
+    private _price: IPrice = {
         products: [
             {
                 tabName: 'Скейтборд',
@@ -365,7 +366,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    feedback: IFeedback = {
+    private _feedback: IFeedback = {
         title: 'Ученики <u class="blue">о нас</u>',
         comments: [
             {
@@ -395,7 +396,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    question: IQuestion = {
+    private _question: IQuestion = {
         title: 'Есть вопросы?<br>Сейчас ответим',
         activeIndexes: [0],
         questions: [
@@ -426,7 +427,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    social: ISocial = {
+    private _social: ISocial = {
         title: 'Мы в <u class="blue">соц.сетях</u>',
         links: [
             {
@@ -448,7 +449,7 @@ class ContentModule extends VuexModule {
         ]
     }
 
-    order: IOrder = {
+    private _order: IOrder = {
         title: 'Ждем вас на первое занятие',
         inputs: [
             {
@@ -464,7 +465,7 @@ class ContentModule extends VuexModule {
         button: 'Записаться'
     }
 
-    footer: IFooter = {
+    private _footer: IFooter = {
         columns: [
             {
                 title: 'Контакты',
@@ -560,6 +561,58 @@ class ContentModule extends VuexModule {
             },
         ],
         information: 'ИП Костыль А.А.'
+    }
+
+    get header (): IHeader {
+        return this._header
+    }
+
+    get intro (): IIntro {
+        return this._intro
+    }
+
+    get destination (): IDestination {
+        return this._destination
+    }
+
+    get benefit (): IBenefit {
+        return this._benefit
+    }
+
+    get about (): IAbout {
+        return this._about
+    }
+
+    get skill (): ISkill {
+        return this._skill
+    }
+
+    get gallery (): IGallery {
+        return this._gallery
+    }
+
+    get price (): IPrice {
+        return this._price
+    }
+
+    get feedback (): IFeedback {
+        return this._feedback
+    }
+
+    get question (): IQuestion {
+        return this._question
+    }
+
+    get social (): ISocial {
+        return this._social
+    }
+
+    get order (): IOrder {
+        return this._order
+    }
+
+    get footer (): IFooter {
+        return this._footer
     }
 }
 
