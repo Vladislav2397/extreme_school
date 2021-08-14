@@ -39,7 +39,7 @@ export default class Intro extends Mixins(device) {
         this.isMounted = true
     }
 
-    onClick (event): void {
+    onClick (event: any): void {
         console.log(event)
     }
 

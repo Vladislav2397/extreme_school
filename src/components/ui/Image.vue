@@ -33,9 +33,6 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-// import lazyload from '@/utils/directive/lazysizes'
-// import lazyload from '@/utils/lazy'
-
 @Component
 class ImageLazy extends Vue {
     @Prop({ required: true }) readonly fallbackExt!: string

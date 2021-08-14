@@ -5,12 +5,13 @@ export type ILink = {
 
 export type IImageData = {
     src: string
-    alt: string
+    alt?: string
     width?: number
     height?: number
 }
 
 export type IImage = {
+    alt?: string
     desktop: IImageData
     medium?: IImageData
     mobile?: IImageData
