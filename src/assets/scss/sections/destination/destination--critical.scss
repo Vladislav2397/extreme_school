@@ -91,6 +91,10 @@
     @include media_min_desktop {
         padding-top: toRem(120);
         padding-bottom: toRem(140);
+
+        &__container {
+            min-height: toRem(311);
+        }
     }
 
     @media (min-width: $desktopLate) {

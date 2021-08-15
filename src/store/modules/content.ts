@@ -142,13 +142,13 @@ class ContentModule extends VuexModule {
     private _about: IAbout = {
         image: {
             desktop: {
-                src: 'images/about/about.jpg',
+                src: 'images/about/about',
                 alt: '',
                 width: 200,
                 height: 200
             },
             mobile: {
-                src: 'images/about/about.jpg',
+                src: 'images/about/about',
                 alt: '',
                 width: 200,
                 height: 200

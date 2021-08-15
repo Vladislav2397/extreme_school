@@ -3,28 +3,40 @@ include ../../tools/mixins
 
 +b.about
     +e.container.container
-        +e.inner
-            +e.IMAGE-COMPONENT.image(
-                :path="imagePath"
-                fallbackExt="jpg"
-                :alt="content.image.alt"
+        +e.inner(
+            ref="transitionTrigger"
+        )
+            transition(
+                name="fade-top"
             )
-            +e.author
-                +e.TITLE-COMPONENT.name(
-                    tag="h2"
-                    size="h2"
-                ) {{ content.author.name }}
-                +e.status {{ content.author.status }}
-                +e.description(
-                    v-html="content.author.description"
+                +e.IMAGE-COMPONENT.image(
+                    v-show="isShow"
+                    :path="imagePath"
+                    fallbackExt="jpg"
+                    :alt="content.image.alt"
                 )
-                +e.UL.links
-                    +e.LI.link(
-                        v-for="link in content.author.links"
+            transition(
+                name="fade-right"
+            )
+                +e.author(
+                    v-show="isShow"
+                )
+                    +e.TITLE-COMPONENT.name(
+                        tag="h2"
+                        size="h2"
+                    ) {{ content.author.name }}
+                    +e.status {{ content.author.status }}
+                    +e.description(
+                        v-html="content.author.description"
                     )
-                        a(
-                            :href="link.href"
-                        ) {{ link.text }}
+                    +e.UL.links
+                        +e.LI.link(
+                            v-for="link in content.author.links"
+                        )
+                            a(
+                                :href="link.href"
+                            ) {{ link.text }}
+
 </template>
 
 <script lang="ts">
@@ -33,9 +45,10 @@ import ContentModule from '@/store/modules/content'
 
 import device from '@/mixins/utility/device'
 import { IAbout } from '@/store/types/content'
+import FadeTransitionSection from '@/mixins/fadeTransitionSection'
 
 @Component
-export default class About extends Mixins(device) {
+export default class About extends Mixins(device, FadeTransitionSection) {
     get content (): IAbout {
         return ContentModule.about
     }

@@ -78,6 +78,10 @@
     }
 
     @media (min-width: $desktop) {
+        &__container {
+            min-height: toRem(258);
+        }
+
         &__description {
             font-size: toRem(15);
             line-height: toRem(22);

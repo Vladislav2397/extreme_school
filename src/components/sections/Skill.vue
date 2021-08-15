@@ -3,46 +3,57 @@ include ../../tools/mixins
 
 +b.SECTION.skill
     +e.container.container
-        +e.inner
-            +e.TITLE-COMPONENT.title(
-                tag="h2"
-                size="h2"
-                align="center"
-                v-html="content.title"
+        +e.inner(
+            ref="transitionTrigger"
+        )
+            transition(
+                name="fade-left"
             )
-            +e.images
-                +e.SWIPER.swiper(
-                    ref="swiper"
-                    :options="swiperOptions"
+                +e.TITLE-COMPONENT.title(
+                    v-show="isShow"
+                    tag="h2"
+                    size="h2"
+                    align="center"
+                    v-html="content.title"
                 )
-                    +e.SWIPER-SLIDE.slide(
-                        v-for="(image, index) in content.images"
-                        :key="index"
+            transition(
+                name="fade-bottom"
+            )
+                +e.images(
+                    v-show="isShow"
+                )
+                    +e.SWIPER.swiper(
+                        ref="swiper"
+                        :options="swiperOptions"
                     )
-                        +e.image
-                            image-component(
-                                :path="image.src"
-                                fallbackExt="jpg"
-                            )
-                            +e.caption
-                                span(
-                                    v-html="image.caption"
+                        +e.SWIPER-SLIDE.slide(
+                            v-for="(image, index) in content.images"
+                            :key="index"
+                        )
+                            +e.image
+                                image-component(
+                                    :path="image.src"
+                                    fallbackExt="jpg"
                                 )
-                div(
-                    v-if="device.size.desktop"
-                )
-                    +e.BUTTON-COMPONENT.button--prev(
-                        theme="secondary"
-                        type="icon"
-                        @click="slidePrev"
+                                +e.caption
+                                    span(
+                                        v-html="image.caption"
+                                    )
+                    div(
+                        v-if="device.size.desktop"
                     )
-                        i.icon-chevron-left
-                    +e.BUTTON-COMPONENT.button--next(
-                        theme="secondary"
-                        type="icon"
-                        @click="slideNext"
-                    )
-                        i.icon-chevron-right
+                        +e.BUTTON-COMPONENT.button--prev(
+                            theme="secondary"
+                            type="icon"
+                            @click="slidePrev"
+                        )
+                            i.icon-chevron-left
+                        +e.BUTTON-COMPONENT.button--next(
+                            theme="secondary"
+                            type="icon"
+                            @click="slideNext"
+                        )
+                            i.icon-chevron-right
 
 </template>
 
@@ -52,9 +63,10 @@ import device from '@/mixins/utility/device'
 
 import { SwiperOptions } from 'swiper'
 import ContentModule from '@/store/modules/content'
+import FadeTransitionSection from '@/mixins/fadeTransitionSection'
 
 @Component
-export default class Skill extends Mixins(device) {
+export default class Skill extends Mixins(device, FadeTransitionSection) {
     $refs!: {
         swiper: HTMLElement & {
             swiperInstance: {

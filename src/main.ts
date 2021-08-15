@@ -4,6 +4,13 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+// TODO!!!: Check all files and add functional to components if it need
+
+// TODO: Make webpConvert file in OOP style
+// TODO: Create transition component
+// TODO: Make postcss config and split critical and main css
+// TODO: Add all ui in storybook
+
 import './assets/scss/critical.scss'
 
 import { Swiper, Pagination, Lazy } from 'swiper'

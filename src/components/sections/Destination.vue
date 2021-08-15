@@ -2,38 +2,45 @@
 include ../../tools/mixins
 
 +b.SECTION.destination
-    +e.container.container
-        +e.inner
-            +e.TITLE-COMPONENT.title(
-                tag="h2"
-                size="h2"
-                align="center"
-            ) Наши направления
-            +e.SWIPER.swiper(
-                ref="swiper"
-                :options="swiperOptions"
+    +e.container.container(
+        ref="transitionTrigger"
+    )
+        transition(
+            name="fade-bottom"
+        )
+            +e.inner(
+                v-show="isShow"
             )
-                +e.SWIPER-SLIDE.slide(
-                    v-for="(card, index) in content.cards"
-                    :key="index"
+                +e.TITLE-COMPONENT.title(
+                    tag="h2"
+                    size="h2"
+                    align="center"
+                ) Наши направления
+                +e.SWIPER.swiper(
+                    ref="swiper"
+                    :options="swiperOptions"
                 )
-                    +e.IMAGE-COMPONENT.image(
-                        :path="card.image"
-                        fallbackExt="jpg"
+                    +e.SWIPER-SLIDE.slide(
+                        v-for="(card, index) in content.cards"
+                        :key="index"
                     )
-                    +e.caption {{ card.caption }}
-            +e.BUTTON-COMPONENT.button--prev.button(
-                theme="secondary"
-                type="icon"
-                @click="slidePrev"
-            )
-                i.icon-chevron-left
-            +e.BUTTON-COMPONENT.button--next.button(
-                theme="secondary"
-                type="icon"
-                @click="slideNext"
-            )
-                i.icon-chevron-right
+                        +e.IMAGE-COMPONENT.image(
+                            :path="card.image"
+                            fallbackExt="jpg"
+                        )
+                        +e.caption {{ card.caption }}
+                +e.BUTTON-COMPONENT.button--prev.button(
+                    theme="secondary"
+                    type="icon"
+                    @click="slidePrev"
+                )
+                    i.icon-chevron-left
+                +e.BUTTON-COMPONENT.button--next.button(
+                    theme="secondary"
+                    type="icon"
+                    @click="slideNext"
+                )
+                    i.icon-chevron-right
 
 </template>
 
@@ -43,12 +50,14 @@ import { SwiperOptions } from 'swiper'
 
 import device from '../../mixins/utility/device'
 import ContentModule from '@/store/modules/content'
+import FadeTransitionSection from '@/mixins/fadeTransitionSection'
 
 @Component
-export default class Destination extends Mixins(device) {
+export default class Destination extends Mixins(device, FadeTransitionSection) {
     content = ContentModule.destination
 
     $refs!: {
+        transitionTrigger: HTMLElement
         swiper: HTMLElement & {
             swiperInstance: {
                 init: () => void,

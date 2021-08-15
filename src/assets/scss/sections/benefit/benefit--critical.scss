@@ -98,6 +98,10 @@
         padding-top: toRem(70);
         padding-bottom: toRem(102);
 
+        &__container {
+            min-height: toRem(450);
+        }
+
         &__title {
             margin-bottom: toRem(32);
         }
