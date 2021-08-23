@@ -22,44 +22,55 @@ if (needToWatch) {
 
 declare type IWatcher = typeof watcher
 
+declare type OptimizeImagesOptions = {
+    src: string | null
+    dist: string | null
+    needToWatch: boolean
+}
+
+declare type IParsingPath = {
+    path: string | PathLike | null,
+    brackets: string | null,
+    width: number | null,
+    filename: string | null,
+    ext: string | null
+}
+
 // function that will recursively check images directory
-async function walkSync (dir: PathLike | string) {
+async function walkSync (dir: PathLike | string) { // dir = ./public/images
     try {
         const files = await fsPromises.readdir(dir)
 
         for (const file of files) {
-            console.log('file', file)
-            const fileData = parseFile(`${dir}/${file}`)
-            console.log('fileData', fileData)
-
-            const path = fileData.fullPath
-            const parent = fileData.path
-            const ext = fileData.ext
-            const filename = fileData.filename
-            const width = fileData.width ? +(fileData.width) : null
+            // path = ./public/images/about/about.jpg || ./public/images/about
+            const path: PathLike = `${dir}/${file}`
 
             if (fs.statSync(path).isDirectory()) {
-                walkSync(path)
-            } else if (ext && ['png', 'jpg'].includes(ext)) {
+                await walkSync(path)
+            }
 
-                console.log('width', width)
-                console.log('dir', dir)
-                console.log('path', `./${parent}${filename}.${ext}`)
-                console.log(parseFile(path))
+            const { brackets, width, filename, ext }
+                = parseFile(path)
 
-                /* resize and generate webp */
-                await sharp(path)
-                    .resize(width)
-                    .webp({ quality: 80 })
-                    .toFile(`${dir}/${filename}.webp`)
+            if (ext && ['png', 'jpg'].includes(ext)) {
+
+                const file = `${dir}/${filename}.${ext}`
+                const fileWebp = `${dir}/${filename}.webp`
+
+                await createWebp({
+                    path: <string>path,
+                    width: <number>width,
+                    outputFile: <string>filename,
+                    quality: 80
+                })
 
                 /* resize and output to buffer */
-                const buffer = await sharp(path)
+                const buffer = await sharp(<string>path)
                     .resize(width)
                     .toBuffer()
 
                 /* write buffer into a file */
-                await fsPromises.access(path, fs.constants.F_OK)
+                await fsPromises.access(<string>path, fs.constants.F_OK)
                 await fs.writeFileSync(`./${parent}${filename}.${ext}`, buffer)
                 console.log(`starting optimize ${path}`)
 
@@ -83,15 +94,67 @@ async function walkSync (dir: PathLike | string) {
     }
 }
 
+type createImage = {
+    path: string,
+    width: number,
+    quality?: number,
+    outputFile: string,
+    extension?: string
+}
+
+async function createFallback(
+    {
+        path,
+        width,
+        outputFile,
+        extension
+    }: createImage
+): Promise<imagemin.Result[]> {
+
+    /* resize and output to buffer */
+    const buffer = await sharp(<string>path)
+        .resize(width)
+        .toBuffer()
+
+    /* write buffer into a file */
+    await fsPromises.access(<string>path, fs.constants.F_OK)
+    await fs.writeFileSync(path, buffer)
+    console.log(`starting optimize ${path}`)
+
+    /* optimize rewrited image */
+    return await imagemin([path], {
+        // destination: `${dir}/`,
+        plugins: [
+            imageminMozjpeg(),
+            imageminPngquant({
+                quality: [0.6, 0.8]
+            })
+        ]
+    })
+}
+
+async function createWebp(
+    {
+        path,
+        width,
+        outputFile,
+        quality = 80,
+    }: createImage
+): Promise<sharp.OutputInfo> {
+    return await sharp(path)
+        .resize(width)
+        .webp({ quality: quality })
+        .toFile(outputFile)
+}
+
 function parseFile(path: string): IParsingPath {
     const match = path.match(
-        /^\.*[\\/](?<path>.*[\\/])(?<brackets>\[(?<width>\d+)\])?(?<filename>.+)\.(?<ext>\w+)$/
+        /^\.*[\\/](?<path>.*[\\/])(?<brackets>\[(?<width>\d+)\])?(?<filename>.+)\.?(?<ext>\w+)?$/
     )
     return {
-        fullPath: path,
         path: match?.groups?.path || null,
         brackets: match?.groups?.brackets || null,
-        width: match?.groups?.width || null,
+        width: match?.groups?.width && +(match.groups.width) || null,
         filename: match?.groups?.filename || null,
         ext: match?.groups?.ext || null,
     }
@@ -113,97 +176,4 @@ export async function buildImages (): Promise<void> {
     })
 }
 
-declare type OptimizeImagesOptions = {
-    src: string | null
-    dist: string | null
-    needToWatch: boolean
-}
-
-declare type IParsingPath = {
-    fullPath: string,
-    path: string | null,
-    brackets: string | null,
-    width: string | null,
-    filename: string | null,
-    ext: string | null
-}
-
-class OptimizeImages {
-    private _path: string | null = null
-    private _options: OptimizeImagesOptions | null = null
-
-    constructor (
-        path: string,
-        options: OptimizeImagesOptions = {
-            src: null,
-            dist: null,
-            needToWatch: false
-        }
-    ) {
-        this._options = options
-
-        this.optimize()
-    }
-
-    optimize (): void {
-        //
-    }
-
-    private async createOptimizedWebp (
-        pathFrom: string,
-        pathTo: string,
-        width: number | undefined,
-    ): Promise<void> {
-        await sharp(pathFrom)
-            .resize(width)
-            .webp({ quality: 80 })
-            .toFile(pathTo)
-    }
-
-    public async createOptimizedFallback (
-        pathFrom: string,
-        pathTo: string,
-        width: number | undefined,
-    ) {
-        const buffer = await sharp(pathFrom)
-            .resize(width)
-            .toBuffer()
-
-        await fsPromises.access(pathFrom, fs.constants.F_OK)
-        await fs.writeFileSync(pathTo, buffer)
-        console.log(`starting optimize ${pathFrom}`)
-
-        await imagemin([pathTo], {
-            destination: pathTo,
-            plugins: [
-                imageminMozjpeg(),
-                imageminPngquant({
-                    quality: [0.6, 0.8]
-                })
-            ]
-        })
-    }
-
-    removeBrackets (str: string): string {
-        const brackets = str.match(/\[(.*)\]/)
-        return brackets ? str.replace(brackets[0], '') : str
-    }
-
-    parseFile(path: string): IParsingPath {
-        const match = path.match(
-            /^.*[\\/](?<path>.*[\\/])(?<brackets>\[(?<width>\d+)\])?(?<filename>.+).(?<ext>\w+)$/
-        )
-        return {
-            fullPath: path,
-            path: match?.groups?.path || null,
-            brackets: match?.groups?.brackets || null,
-            width: match?.groups?.width || null,
-            filename: match?.groups?.filename || null,
-            ext: match?.groups?.ext || null,
-        }
-    }
-}
-
-if (process.argv.indexOf('optimize') !== -1) {
-    buildImages()
-}
+buildImages()

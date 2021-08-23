@@ -134,10 +134,13 @@ const walkSync = function (dir) {
                     } else {
                         brackets = ''
                     }
+
+                    const fileForWrite = `${dir}/${removeBrackets(file).substring(0, removeBrackets(file).lastIndexOf('.'))}.webp`
+
                     sharp(`${dir}/${file}`)/* resize and generate webp */
                         .resize({width})
                         .webp({quality: 80})
-                        .toFile(`${dir}/${removeBrackets(file).substring(0, removeBrackets(file).lastIndexOf('.'))}.webp`)
+                        .toFile(fileForWrite)
                         .then(() => sharp(`${dir}/${file}`)/* resize and output to buffer */
                             .resize({width})
                             .toBuffer())
@@ -198,8 +201,10 @@ const buildImages = function () {
         })
 }
 
-if (process.argv.indexOf('optimize') !== -1) {
-    buildImages()
-}
+// if (process.argv.indexOf('optimize') !== -1) {
+//     buildImages()
+// }
+
+buildImages()
 
 module.exports = buildImages

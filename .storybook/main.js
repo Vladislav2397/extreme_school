@@ -8,6 +8,7 @@ module.exports.parameters = {
 
 module.exports = {
     "stories": [
+        "./**/*.stories.@(js|ts)",
         "../src/**/*.stories.mdx",
         "../src/**/*.stories.@(js|jsx|ts|tsx)"
     ],
@@ -15,6 +16,8 @@ module.exports = {
         "@storybook/addon-links",
         "@storybook/addon-essentials",
         "@storybook/preset-scss",
+        "@storybook/addon-actions",
+        "@storybook/addon-controls"
     ],
     // addParameters: {
     //     docs: {
